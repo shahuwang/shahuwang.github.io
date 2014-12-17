@@ -1,12 +1,16 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
 	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
 	"os"
+	"path"
+	"path/filepath"
+	"strings"
 )
 
 func main() {
@@ -21,6 +25,9 @@ func main() {
 	var err error
 	var input []byte
 	if filename != "" && dirname != "" {
+		if !path.IsAbs(filename) {
+			filename, _ = filepath.Abs(filename)
+		}
 		if input, err = ioutil.ReadFile(filename); err != nil {
 			fmt.Fprintf(os.Stderr, "Error reading from ", filename, ":", err)
 			os.Exit(-1)
@@ -38,13 +45,30 @@ func main() {
 	extensions |= blackfriday.EXTENSION_SPACE_HEADERS
 	htmlFlags := 0
 	htmlFlags |= blackfriday.HTML_OMIT_CONTENTS
-	render := blackfriday.HtmlRenderer(htmlFlags, filename[:len(filename)-3], "")
+	base := path.Base(filename)
+	title := base[:len(base)-3]
+	render := blackfriday.HtmlRenderer(htmlFlags, title, "")
 	output := blackfriday.Markdown(input, render, extensions)
-	title := filename[:len(filename)-3]
-	Render(string(output), title, dirname, filename)
+	fp := dirname + "/" + title + ".html"
+	if !path.IsAbs(fp) {
+		fp, _ = filepath.Abs(fp)
+	}
+	if _, err := os.Stat(fp); err == nil {
+		//fmt.Fprintf(os.Stderr, "%s exist, do you want to continue?", fp, err)
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Printf("%s exist, do you want to continue which will overwrite it? (y/n)", fp)
+		text, _ := reader.ReadString('\n')
+		text = strings.TrimSpace(text)
+		text = strings.ToLower(text)
+		if text == "y" {
+			Render(string(output), title, fp)
+		} else {
+			fmt.Println(" stop ")
+		}
+	}
 }
 
-func Render(content, title, dirname, filename string) {
+func Render(content, title, fp string) {
 	t := template.New("template.html")
 	tp, err := t.ParseFiles("template.html")
 	if err != nil {
@@ -52,9 +76,8 @@ func Render(content, title, dirname, filename string) {
 		os.Exit(-1)
 	}
 	var out *os.File
-	outfilename := filename[:len(filename)-3] + ".html"
-	if out, err = os.Create(dirname + "/" + outfilename); err != nil {
-		fmt.Fprintf(os.Stderr, "Error creating %s: %v", dirname+outfilename, err)
+	if out, err = os.Create(fp); err != nil {
+		fmt.Fprintf(os.Stderr, "Error creating %s: %v", fp, err)
 		os.Exit(-1)
 	}
 	var tc struct {
