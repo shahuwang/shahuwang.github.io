@@ -92,3 +92,14 @@ func Render(content, title, fp string) {
 		os.Exit(-1)
 	}
 }
+
+func GenIndex(root string) {
+	fs, err := ioutil.ReadDir(root)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, " error scanning the root dir %v", err)
+		os.Exit(-1)
+	}
+	for f := range fs {
+		fmt.Println(f.Name())
+	}
+}
