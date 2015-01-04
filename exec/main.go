@@ -13,20 +13,31 @@ import (
 	"strings"
 )
 
-var ignore []string = []string{".git", "css", "js", "images", "exec", "index.html"}
+var ignore []string = []string{".git", "css", "js", "images", "exec", "index.html", "CNAME"}
 
 func main() {
 	var filename, dirname string
-	var latex bool
+	var latex, index bool
 	flag.StringVar(&filename, "file", "", "The path of the file you want to generate")
 	flag.StringVar(&dirname, "dir", "", "Where the generated HTML page you would like to put on")
 	flag.BoolVar(&latex, "latex", false, "whether to include mathjax to render LaTex")
+	flag.BoolVar(&index, "index", false, "whether to generate index only")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: newblog --file=test.md --dir=blog")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
 	var err error
+	t := template.New("indextpl.html")
+	tp, err := t.ParseFiles("indextpl.html")
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(-1)
+	}
+	if index {
+		GenIndex("../", tp)
+		return
+	}
 	var input []byte
 	if filename != "" && dirname != "" {
 		if !path.IsAbs(filename) {
@@ -72,12 +83,6 @@ func main() {
 		}
 	} else {
 		Render(string(output), title, fp, latex)
-	}
-	t := template.New("indextpl.html")
-	tp, err := t.ParseFiles("indextpl.html")
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(-1)
 	}
 	GenIndex("../", tp)
 }
