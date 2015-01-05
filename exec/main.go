@@ -161,7 +161,7 @@ func Render(content, title, fp string, latex bool) {
 	tc.Content = template.HTML(content)
 	tc.Title = template.HTML(title)
 	now := time.Now()
-	tc.Date = template.HTML(now.String())
+	tc.Date = template.HTML(now.Format("2006 01 02 03:04"))
 	if latex {
 		tc.Latex = ` 
 		<script type="text/javascript"
