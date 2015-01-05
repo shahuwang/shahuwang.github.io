@@ -11,9 +11,14 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
-var ignore []string = []string{".git", "css", "js", "images", "exec", "index.html", "CNAME"}
+var ignore []string = []string{
+	".git", "css", "js", "images",
+	"exec", "index.html", "CNAME",
+	"markdown",
+}
 
 func main() {
 	var filename, dirname string
@@ -151,9 +156,12 @@ func Render(content, title, fp string, latex bool) {
 		Title   template.HTML
 		Content template.HTML
 		Latex   template.HTML
+		Date    template.HTML
 	}
 	tc.Content = template.HTML(content)
 	tc.Title = template.HTML(title)
+	now := time.Now()
+	tc.Date = template.HTML(now.String())
 	if latex {
 		tc.Latex = ` 
 		<script type="text/javascript"
