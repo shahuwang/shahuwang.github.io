@@ -36,7 +36,7 @@
 
 先给数组标个位置，如下图：
 
-[![25]http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg "25")](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg)
+[![25](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg "25")](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg)
 
 从左向右，从1开始标起。完全二叉树的数组特性如下：
 
