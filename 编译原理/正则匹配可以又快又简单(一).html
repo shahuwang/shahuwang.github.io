@@ -8,6 +8,18 @@
         <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
         <title>正则匹配可以又快又简单(一)</title>
          
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			extensions: ["tex2jax.js"],
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax:{
+				inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+				displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': {availabelFonts: ["TeX"]}
+		});
+		</script>
 		<script type="text/javascript"
   			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
@@ -157,7 +169,7 @@
 <p>在 step 1 和 step 2， 这个 NFA 同时处于两个状态，到了 step 3 的时候，此时只处于一个状态了。这种多状态方法同时尝试所有的路径，只需要扫描一次的字符串。最坏的情况是在任何一个步骤下，这个状态机处于所有可选状态之中，不过即使如此，也只是需要一个常量时间，时间的长短只取决于字符串的长度。所以任意大的输入都只需要线性时间来处理而已。这对于需要回溯方法的指数时间，简直是巨大的提升。之所以效率提升这么大，是因为我们追踪哪些状态可以到达，而不是哪些路径可以到达。一个有 n 个节点的 NFA， 每一个步骤都最多有 n 个状态可达，但是却有$2^n$ 条路径。</p>
 
         <p/></p>
-        <div> 2015-01-24 01:01</div>
+        <div> 2015-01-24 01:14</div>
 		
 		<div id="uyan_frame"></div>
 		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>

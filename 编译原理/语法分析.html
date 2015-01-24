@@ -8,6 +8,18 @@
         <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
         <title>语法分析</title>
          
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			extensions: ["tex2jax.js"],
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax:{
+				inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+				displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': {availabelFonts: ["TeX"]}
+		});
+		</script>
 		<script type="text/javascript"
   			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
@@ -179,7 +191,7 @@ $注意，\stackrel + {\Rightarrow} 表示一步或者多步推导$</li>
 <p>上面的部分，已经把自顶向下语法分析的主要内容讲解完毕了。说实在的，写的真的很累人啊，写了四个晚上了。最近在看Redis的源代码，其实我主要是想通过看源代码学习C语言，感觉进展不错。写这篇博客写到这里已经有点儿累了，所以自底向上语法分析的部分将放到下篇博客去写，不过估计得一两个星期之后了。</p>
 
         <p/></p>
-        <div> 2015-01-24 01:02</div>
+        <div> 2015-01-24 01:13</div>
 		
 		<div id="uyan_frame"></div>
 		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>

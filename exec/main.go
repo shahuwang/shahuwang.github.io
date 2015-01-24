@@ -164,6 +164,18 @@ func Render(content, title, fp string, latex bool) {
 	tc.Date = template.HTML(now.Format("2006-01-02 03:04"))
 	if latex {
 		tc.Latex = ` 
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			extensions: ["tex2jax.js"],
+			jax: ["input/TeX", "output/HTML-CSS"],
+			tex2jax:{
+				inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+				displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+				processEscapes: true
+			},
+			'HTML-CSS': {availabelFonts: ["TeX"]}
+		});
+		</script>
 		<script type="text/javascript"
   			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 		</script>
