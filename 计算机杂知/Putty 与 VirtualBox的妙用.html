@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>Putty 与 VirtualBox的妙用</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">Putty 与 VirtualBox的妙用</h1>
+		<p/><p/>
+        <p>最近发现，用 Putty 和 VirtualBox 配合，有非常不错的效果。</p>
+
+<p>本来公司给配的是MacBook Pro，工作半年来也基本上是每天把电脑背回家，因为我自己那台上大学时买的笔记本实在是慢的不能用了。加上，单纯用Ubuntu实在很不舒服，而OS X 系统则兼顾了Unix和Windows的优点，有我需要的软件，图形界面也够稳定，所以也愿意这样背电脑回家。</p>
+
+<p>然而，最近突然发现，固态硬盘的价格降了很多，600多可以买到120 G的，刚好也够我用了，反正我也有移动硬盘。然后就给我那破电脑给换上固态硬盘了，发现速度真是飞快起来了。不过，CPU 使用还是比较高，然后又发现，Win 8 系统在 CPU 上比 Win 7 优化很多，果断上淘宝花 100 元买了个序列号（正版的哦，加拿大的亚马逊圣诞促销价）。装好之后，发现果然又好了不少，这台用了四年的超低配电脑，又能继续工作了。</p>
+
+<p>本来想着，直接在 Win 8 下做开发好了，可是配置 Vim 的过程中，觉得好不爽阿，还是在类Unix环境下开发才方便一些。不过，采用 Cygwin 也很不方便，很多功能也没有。看来只剩下虚拟机一项了。</p>
+
+<!--more-->
+
+<p>在虚拟机安装好ubuntu之后，发现巨卡。没办法，这破电脑是承受不住两个图形操作系统的了。所以，只能安装 server 版的了。安装好之后，又发现有很多问题，第一个就是设置与主机的共享目录设置不了了，在 server 下，我死活都安装不了 virtualbox 的增强包，没这个就设置不了共享目录了。另外，在 server 界面，一是显示不了中文，而是用不了鼠标，三是主机的剪切板共享不了了。</p>
+
+<p>所以，这种情况，即使安装好 server，我也无法正常使用呀，这种方式写代码，得累死人了。而且，网上看到的代码片段也无法粘贴过去，那还怎么写代码呢。</p>
+
+<p>穷途末路之下，真是船到桥头自然直，想到了 Putty。 它是一个 Windows 下用了进行 ssh 登陆的客户端，通过它，就可以登陆远程的服务器了。它有几个优点，一是可以显示中文，二是可以用鼠标粘贴和复制数据，三则是其使用的是主机的输入法。</p>
+
+<p>然后，就折腾上了。弄好之后，果然可以显示中文，可以用主机的输入法输入中文，也可以复制和粘贴数据了。但是，Vim 的使用还是不方便，即它不支持鼠标操作，移动窗口，改变光标什么的都很不方便，唯一支持的鼠标操作就是复制粘贴了。但是，经过如下配置，则比较完美了：</p>
+
+<ul>
+<li><p>set mouse=nv</p></li>
+
+<li><p>set selection=exclusive</p></li>
+
+<li><p>set selectmode=mouse,key</p></li>
+
+<li><p>set ttymouse=xterm2</p></li>
+</ul>
+
+<p>其实主要是第一话，这里说的是在正常和可视化模式下，可以使用鼠标。也因此，在插入状态下，不能使用鼠标。为什么要这样设计呢？我们要在 Vim 中使用鼠标，主要是两个原因，第一个是对 Vim 的操作更加方便，一个是 Putty 是通过鼠标进行粘贴复制的。假如设置为 set mouse=a, 即所有的模式下，都使用鼠标的话，在 Putty 就不能使用鼠标对 Vim 进行粘贴复制了，因为只要点击一下，鼠标就被 Vim 给捕获了。</p>
+
+<p>这里有一个要说的是，在byobu里，本来可以用的鼠标拖拉窗口的操作，不能用了，所以，用set ttymouse=xterm2 这句设置，就使得vim 在byobu下也能够鼠标操作了。</p>
+
+<p>至于说为什么要用byobu，这个其实还是挺重要的，因为putty如果不小心断了连接，你正在编辑的操作就全部丢失了，麻烦就大了。而使用byobu，就不能有这个问题了，即使你断了连接，这个对话session还是由byobu保持着，重新登陆，打开byobu，依旧可以看到之前的编辑。</p>
+
+<p>Virtualbox 最好使用桥接的方式联网。开启多个 Putty 窗口，干活什么的，就变得巨方便了。不过建议使用 Byobu，但是它的快捷键，即 F2，F3， F4 在Putty 下用不了，需要修改一下配置，要在 Putty 的配置里面，把 Terminate -&gt; keyboard-&gt; The function key and keyboard 设置为 XTermR6，这样就能使用 Byobu的快捷键了。</p>
+
+<p>现在，一切都很OK了。</p>
+
+        <p/></p>
+        <div> 2015-01-24 12:49</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>用你家里的电脑做服务器</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">用你家里的电脑做服务器</h1>
+		<p/><p/>
+        <h3>现实情况：</h3>
+
+<p>由于中国特殊的网络环境问题，我们家里用的电脑的IP是不停地换的。掉线一次，IP就换一次。而且即使你不掉线，运营商还是会在一定时间内重新给你一个IP，并且会把一些重要的端口访问给你封了。反正，就是让你不能用家里的电脑搭服务器。</p>
+
+<p>但有时候，真的对普通电脑做服务器有着重大的需求，比如说做网络爬虫，用公网服务器，稍有不慎，就废了。用普通电脑做爬虫服务器，对方封你IP，重新拨号或者重连路由就把问题解决了。</p>
+
+<!--more-->
+
+<p>但是吧，又因为普通电脑无固定IP，所以我们无法给这台电脑主动发送请求。有时候需要远程看看爬虫是否运行都做不到，更不要说，我们直接把这台电脑给线上的产品做实时的爬虫服务器了。</p>
+
+<h3>解决方法：</h3>
+
+<p>不过，天无绝人之路，解决的方法还是有一些的。用收费的花生壳也许不错，很多TP-Link的路由器，都自带了花生壳，去买个付费的帐号，绑定域名，就可以解决了。但是我对这个没有进行过测试，估计也不是特别的稳定吧。另一个方法，就是SSH的远程端口转发了，但是这种方法，需要用到一台公网的服务器，不过现在的vps这么便宜，买一个最低配版本的就行了（最好买国内的，不需要绑定域名，速度快很多，推荐阿里云）。</p>
+
+<h3>条件设定：</h3>
+
+<p>咱们先来设定一下角色：假设总共有3台电脑，一台是运行在ADSL网络环境下的爬虫电脑，一个是公网的服务器，一台是个人电脑。</p>
+
+<p>我们要达到的目标：个人电脑访问服务器的某个端口，服务器自动把这个端口的数据转发给爬虫电脑，爬虫电脑接收请求之后，把数据发回给服务器，服务器再把数据发回给个人电脑。</p>
+
+<p>操作系统要求：爬虫电脑和服务器我都是用Ubuntu，个人电脑可以任意操作系统。</p>
+
+<p>主要参考文章 ：&nbsp;<a href="http://net.jnyzh.cn/node/35">http://net.jnyzh.cn/node/35</a>&nbsp;目前，只有这篇文章真正解决了问题，其他的文章都少了一个步骤。</p>
+
+<h3>解决步骤：</h3>
+
+<p>1：修改服务器上的ssh配置，打开/etc/ssh/sshd.config，在里面增加一行： GatewayPorts yes 。这是最关键的一步，网上很多的文章都没有提到这一步，导致我一直失败。</p>
+
+<p>2：重启服务器的ssh: sudo service ssh restart</p>
+
+<p>3：在爬虫电脑上终端上运行：ssh -R 30048:localhost:8000 -l root 218.xxx.xxx.xxx</p>
+
+<p>参数说明：30048表示的是远程vps的端口，8000是爬虫电脑的端口，218.xxx.xxx.xxx是服务器的IP地址。这句话的意思是，其他电脑访问这台服务器的30048端口，都自动转发到家里这台电脑的8000端口上。218.xxx.xxx.xxx表示的是服务器地址。</p>
+
+<p>4: 在家里的电脑上，执行：python -m SimpleHTTPServer ，这是用Python启动了一个http服务器，用来测试看看ssh转发是否成功的。</p>
+
+<p>5：现在在爬虫电脑上用SSH连接服务器。ssh&nbsp;<a href="mailto:username@218.xxx.xxx.xxx">username@218.xxx.xxx.xxx</a>&nbsp;。之前的命令，已经给ssh这条通道，建立了一个反向的通道，此时通过爬虫电脑向服务器进行ssh连接，建立了正向通道的同时，反向通道也已经建立好了。</p>
+
+<p>6：保持爬虫电脑与服务器的ssh连接，此时访问vps：218.xxx.xxx.xxx：30048 ，你会发现，已经可以访问家里电脑的内容了。</p>
+
+<p>这种方法，只能访问到爬虫电脑上的一个端口，网上有篇文章说可以做到访问爬虫电脑的所有端口的，我一下子找不着了，反正我暂时也没有这个需求。</p>
+
+<h3>其他问题：</h3>
+
+<p>不过，其实上面的方式还是有问题的，因为ADSL网络并不稳定，SSH连接也不太可能一直保持在线。如果掉线了，你人在外处，就死火了。不过呢，还是天无绝人之路，用Supervisor这个工具就可以了。这里呢，我暂时不细说如何使用supervisor了，后面会写一篇文章介绍supervisor的。总之，它可以让你把程序在后台运行，监听程序的状态，可以设置如果程序停止了，自动重启。而且，它还提供一个web界面，让你对计划里的程序进行控制。</p>
+
+<p>有supervisor和ssh这两个神器，还愁你的网络爬虫被封么？要是配上Goagent，我觉得吧，基本上没有多少网站能封得了你了。</p>
+
+        <p/></p>
+        <div> 2015-01-24 12:49</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
