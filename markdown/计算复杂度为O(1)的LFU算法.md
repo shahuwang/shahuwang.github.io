@@ -96,7 +96,7 @@ Go语言它有结构体，有指针，对于实现数据结构和算法非常方
         freq int
     }
 
-就是下图红线中的数据集合的结构体，如x和y就是这个结构体里面的一部分： [![21[1]](http://f.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=51176864e5cd7b89ed6c3a863f1f339a/34fae6cd7b899e518aa352ba41a7d933c8950d6a.jpg?referer=360bedcffb1986181850dab46b29&x=.jpg "21[1]")](http://f.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=51176864e5cd7b89ed6c3a863f1f339a/34fae6cd7b899e518aa352ba41a7d933c8950d6a.jpg?referer=360bedcffb1986181850dab46b29&x=.jpg)
+就是下图红线中的数据集合的结构体，如x和y就是这个结构体里面的一部分： [![21[1]](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/LFU.png "21[1]")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/LFU.png)
 
 可以看出，代码作者这里直接使用hash表来保存图中本来说的链表来实现。
 

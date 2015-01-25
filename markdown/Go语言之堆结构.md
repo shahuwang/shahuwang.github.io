@@ -28,15 +28,15 @@
 
 由于完全二叉树的特性，节点的存储选用数组而不是链表，这样能够极快的提供访问数据，因为根据节点的下标，就能获得其父节点，左右子节点是谁，因此用数组更加快捷。如下图所示数组，可以用其表示一颗完全二叉树：
 
-[![23](http://g.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=ef126cb4c55c1038207ecec7822ae22e/342ac65c10385343fdb0eb8f9013b07eca808824.jpg?referer=d320dcabe6dde711bec577c6e8fa&x=.jpg "23")](http://g.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=ef126cb4c55c1038207ecec7822ae22e/342ac65c10385343fdb0eb8f9013b07eca808824.jpg?referer=d320dcabe6dde711bec577c6e8fa&x=.jpg)
+[![23](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap2.png "23")](hhttps://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap2.png)
 
 其对应 的完全二叉树如下图：
 
-[![24](http://a.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=ce1e49a65043fbf2c12ca6268045bbbd/11385343fbf2b2119b51e9e0c98065380cd78e24.jpg?referer=ed9fbe8f93ef76c689c5cf1beafa&x=.jpg "24")](http://a.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=ce1e49a65043fbf2c12ca6268045bbbd/11385343fbf2b2119b51e9e0c98065380cd78e24.jpg?referer=ed9fbe8f93ef76c689c5cf1beafa&x=.jpg)
+[![24](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap3.png "24")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap3.png)
 
 先给数组标个位置，如下图：
 
-![http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg ](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=849ff8daae345982c18ae5973ccf4090/a044ad345982b2b7c3e0556a32adcbef76099b24.jpg?referer=9f16cd70f31f3a2903dfe1fee5fa&x=.jpg)
+![https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap4.png ](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap4.png)
 
 从左向右，从1开始标起。完全二叉树的数组特性如下：
 
@@ -53,11 +53,11 @@
 
 最大堆就是父节点比子节点大。最小堆就是父节点比子节点小。最大最小堆比较复杂，暂时没去了解。上面那个数组，变成最大堆之后如下：
 
-[![26](http://e.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=6a4b12a8afaf2eddd0f149ecbd2b70d4/4a36acaf2edda3cc609bd48e02e93901213f9224.jpg?referer=28ea07418eb1cb13677e0823defa&x=.jpg "26")](http://e.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=6a4b12a8afaf2eddd0f149ecbd2b70d4/4a36acaf2edda3cc609bd48e02e93901213f9224.jpg?referer=28ea07418eb1cb13677e0823defa&x=.jpg)
+[![26](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap5.png "26")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap5.png)
 
 二叉树结构变成如下形式：
 
-[![27](http://h.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=152c0331a70f4bfb88d09e51337409cd/5bafa40f4bfbfbed3c4a5ad17bf0f736afc31f08.jpg?referer=09015e962b381f30c70eb8995907&x=.jpg "27")](http://h.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=152c0331a70f4bfb88d09e51337409cd/5bafa40f4bfbfbed3c4a5ad17bf0f736afc31f08.jpg?referer=09015e962b381f30c70eb8995907&x=.jpg)
+[![27](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap6.png "27")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap6.png)
 
 可以看到，父节点总是比子节点大的。但要注意，此时的数组并未排好序，只能确定第一个元素是最大的而已。
 
@@ -71,7 +71,7 @@
 
 根据完全二叉树的特点，我们知道那些位置的数据是作为父节点存在的，如下图：
 
-[![28](http://c.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=20ace09f4990f60300b09c420929c226/b8014a90f603738d0359608cb01bb051f819ec09.jpg?referer=203d3ab961d0f703bfa5a0ec4c07&x=.jpg"28")](http://c.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=20ace09f4990f60300b09c420929c226/b8014a90f603738d0359608cb01bb051f819ec09.jpg?referer=203d3ab961d0f703bfa5a0ec4c07&x=.jpg)
+[![28](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap7.png"28")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap7.png)
 
 如上，1,2,3,4,5这五个位置的数据都是做父节点的，其他的都是叶结点，所以我们从位置5开始向左调整就可以了。
 
@@ -79,7 +79,7 @@
 
 如下图：
 
-[![24[1]](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=122f130ef503738dda4a0c278320c16c/4b90f603738da977923cea85b351f8198618e309.jpg?referer=c8093b4ef403918f8ec608fa4d07&x=.jpg "24[1]")](http://d.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=122f130ef503738dda4a0c278320c16c/4b90f603738da977923cea85b351f8198618e309.jpg?referer=c8093b4ef403918f8ec608fa4d07&x=.jpg)
+[![24[1]](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap8.png "24[1]")](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap8.png)
 
 我们先调整16和2这一层，然后调整1,3这一层，最后调整最高层。
 
