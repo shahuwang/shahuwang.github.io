@@ -22,7 +22,7 @@
 
 大致如下图：
 
-![http://h.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=32689fc21338534388cf8724a328c143/c75c10385343fbf2b553ca8db37eca8065388f24.jpg?referer=8277bc43e41190ef58eca6efe9fa&x=.jpg](http://h.picphotos.baidu.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=32689fc21338534388cf8724a328c143/c75c10385343fbf2b553ca8db37eca8065388f24.jpg?referer=8277bc43e41190ef58eca6efe9fa&x=.jpg)
+![https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap1.png](https://raw.githubusercontent.com/shahuwang/images/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/heap1.png)
 
 完全二叉树有什么优势呢？其通过简单的数学计算就能很快得出许多特性，涉及比较多，这里主要介绍与堆有关的几个。
 
