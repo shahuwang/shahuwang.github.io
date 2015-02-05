@@ -2307,3 +2307,23 @@ li.comment {
         margin-top: 0;
     }
 }
+
+/* for mobile */
+@media (max-width: 768px) {
+    body {
+        width: 100%;
+        padding: 5px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    #link {
+        margin: 20px;
+    }
+
+    #link ul {
+        margin-left: 2em;
+    }
+}
