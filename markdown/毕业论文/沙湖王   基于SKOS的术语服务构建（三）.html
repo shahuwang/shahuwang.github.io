@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<!-- saved from url=(0128)http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html -->
+<html lang="zh-CN" slick-uniqueid="3" class=" js flexbox no-touch csstransforms inlinesvg"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="http://i.jiathis.com/url/shares.php?url=http%3A%2F%2Fwww.shahuwang.com%2F2013%2F06%2F20%2F%25e5%259f%25ba%25e4%25ba%258eskos%25e7%259a%2584%25e6%259c%25af%25e8%25af%25ad%25e6%259c%258d%25e5%258a%25a1%25e6%259e%2584%25e5%25bb%25ba-2.html" charset="utf-8"></script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>沙湖王 | 基于SKOS的术语服务构建（三） </title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.shahuwang.com/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="沙湖王 » Feed" href="http://www.shahuwang.com/feed">
+<link rel="alternate" type="application/rss+xml" title="沙湖王 » 评论Feed" href="http://www.shahuwang.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="沙湖王 » 基于SKOS的术语服务构建（三）评论Feed" href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html/feed">
+<link rel="stylesheet" id="yarppWidgetCss-css" href="./沙湖王   基于SKOS的术语服务构建（三）_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="decode-style-css" href="./沙湖王   基于SKOS的术语服务构建（三）_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="decode-font-stylesheet-css" href="./沙湖王   基于SKOS的术语服务构建（三）_files/css" type="text/css" media="all">
+<script type="text/javascript">
+/* <![CDATA[ */
+window.CKEDITOR_BASEPATH = "http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/";
+var ckeditorSettings = { "textarea_id": "comment", "pluginPath": "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/", "autostart": true, "excerpt_state": false, "qtransEnabled": false, "outputFormat": { "indent": true, "breakBeforeOpen": true, "breakAfterOpen": true, "breakBeforeClose": true, "breakAfterClose": true }, "configuration": { "height": "160px", "skin": "moono", "scayt_autoStartup": false, "entities": true, "entities_greek": true, "entities_latin": true, "toolbar": "WordpressBasic", "templates_files": [ "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.templates.js" ], "stylesCombo_stylesSet": "wordpress:http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.styles.js", "allowedContent": true, "customConfig": "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.config.js" }, "externalPlugins": [  ], "additionalButtons": [  ] }
+/* ]]> */
+</script>		<style type="text/css">
+				#content table.cke_editor { margin:0; }
+				#content table.cke_editor tr td { padding:0;border:0; }
+		</style>
+		<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ckeditor.js"></script><style>.cke{visibility:hidden;}</style>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/jquery.js"></script>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ckeditor.utils.js"></script>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ckeditor.comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.shahuwang.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.shahuwang.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="基于SKOS的术语服务构建(二）" href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba%e4%ba%8c%ef%bc%89.html">
+<link rel="next" title="基于SKOS的术语服务构建（四）" href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba%ef%bc%88%e5%9b%9b%ef%bc%89.html">
+<meta name="generator" content="WordPress 4.0.1">
+<link rel="canonical" href="./沙湖王   基于SKOS的术语服务构建（三）_files/沙湖王   基于SKOS的术语服务构建（三）.html">
+<link rel="shortlink" href="http://www.shahuwang.com/?p=1703">
+    <script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/highlight.pack.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="http://www.shahuwang.com/wp-content/plugins/wp-highlightjs/styles/default.css">
+    <style>pre.hljs {padding: 0px;}
+pre.hljs code {border: 1px solid #ccc; padding: 5px;}</style>
+		<!-- Decode Custom Colors CSS -->
+		<style type="text/css">
+			body, .sidebar, .sidebar-top, .menu ul ul, .header-style-ghost .site { background-color: #E3E5E7; }body, button, input, select, textarea, .site-title a, .menu a, .entry-title, .search-entry, .search-entry .entry-title, .entry-title a, .format-link .entry-title h2 a, .read-more, .author-name a, .explore-page .widget h1, .decode-reply-tool-plugin .replylink, .decode-reply-tool-plugin .replytrigger { color: #444444; }.menu ul > .menu-item-has-children > a::after, .menu ul > .page_item_has_children > a::after { border-top-color: #444444; }.footer-menu ul > .menu-item-has-children > a::after, .footer-menu ul > .page_item_has_children > a::after { border-bottom-color: #444444; }.menu-icon, .close-icon, .social-icon-fill { fill: #444444; }a, .no-touch a:hover, button, input[type=button], input[type=reset], input[type=submit], .no-touch .site-title a:hover, .no-touch .menu a:hover, .menu ul li.open > a, .sidebar-menu a, .menu .current-menu-item > a, .menu .current_page_item > a, .no-touch .search-entry:hover, .no-touch .search-entry:hover .entry-title, .no-touch article .date a:hover, .no-touch .format-link .entry-title a:hover, .no-touch .comment-metadata a:hover, .no-touch .decode-reply-tool-plugin .replylink:hover { color: #009BCD; }.no-touch button:hover, .no-touch input[type=button]:hover, .no-touch input[type=reset]:hover, .no-touch input[type=submit]:hover, .no-touch input[type=text]:focus, .touch input[type=text]:focus, .no-touch input[type=email]:focus, .touch input[type=email]:focus, .no-touch input[type=password]:focus, .touch input[type=password]:focus, .no-touch input[type=search]:focus, .touch input[type=search]:focus, .no-touch input[type=tel]:focus, .touch input[type=tel]:focus, .no-touch input[type=url]:focus, .touch input[type=url]:focus, .no-touch textarea:focus, .touch textarea:focus, .no-touch .site-description a:hover, .no-touch .entry-content a:hover, .no-touch .categories a:hover, .no-touch .tags a:hover, .no-touch .comments-link a:hover, .no-touch .edit-link a:hover, .no-touch .author-site a:hover, .no-touch .theme-info a:hover, .no-touch .site-colophon a:hover, .site-header, .menu ul ul, .menu a:focus, .site-breadcrumbs, .page-title, .post blockquote, .page blockquote, .entry-footer, .entry-header .entry-meta, .search .entry-footer, .sidebar-top, .sidebar-style-constant .sidebar.left, .sidebar-style-constant .sidebar.right, .explore-page .widget h1 { border-color: #009BCD; }.no-touch .menu ul > .menu-item-has-children > a:hover::after, .no-touch .menu ul > .page_item_has_children > a:hover::after, .menu ul li.open > a::after, .sidebar-menu ul .menu-item-has-children > a::after, .sidebar-menu ul .page_item_has_children > a::after, .menu ul > .current_page_item.menu-item-has-children > a::after, .menu ul > .current_page_item.page_item_has_children > a::after { border-top-color: #009BCD; }.no-touch .footer-menu ul > .menu-item-has-children > a:hover::after, .no-touch .footer-menu ul > .page_item_has_children > a:hover::after, .footer-menu ul > li.open > a::after, .footer-menu ul > .current_page_item.menu-item-has-children > a::after, .footer-menu ul > .current_page_item.page_item_has_children > a::after { border-bottom-color: #009BCD; }.no-touch a:active, .no-touch button:focus, .touch button:focus, .no-touch button:active, .touch button:active, .no-touch input[type=button]:focus, .touch input[type=button]:focus, .no-touch input[type=button]:active, .touch input[type=button]:active, .no-touch input[type=reset]:focus, .touch input[type=reset]:focus, .no-touch input[type=reset]:active, .touch input[type=reset]:active, .no-touch input[type=submit]:focus, .touch input[type=submit]:focus, .no-touch input[type=submit]:active, .touch input[type=submit]:active, .no-touch .site-title a:active, .no-touch .menu a:active, .no-touch .sidebar-menu a:hover, .sidebar-menu ul li.open > a, .menu .current-menu-item > a:hover, .menu .current_page_item > a:hover, .sidebar-menu ul .current-menu-item > a, .sidebar-menu ul .current_page_item > a, .no-touch .sidebar-content a:hover, .no-touch .search-entry:active, .no-touch .search-entry:active .entry-title, .no-touch article .date a:active, .no-touch .format-link .entry-title a:active, .no-touch .comment-metadata a:active, .no-touch .site-description a:active, .decode-reply-tool-plugin .replylink:active, .no-touch .decode-reply-tool-plugin .replylink:active { color: #007EA6; }.no-touch button:focus, .touch button:focus, .no-touch button:active, .touch button:active, .no-touch input[type=button]:focus, .touch input[type=button]:focus, .no-touch input[type=button]:active, .touch input[type=button]:active, .no-touch input[type=reset]:focus, .touch input[type=reset]:focus, .no-touch input[type=reset]:active, .touch input[type=reset]:active, .no-touch input[type=submit]:focus, .touch input[type=submit]:focus, .no-touch input[type=submit]:active, .touch input[type=submit]:active, .no-touch .site-description a:active, .no-touch .entry-content a:active, .no-touch .categories a:active, .no-touch .tags a:active, .no-touch .comments-link a:active, .no-touch .edit-link a:active, .no-touch .author-site a:active, .no-touch .theme-info a:active, .no-touch .site-colophon a:active { border-color: #007EA6; }.no-touch .menu ul > .menu-item-has-children > a:active::after, .no-touch .menu ul > .page_item_has_children > a:active::after, .no-touch .sidebar-menu ul .menu-item-has-children > a:hover::after, .no-touch .sidebar-menu ul .page_item_has_children > a:hover::after, .sidebar-menu ul li.open > a::after, .sidebar-menu ul .current_page_item.menu-item-has-children > a::after, .sidebar-menu ul .current_page_item.page_item_has_children > a::after { border-top-color: #007EA6; }.no-touch .footer-menu ul > .menu-item-has-children > a:active::after, .no-touch .footer-menu ul > .page_item_has_children > a:active::after { border-bottom-color: #007EA6; }.no-touch input[type=text]:hover, .no-touch input[type=email]:hover, .no-touch input[type=password]:hover, .no-touch input[type=search]:hover, .no-touch input[type=tel]:hover, .no-touch input[type=url]:hover, .no-touch textarea:hover, article .tags, article .categories, article .date, article .date a, .comment-metadata a, .search .page-header input[type=search] { color: #808080; }.no-touch input[type=text]:hover, .no-touch input[type=email]:hover, .no-touch input[type=password]:hover, .no-touch input[type=search]:hover, .no-touch input[type=tel]:hover, .no-touch input[type=url]:hover, .no-touch textarea:hover, .no-touch .search .page-header input[type=search]:hover { border-color: #808080; }.no-touch input[type=text]:focus, .touch input[type=text]:focus, .no-touch input[type=email]:focus, .touch input[type=email]:focus, .no-touch input[type=password]:focus, .touch input[type=password]:focus, .no-touch input[type=search]:focus, .touch input[type=search]:focus, .no-touch input[type=tel]:focus, .touch input[type=tel]:focus, .no-touch input[type=url]:focus, .touch input[type=url]:focus, .no-touch textarea:focus, .touch textarea:focus { color: #444444; }.no-touch input[type=text]:focus, .touch input[type=text]:focus, .no-touch input[type=email]:focus, .touch input[type=email]:focus, .no-touch input[type=password]:focus, .touch input[type=password]:focus, .no-touch input[type=search]:focus, .touch input[type=search]:focus, .no-touch input[type=tel]:focus, .touch input[type=tel]:focus, .no-touch input[type=url]:focus, .touch input[type=url]:focus, .no-touch textarea:focus, .touch textarea:focus, .no-touch .search .page-header input[type=search]:focus, .touch .search .page-header input[type=search]:focus { border-color: #009BCD; }		</style>
+			<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #E3E5E7; }
+</style>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/related_items_v2"></script><script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ckeditor.config.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" type="text/css" href="./沙湖王   基于SKOS的术语服务构建（三）_files/editor.css"><script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/zh-cn.js"></script><script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ckeditor.styles.js"></script></head>
+
+<body class="single single-post postid-1703 single-format-standard custom-background sidebar-style-closing sidebar-style-left" ryt13869="1"><div id="MathJax_Message" style="display: none;"></div><link href="./沙湖王   基于SKOS的术语服务构建（三）_files/jiathis_counter.css" rel="stylesheet" type="text/css"><script src="./沙湖王   基于SKOS的术语服务构建（三）_files/jiathis.php" charset="utf-8"></script><link href="./沙湖王   基于SKOS的术语服务构建（三）_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./沙湖王   基于SKOS的术语服务构建（三）_files/jiathis_utility.html" style="display: none;"></iframe>
+	
+<div id="page" class="hfeed site">
+	
+	<a class="skip-link screen-reader-text" href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html#content">跳到内容</a>
+	
+			
+			<button id="sidebar-link" class="sidebar-link SidebarLink left" title="显示侧边栏">
+			<svg width="100%" height="100%" viewBox="0 0 240 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<g class="menu-icon" fill-rule="evenodd">
+					<path d="M0,160 L0,200 L240,200 L240,160 L0,160 Z M0,160"></path>
+					<path d="M0,80 L0,120 L240,120 L240,80 L0,80 Z M0,80"></path>
+					<path d="M0,0 L0,40 L240,40 L240,0 L0,0 Z M0,0"></path>
+				</g>
+			</svg>
+		</button>
+				<header id="masthead" class="site-header" role="banner">
+				
+		<div class="site-branding">
+			
+										
+						
+				<h1 class="site-title">
+				<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+				</h1>
+						
+											<h2 class="site-description">知识只有分享才能延续生命</h2>
+										
+		</div>
+		
+		
+		<div class="menu horizontal-menu header-menu"><ul><li><a href="http://www.shahuwang.com/">首页</a></li><li class="page_item page-item-1637"><a href="http://www.shahuwang.com/%e5%8f%8b%e6%83%85%e9%93%be%e6%8e%a5">友情链接</a></li></ul></div>
+		
+				
+	</header><!-- #masthead -->
+	
+			
+		
+	<div id="content" class="site-content">
+		
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+
+	
+		
+
+			<article id="post-1703" class="post-1703 post type-post status-publish format-standard hentry category-7 tag-jena tag-skos tag-164 tag-7">
+				
+		<header class="entry-header">
+						<h1 class="entry-title"><a href="./沙湖王   基于SKOS的术语服务构建（三）_files/沙湖王   基于SKOS的术语服务构建（三）.html" rel="bookmark">基于SKOS的术语服务构建（三）</a></h1>					</header><!-- .entry-header -->
+		
+		<div class="entry-content">
+			<h3>第三章：受控词表的语义化表示</h3>
+<p>本章主要讲述如何采用SKOS对词表进行语义化表示。</p>
+<h4>3.1：语义网及其相关技术</h4>
+<p>Web 自诞生以来，到目前为止总共经历了两个阶段：Web 1.0和Web 2.0 。关于web 1.0与web 2.0的划分，起源于出版社经营者O’Reilly和MediaLive International之间的一场头脑风暴论坛。身为互联网先驱和O’Reilly副总裁，Dale Dougherty指出：“伴随着令人激动的新程序和新网站间惊人的规律性，互联网不仅远没有“崩溃”，甚至比以往更重要。更进一步说，那些得以活过泡沫破裂的公司之间似乎拥有某种相同点。难道是互联网泡沫破裂标志着互联网的一个转折点，因而导致了诸如“Web 2.0”这种运动？笔者同意这种说法，“Web 2.0”的概念由此诞生了。” Tim O’Reilly 撰文指出了Web 1.0和Web 2.0的区别：</p>
+<p><span id="more-1703"></span>
+</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image11577.png"><img title="wps_clip_image-11577" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-11577" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image11577_thumb.png" width="244" height="135"></a></p>
+<p></p>
+<p>Web 1.0与Web 2.0的争论，起源于2001年的互联网泡沫。这场泡沫，导致了当时许多科技公司的倒闭，也让人们开始去思考互联网、Web等技术的未来发展。有了1.0和2.0之</p>
+<p>分，那有没有Web 3.0呢？</p>
+<p>2001年，Tim Berners-Lee等人人发表了《The Semantic Web》，这是Berners-Lee在1998年提出Semantic Web的想法之后，首次正式明确了Semantic Web的概念，也标志着Semantic Web的诞生。在某种程度上，Semantic Web被称为Web 3.0 。Semantic Web的核心是：通过给万维网上的文档 (如: HTML)添加能够被计算机所理解的语义(Meta data)，从而使整个互联网成为一个通用的信息交换媒介。语义万维网通过使用标准、置标语言和相关的处理工具来扩展万维网的能力。</p>
+<p>Berners-Lee提出了语义网堆栈模型，如下图：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p> <a href="http://www.shahuwang.com/wp-content/uploads/2013/06/2.png"><img title="图片2" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="图片2" src="./沙湖王   基于SKOS的术语服务构建（三）_files/2_thumb.png" width="224" height="244"></a>
+</p><p>该堆栈总分七层，分别为：URI层,XML层,RDF层,本体层，逻辑层，证明层和置信层。</p>
+<p>Berners-Lee认为，可以用URI作为每一个资源的唯一标识符，借鉴XML的语法，采用资源描述框架（RDF）对信息和元数据进行描述。通过本体的描述，使得RDF里描述的每一个资源都具有可被机器读取和识别的意义。通过逻辑层，来对资源描述进行约束以及推理出新的知识。再通过证明层，证明和解释逻辑层推理的意义。而置信层则是对可信数据、服务和代理的认证。</p>
+<p>（1）RDF </p>
+<p>七层模型里，RDF是Semantic Web的基石。RDF，即Resources Description Framework，是由W3C开发的用于描述Web上的资源的一门语言标准。从开发之初，RDF就以机器可读可理解为目标，同时也让人更好理解其描述信息的意义。RDF有几个关键原则，一是三元组，如下图：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image11874.png"><img title="wps_clip_image-11874" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-11874" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image11874_thumb.png" width="244" height="52"></a></p>
+<p></p>
+<p>&nbsp;</p>
+<p>Subject是主语，Predicate是谓语，亦有用property表示的，Object是宾语。主谓宾结合，具有极强的信息描述能力，能很好描述资源间的联系，从而达到部分语义。</p>
+<p>多个三元组，则构成了图数据模型，这是RDF的第二个关键原则，如下图：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image11929.png"><img title="wps_clip_image-11929" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-11929" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image11929_thumb.png" width="244" height="196"></a></p>
+<p></p>
+<p>这个图描述了Eric Miller这个人，全名是Eric Miller，邮箱是em@w3.org,最关键的是type，即这个图所描述的是一个人。</p>
+<p>通过上图，笔者也可以看出RDF的第三个关键原则：以URI作为资源的唯一标识符。这样就可以确保每一个在Web上的资源都是唯一的，同时，如果该资源是Web上可获取的，那么笔者可以立刻获取到该资源。</p>
+<p>RDF并不是一种格式，它是一门语言，只定义了几个关键的标准。具体的实现格式上，RDF有多种实现形式，如RDF/XML，N3，N-Triple等近十种格式。W3C官方推荐的标准是RDF/XML,上图所描述的Eric Miller的RDF/XML如下：</p>
+<p>&nbsp;</p>
+<p>&lt;?xml version="1.0"?&gt;</p>
+<p>&lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#"&gt;</p>
+<p>&lt;contact:Person rdf:about="http://www.w3.org/People/EM/contact#me"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;contact:fullName&gt;Eric Miller&lt;/contact:fullName&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;contact:mailbox rdf:resource="mailto:em@w3.org"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;contact:personalTitle&gt;Dr.&lt;/contact:personalTitle&gt; </p>
+<p>&nbsp; &lt;/contact:Person&gt;</p>
+<p>&lt;/rdf:RDF&gt;</p>
+<p>而N3格式则如下：</p>
+<p>@prefix rdf:&nbsp;&nbsp;&nbsp;&nbsp; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</p>
+<p>@prefix contact:&nbsp; &lt;http://www.w3.org/2000/10/swap/pim/contact#&gt; .</p>
+<p>&lt;http://www.w3.org/People/EM/contact#me&gt;</p>
+<p>a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact:Person ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact:fullName&nbsp; "Eric Miller" ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact:mailbox&nbsp; &lt;mailto:em@w3.org&gt; ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact:personalTitle "Dr." .</p>
+<p>每种格式，均有其利弊，在后面的内容中将有详细叙述。</p>
+<p>上面的RDF/XML格式，看上去和XML区别不大，那为什么不用XML而要用RDF呢？对此，Berners-Lee特意撰文回答了这些疑问。文中伯纳斯·李提到，XML对数据模型的描述，由于未采用三元组形式，描述同样的内容，可能出现不同的形式。比如上面的Eric Miller，用XML描述，可能会有：</p>
+<p>&lt;People&gt;</p>
+<p>&lt;fullName&gt;Eric Miller&lt;/fullName&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;title&gt;Dr&lt;/title&gt;</p>
+<p>&lt;/People&gt;</p>
+<p>或者</p>
+<p>&lt;People&gt;</p>
+<p>&lt;detail&gt;</p>
+<p>&lt;name&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;fullName&gt;Eric Miller&lt;/fullName&gt;</p>
+<p>&lt;/name&gt;</p>
+<p>&lt;title&gt;Dr&lt;/title&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;/detail&gt;</p>
+<p>&lt;People&gt;</p>
+<p>这两种形式描述的都是同样的信息,却没有采用固定的模型。Dr这个title，到底是属于detail的呢，还是属于People的呢？除非你去查看XML Schema，否则无法判断。而RDF采用固定的三元组模型，则很好得解决了这个问题。无固定模型，导致的结果就是机器无法解析出意义，也就达不到机器可读可理解的地步了。</p>
+<p>表面上看，没有固定模型的XML似乎更加灵活。但实际上，XML是一种具有Schema的语言，即和数据库里的表类似，要解析出两个元素的意义，需要根据Schema去解析才行。而RDF实际上则灵活多了，它是一种Schema less的语言，与当今流行的NoSql有点儿类似（此处注意RDF Schema与XML Schema的意义完全不同，RDF Schema是用于解释每一个资源的意义的）。既然是Schema less，两个RDF文档无需进行任何额外操作，存放在一起就可以无缝集成。另外，在XML里存放的资源，如果笔者要提取它，首先要找到这个XML，然后才能从中提取出资源信息来。而由于使用URI来标识所有的资源，在RDF中，一个资源的获取与其所在的RDF文档几乎没有关系，笔者只根据URI去查找数据。</p>
+<p>在伯纳斯·李的设想中，未来互联网上所有的信息都将用RDF描述，机器不仅能读取这些信息，而且还能理解这些信息。因此，固定的三元组模型和URI做唯一标识符就显得非常重要了。</p>
+<p>&nbsp;</p>
+<p>2）本体 </p>
+<p>Semantic Web的另一个关键要素是本体，目前的本体语言有OWL和RDFS，前者比较完备，也比较复杂。另外，需要注意的是，Semantic Web的本体也是RDF。也就是说，RDF是一种自我描述的语言，可以自我解释。这一点上，与XML Schema是一样的。</p>
+<p>为什么RDF是机器可理解的？之前已经提到的一个关键因素是三元组，而另一个最重要的元素则是本体。实际上，RDF可以说是一门语言，兼具面向对象和逻辑编程的语言，以面向对象为主。笔者来看一下W3C官方文档里对skos:Concept的解释:“skos:Concept is an instance of owl:Class. ”,从面向对象编程来看这句话，意思就很明白了:owl:Class定义了一个类，而skos:Concept则是它的一个实例。然而，再来看一个例子：“&lt;MyConcept&gt; rdf:type skos:Concept .”，这里笔者定义了一个MyConcept，也就是一个skos:Concept的实例。这里无法理解为什么W3C的官方把skos:Concept定义为owl:Class的实例，依我看，其应该是owl:Class的子类才对，类似于Java里所有的类都继承于Object。这里暂且不深究这个问题。RDF构建时，就希望能用来描述世界上的资源，以面向对象的方式，则能很好地描述现实世界。如果学习过面向对象编程，就能从上面提到的几点明白RDF的可理解是什么回事了。Semantic Web是用本体来构建了许多的类，然后实例化这些类来描述现实的世界。当解析器遇到一个实例对象的时候，根据URI查找到类型定义，从而理解出这个实例对象是什么类型，比如描述的是只猫呢还是一只狗呢。</p>
+<p>综上所述，RDF与本体在本质上，构建了一门语言，有语法，有关键词，有解释器。以主谓宾为三元组的模型使得其即具有固定的解析模式，同时主谓宾模式描述能力极强，能很好地描述现实世界。以URI为标识符，使得每一个实例，每一个资源都能具有唯一性的同时，实现了分布式的功能。即使两个东西不在一块，通过URI就能把他们链接到一起。而本体利用面向对象的特点，实现了资源描述的语义化，同时通过逻辑编程，达到逻辑推演的功能。</p>
+<p>（3）SKOS </p>
+<p>自1998年以来，图书情报界开始了对网络知识组织系统（Networked Knowledge Organization System，简称NKOS）的研究。随着语义网技术的出现，一些组织和机构开始采用语义格式对传统词表进行描述。联合国粮农组织（FAO）采用用OWL语言对多语言农业词表AGROVOC进行描述；深圳大学的曾新红等人采用OWL语言对《中国分类主题词表》进行描述。但OWL过于复杂，不适合受控词表。 2005年，W3C发布了基于RDFS/OWL建模的SKOS，即简单知识组织系统描述语言。为了更好更直观叙述SKOS，这里先给出一段简短的SKOS数据，这是汉语主题词表里关于“崩裂反应”的描述：</p>
+<p>&lt;rdf:RDF</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:skos="http://www.w3.org/2004/02/skos/core#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:ex="http://www.skos.shahuwang.com/skos/extention#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:dc="http://purl.org/dc/terms/"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:xsd="http://www.w3.org/2001/XMLSchema#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;</p>
+<p>&nbsp; &lt;skos:Concept rdf:about="http://skos.shahuwang.com/CT/崩裂反应"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:prefLabel xml:lang="zh"&gt;崩裂反应&lt;/skos:prefLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broadMatch rdf:resource="http://www.skos.shahuwang.com/NCT_SCI/39AE31"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broader rdf:resource="http://www.skos.shahuwang.com/CT/核反应"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="en"&gt;Break-up reactions&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="zh-Latn"&gt;Bēng liè fǎn yìng&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broadMatch rdf:resource="http://www.skos.shahuwang.com/CT_SCI/32GC"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broadMatch rdf:resource="http://www.skos.shahuwang.com/CLC/Ｏ571"/&gt;</p>
+<p>&nbsp; &lt;/skos:Concept&gt;</p>
+<p>&lt;/rdf&gt;</p>
+<p>每一个主题词，均以一个Concept表示，prefLabel则指首选词，broader则是指上位类，altLabel则指拼音或英文等可选词。</p>
+<p>SKOS是一套RDF vocabulary（即基于RDF的原则构建的标准），假如用编程语言来进行类比的话，RDF就像Java，而SKOS则是基于Java写出来的软件包。SKOS主要用来表示和描述叙词表、分类法，分类表等知识组织系统。由于其基于RDF，使得构建的知识数据是机器可读可理解的，而且可以无障碍与其他知识组织系统交换。SKOS的目标是让这些知识组织系统更容易交换和复用。值得注意的是，SKOS分为SKOS core和SKOS 扩展两种，后者弥补了SKOS在术语描述中的不足。</p>
+<p>综上所述，Semantic Web技术为笔者提供了一个全新的资源描述与服务方案，利用RDF，笔者不仅能够像传统的XML或者MARC那样描述数据，还能使得这些数据是能被机器所理解的，从而更好地揭示术语或概念间的语义关系。而且，RDF可无缝集成的特点，令构建一个公共的术语注册平台提供了可能，同时各术语系统直接的交流也变得更加便利。配合Web Service技术，用可无缝集成的SKOS来描述术语词表，笔者便可将之前完全异构、无法集成的各术语系统连接起来，从而实现更好的服务和应用。</p>
+<p>&nbsp;</p>
+<h4>3.2：词表的语义化表示</h4>
+<p>如何将传统的术语词表转换为SKOS表示呢？该方面的研究，国内外已经有不少。这里以《汉语主题词表》为例，说明如何将受控词表采用SKOS语言进行描述。</p>
+<p>如下表给出了《汉语主题词表》中的词汇属性与SKOS词汇之间的映射关系：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p> <a href="http://www.shahuwang.com/wp-content/uploads/2013/06/image.png"><img title="image" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="image" src="./沙湖王   基于SKOS的术语服务构建（三）_files/image_thumb.png" width="244" height="202"></a>
+</p><p>注释：</p>
+<p>1：xmlns:skos="http://www.w3.org/2004/02/skos/core#" 表示W3C定义的SKOS标准语言；</p>
+<p>2：xmlns:ex 表示对SKOS标准进行定制的扩展，命名空间待定</p>
+<p>3:属性xml:lang="xx" 中的语言代码由《IETF BCP 47》标准定义</p>
+<p>&nbsp;</p>
+<p>该映射关系表取自欧石燕老师研究的中文术语词表转换为SKOS文档的转换映射关系表中的一部分。后面的转换将主要参照此映射表进行转换。</p>
+<p>下图则是传统汉语主题词表的数据库存储的部分：</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12423.png"><img title="wps_clip_image-12423" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12423" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12423_thumb.png" width="244" height="172"></a></p>
+<p></p>
+<p>根据这个映射表，笔者就能将传统的汉语主题词表转换成SKOS表示了。但要在工程上实现大批量数据转换，以及后面的使用，则还有许多的问题需要探讨。首先，要解决的第一个问题是用何种格式进行表示数据。不管是先前说到的RDF还是SKOS，它们都不是一种数据表示格式，它们是一套标准，就像Unicode一样。而要把笔者的数据表示出来，则需要像UTF-8这样根据Unicode标准实现表示。因此，下面笔者将首先探讨RDF各种数据表示格式的优缺点，以及最终的选择。</p>
+<p>在进行技术选型上，数据保存方式一直是重中之重。选择用SKOS来描述汉语主题词表，是确定了方向，就好像确定用MySql来进行存储。而选择什么RDF格式，就像如何设计MySql Schema一样，非常重要。</p>
+<p>&nbsp;</p>
+<h5>3.2.1：RDF各实现格式比较</h5>
+<p>即使从字面意思来看，RDF—–Resource Description Framework,也不是一种编码格式。RDF是一种语言，是一种标准，是一种框架，但确实不是XML这样的东西。目前，实现RDF的格式有RDF/XML, RDF/XML-ABBREV, N3,Turtle,N-Triple,N-Quads,TriG，TriX，RDFa，JSON-LD,RDF/JSON等几种比较流行的格式。RDFa是用于给HTML增加语义标签的，所以这里笔者不对其分析。有如此多的格式，就说明每种格式都有优势，也有其不足，所以才需要增加一种新的格式来解决遇到的问题。</p>
+<p>首先，笔者需要对上述除RDFa之外的10种格式进行一个分类：</p>
+<p>1：XML类型：RDF/XML,RDF/XML-ABBREV</p>
+<p>2：N3类型：N3,Turtle,N-Triple,N-Quads,TriG，TriX</p>
+<p>3：JSON类型：JSON-LD,RDF/JSON</p>
+<p>下面将使用汉语主题词表中“葱白”一词的SKOS描述，展示各种格式间的区别。</p>
+<p>RDF/XML是W3C的推荐标准格式，而RDF/XML-ABBREV则是当前最流行的Semantic Web开发工具包Jena所内置的一种格式，两者差异并不大，RDF/XML-ABBREV增加了对人的可读性，但是也因此牺牲了解析性能。如下是标准的RDF/XML格式示例：</p>
+<p>&lt;rdf:RDF</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:skos="http://www.w3.org/2004/02/skos/core#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:ex="http://www.skos.shahuwang.com/skos/extention#" &gt; </p>
+<p>&nbsp; &lt;rdf:Description rdf:about="http://skos.shahuwang.com/CT/葱白"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="zh-Latn"&gt;Cōng bái&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="en"&gt;Bulbus allii fistulosi&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;ex:topBroader rdf:resource="http://www.skos.shahuwang.com/CT/中草药"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broader rdf:resource="http://www.skos.shahuwang.com/CT/辛温解表药"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:prefLabel xml:lang="zh"&gt;葱白&lt;/skos:prefLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/&gt;</p>
+<p>&nbsp; &lt;/rdf:Description&gt;</p>
+<p>&lt;/rdf:RDF&gt;</p>
+<p>而RDF/XML-ABBREV则如下所示：</p>
+<p>&lt;rdf:RDF</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:skos="http://www.w3.org/2004/02/skos/core#"</p>
+<p>&nbsp;&nbsp;&nbsp; xmlns:ex="http://www.skos.shahuwang.com/skos/extention#"&gt;</p>
+<p>&nbsp; &lt;skos:Concept rdf:about="http://skos.shahuwang.com/CT/葱白"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="zh-Latn"&gt;Cōng bái&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:altLabel xml:lang="en"&gt;Bulbus allii fistulosi&lt;/skos:altLabel&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;ex:topBroader rdf:resource="http://www.skos.shahuwang.com/CT/中草药"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:broader rdf:resource="http://www.skos.shahuwang.com/CT/辛温解表药"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;skos:prefLabel xml:lang="zh"&gt;葱白&lt;/skos:prefLabel&gt;</p>
+<p>&nbsp; &lt;/skos:Concept&gt;</p>
+<p>&lt;/rdf:RDF&gt;</p>
+<p>两者差异并不大，主要在Concept这有变化。</p>
+<p>&lt;skos:Concept rdf:about="http://skos.shahuwang.com/CT/葱白"&gt;</p>
+<p>等同于RDF/XML的：</p>
+<p>&lt;rdf:Description rdf:about="http://skos.shahuwang.com/CT/葱白"&gt;</p>
+<p>&lt;rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/&gt;</p>
+<p>也就是说，每一条Resource，在RDF/XML-ABBREV都被合并为一句，可读性上有所增加。所以对这两者的选择，并没有太大的区别。</p>
+<p>虽然是W3C推荐的官方标准，RDF/XML却饱受批评，甚至被认为是阻碍RDF和Semantic Web进步的最大障碍。 Vuk Miličić 在其博客中提到：RDF/XML太过于复杂了，导致想学习RDF的人都被搞晕了。而且，同一个RDF图可以被序列化为多种形式，不同的工具可能序列化出不同的样子来，导致现成的XML工具对RDF/XML几乎无用。学了XML的形，却抛弃了XML众多有用的工具，得不偿失。而且，由于其复杂性，导致处理效率极度低下。</p>
+<p>Leigh Dodds则更进一步指出，RDF/XML更严重的问题是数据模型与表现形式的不一致。XML的数据模型是树，而XML的形式也很好地体现了树形结构的思维。RDF的数据模型是图，但RDF/XML却采用了XML的树形结构，两者的不匹配，导致许多的冲突。当初之所以要设计RDF而不是采用XML，就是希望能更简单的描述Web上的资源。先如今，RDF/XML非但没有简化，反而增加了复杂度，使得实现一个RDF/XML Parser极其困难。</p>
+<p>虽然RDF/XML有诸多的不足，但毕竟是目前W3C官方唯一的标准格式，所以在How to Publish Linked Data on the Web 一文中提到：你至少需要提供RDF/XML格式，因为它是唯一的标准，所有的Semantic Web工具都支持。同时，该文还建议，由于RDF/XML对人的可读性并不怎么好，所以你还需要提供Turtle数据格式。另外，为了支持XPath或Xquery等XML技术，最好也同时提供TriX格式。</p>
+<p>现在来看N3类型这一组。这一组的关系稍显复杂，Turtle是N3的子集，N-Triple是Turtle的子集，TriG是Turtle的稍微扩展，同时比TriX更简洁和更可读。TriX现在的首页访问不了了，W3C没有为其建立页面，它就是结合RDF的Triple模型和XML的描述功能，使得Xpath等XML工具也能在RDF上使用。N-Quads则是对N-Triple的扩展。</p>
+<p>N3是一种断言和逻辑语言，是RDF的超集，复杂程度较高，不太适合使用。TriG，TriX，N-Quads的API支持都比较不好，所以这里主要探讨Turtle和N-Triple两种格式。</p>
+<p>“葱白”的Turtle格式示例如下：</p>
+<p>@prefix ex:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;http://www.skos.shahuwang.com/skos/extention#&gt; .</p>
+<p>@prefix rdf:&nbsp;&nbsp;&nbsp;&nbsp; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</p>
+<p>@prefix skos:&nbsp;&nbsp;&nbsp; &lt;http://www.w3.org/2004/02/skos/core#&gt; .</p>
+<p>&lt;http://skos.shahuwang.com/CT/葱白&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:Concept ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ex:topBroader &lt;http://www.skos.shahuwang.com/CT/中草药&gt; ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:altLabel "Bulbus allii fistulosi"@en , "Cōng bái"@zh-Latn ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:broader &lt;http://www.skos.shahuwang.com/CT/辛温解表药&gt; ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:prefLabel "葱白"@zh .</p>
+<p>很直白，也很好得体现了Triple模型。目前为止，Turtle被认为是最接近RDF理想格式的。其问题在于，这是一种全新的格式，也就需要为其设计全新的Parser，而目前这种格式在Semantic Web圈子之外几乎不为所知，所以工具支持不够。另外，其到现在还没有支持媒体类型。</p>
+<p>N-Triple是对Turtle的进一步简化，使得几乎所有的语言都能对其进行解析，示例如下：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12556.png"><img title="wps_clip_image-12556" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12556" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12556_thumb.png" width="244" height="46"></a></p>
+<p></p>
+<p>N-Triple可谓是极度的简化，每一行就是一条Triple。这样子的好处就是处理速度极快，文件很大时，不需要把数据都加载进内存进行解析。而且，几乎所有的编程语言都能对其进行处理，不需要特殊的工具进行支持。但问题也来了，它不支持Unicode字符。如上面所示，所有的中文都被Jena转换为Unicode编码字符来表示。不同的工具可能在处理N-Triple上对待Unicode字符有不同的方式，这就导致极大的麻烦。而且，这样处理之后，几乎就失去了可读性。</p>
+<p>RDF./JSON和JSON-DL是两种不同的格式，RDF/JSON几乎没有对JSON做多少改变，而JSON-DL则是对JSON的扩展，使得其更适合于Linked Data上的使用。由于Jena仍为对JSON-DL进行支持，所以这里只展示“葱白”的RDF/JSON示例：</p>
+<p>{ </p>
+<p>&nbsp; "http://skos.shahuwang.com/CT/葱白" : { </p>
+<p>&nbsp;&nbsp;&nbsp; "http://www.w3.org/2004/02/skos/core#altLabel" : [ { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "literal" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "Bulbus allii fistulosi" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "lang" : "en"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; , { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "literal" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "Cōng bái" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "lang" : "zh-Latn"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ] ,</p>
+<p>&nbsp;&nbsp;&nbsp; "http://www.skos.shahuwang.com/skos/extention#topBroader" : [ { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "uri" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "http://www.skos.shahuwang.com/CT/中草药"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ] ,</p>
+<p>&nbsp;&nbsp;&nbsp; "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "uri" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "http://www.w3.org/2004/02/skos/core#Concept"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ] ,</p>
+<p>&nbsp;&nbsp;&nbsp; "http://www.w3.org/2004/02/skos/core#broader" : [ { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "uri" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "http://www.skos.shahuwang.com/CT/辛温解表药"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ] ,</p>
+<p>&nbsp;&nbsp;&nbsp; "http://www.w3.org/2004/02/skos/core#prefLabel" : [ { </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "type" : "literal" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "value" : "葱白" ,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "lang" : "zh"</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ]</p>
+<p>&nbsp; }</p>
+<p>}</p>
+<p>从上面的示例可以看出，整个文档的可读性降低了很多。之所以要提供JSON格式的RDF，是为了适应现代网络的发展。JSON已经成为互联网上最流行的数据交换格式，几乎所有的脚本语言都能很好支持JSON，Javascript更是原生支持JSON。当要发布Linked Data的时候，笔者往往采用Web Service的方式。而现在Web Service已经越来越多的使用JSON来进行数据交换了。而且JSON的解析效率非常高。</p>
+<p>但是，JSON的问题和RDF/XML的问题非常相似，复杂，难以书写和阅读，树形结构与图模型的不匹配。同时，JSON对URI完全无法感知。</p>
+<p>综上所述，各种格式均有其优势劣势。当前笔者所要实现的术语服务，有三个目标要实现：一是要标准化，使得其他组织的术语数据也能无缝集成。二是要提供良好的对人可读性。三是要使用Web Service发布服务。在目前没有任何一种RDF格式能一统天下的情况下，笔者将会提供RDF/XML,Turtle, RDF/JSON三种数据格式。RDF/XML作为统一的标准，与其他的术语数据进行集成时更方便。Turtle则提供了较好的对人阅读性，供人使用。此外，标准的RDF查询SPARQL语言是以Turtle为基础的，查询语言与数据模型的统一，对人的思维来讲是有极大的益处的。JSON则是Web Service的标准交换数据格式，这样其他人无须学习RDF，无须使用专门的RDF 工具也能够使用笔者的服务。另外，由于以上三种格式在传统词表转换为SKOS的时候，异常复杂，需要对RDF和Jena等工具非常熟悉方能做到。为了简化，笔者将会选择N-Triple作为转换的中介格式，后面将会有专门的论述。</p>
+<p>现在已经确定了词表的存储格式，下面则需要探讨如何用工具实现批量转换，以及转换中所需要注意的问题。</p>
+<p>&nbsp;</p>
+<h5>3.2.2：批量转换的代码实现</h5>
+<p>学术界近些年对传统术语词表的语义转化做了大量的研究，也取得了不俗的成果。但这些研究在关于如何在工程上实现数据转换，却没有多少实质性的研究。在他们的论文里所展示的数据，多半是通过手工利用protege等编辑工具编写，而且无一例外的使用了RDF/XML格式。这些研究，既没有考虑到RDF/XML格式的缺陷，亦没有考虑到面对如此众多的术语词表，在工程上如何更好的进行语义转换。</p>
+<p>美国国会图书馆将其《美国国会图书馆标题表》（Library of Congres Subject Headings,LSCH）的MARC格式数据转换成SKOS数据，其转换方式是将其“MARC21规范数据格式”先转换为MARCXML，然后再确定MARC相应字段与SKOS标签的对应关系，从而转换成SKOS数据。这种方式提供了个方向，但却没有把真正重要的地方展示出来。从XML转换为SKOS这一步如何实现？XML是树形结构数据，SKOS是图模型结构数据，虽然RDF/XML和XML非常相近，但是传统的制作XML的工具（JAXB等）却无法用于RDF的制作。图模型的RDF结构异常复杂，网状模型错综交织，即使传统术语格式与SKOS的对应问题已经解决，但是转换工作耗费更大的时间和金钱，SKOS所带来的好处都被工程实现上的难处所抵消。以欧石燕老师研究的汉语主题词表的SKOS表示为例，下图展示了放大器极其相关属性：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12667.png"><img title="wps_clip_image-12667" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12667" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12667_thumb.png" width="244" height="178"></a></p>
+<p>&nbsp;</p>
+<p>如此这般，放大器的子类又有其子类，子类有其自身属性，一个图嵌着另一个图。光是搞明白这个图，就得费不少劲。而更麻烦的地方在于，RDF的制作与解析需要用到特殊的软件包，不同的软件包在制作和解析上有极大的差异。譬如当前最流行的两个工具包Jena和Sesame，虽然两者都是基于Java，但是理念有极大的差别。Jena以model，resource，statement，property为体系，而Sesame则以Repostitory，Graph，Tuple，Value，Statement为体系。除了Java，其他的编程语言均没有好一些的RDF解析器，处理理念相差就更大了。除了处理方式区别大之外，这些解析器均是以W3C标准的RDF/XML格式为基准的，由于RDF/XML极大的复杂性和误导性，要学会使用这些工具，起码得把RDF给搞明白了，这在工程实现上并不现实，要求工程师去学习Semantic Web那么多的内容，极不现实。</p>
+<p>另外，目前已知的转换方式，如LSCH将MARC转换为XML再转换SKOS，其实现方式是找到MARC与SKOS的对应关系之后，再做一个模板，把数据硬塞进去。RDF的基石是什么？URI和三元组，显然LSCH的这种做法，把三元组这一RDF精髓抛弃得一干二净。当前所见的研究，均以RDF/XML格式为基准，甚至不少的研究者，就不知道RDF与RDF/XML之间的区别。以三元组构成结点，以结点构成图，以URI连接图，是RDF设计理念的基础，但是RDF/XML却是树形结构的，与RDF设计理念里的图差异极大。如前面所谈，三元组是RDF可被机器理解的基础，机器知道以固定的三元组模式去解析每一个结点，知道这三个结点所代表的subject，property，object，从而才能进一步理解。舍弃了三元组的概念，这种语义转换纯属为了转换而转换，并无多大意义。</p>
+<p>全球最大的关联数据平台DBpedia对数据的处理格式上有极大的参考价值。DBpedia上有超过两亿个实体描述数据，大约有19亿条三元组（即结点）。DBpedia采取什么样的格式来保存数据？它既没有采用标准的RDF/XML格式，也没有采用现在最流行的Turtle格式，而是采用最精简的N-Triple格式。为什么采用N-Triple？因为N-Triple用这最精简的方式体现了RDF的两大基石理念：URI和三元组。同时，其无需特殊的软件包，普通的I/O处理就能够完成RDF数据的制作。对于普通的程序员来讲，你只要告诉他原始术语数据与SKOS标签的对应方式，他就能很快制作出RDF数据来。另外，N-Triple基于行的操作，使得I/O处理的效率极高，RDF/XML需要把一个文档完整载入内存方能构造成图，这对大的文档处理起来极其麻烦，而N-Triple格式毫无此担忧。</p>
+<p>当然，N-Triple也不是完全没有缺点，比如对Unicode字符的支持就比较差，对XML数据类型的支持也比较弱。关于中文数据在N-Triple格式下的使用方式问题，后面将会有详细解释，现在先来看看N-Triple的官方定义标准。N-Triple是N3的一个子集，所以N3的处理工具，N-Triple也能用。一般建议用".nt"作为N-Triple文件的后缀，与N3以示区分。N-Triple的字符都编码为7-bit的US-ASCII编码。其EBNF（扩展巴斯卡范式）语法如下：</p>
+<p>ntripleDoc&nbsp; ::=&nbsp; line* </p>
+<p>line&nbsp; ::=&nbsp; ws* (comment | triple) ? eoln </p>
+<p>comment&nbsp; ::=&nbsp; ‘#’ (character – ( cr | lf ) )* </p>
+<p>triple&nbsp; ::=&nbsp; subject ws+ predicate ws+ object ws* ‘.’ ws* </p>
+<p>subject&nbsp; ::=&nbsp; uriref | namedNode </p>
+<p>predicate&nbsp; ::=&nbsp; uriref </p>
+<p>object&nbsp; ::=&nbsp; uriref | namedNode | literal </p>
+<p>uriref&nbsp; ::=&nbsp; ‘&lt;‘ absoluteURI ‘&gt;’ </p>
+<p>namedNode&nbsp; ::=&nbsp; ‘_:’ name </p>
+<p>literal&nbsp; ::=&nbsp; ‘"’ string ‘"’ </p>
+<p>ws&nbsp; ::=&nbsp; space | tab </p>
+<p>eoln&nbsp; ::=&nbsp; cr | lf | cr lf </p>
+<p>space&nbsp; ::=&nbsp; #x20 /* US-ASCII space – decimal 32 */ </p>
+<p>cr&nbsp; ::=&nbsp; #xD /* US-ASCII carriage return – decimal 13 */ </p>
+<p>lf&nbsp; ::=&nbsp; #xA /* US-ASCII linefeed – decimal 10 */ </p>
+<p>tab&nbsp; ::=&nbsp; #x9 /* US-ASCII horizontal tab – decimal 9 */ </p>
+<p>string&nbsp; ::=&nbsp; character* with escapes. Defined in section Strings </p>
+<p>name&nbsp; ::=&nbsp; [A-Za-z][A-Za-z0-9]* </p>
+<p>absoluteURI&nbsp; ::=&nbsp; ( character – ( ‘&lt;‘ | ‘&gt;’ | space ) )+ </p>
+<p>character&nbsp; ::=&nbsp; [#x20-#x7E] /* US-ASCII space to decimal 127 */</p>
+<p>N-Triple文档里，每一行就是一条Statement，或者称为三元组。每个资源都用完整URI表示，同时用&lt;&gt;括号括住，三元组之间用空格隔开，每一行以原点句号“.”结尾，如下图:</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12726.png"><img title="wps_clip_image-12726" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12726" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12726_thumb.png" width="244" height="30"></a></p>
+<p></p>
+<p>上面所展示的RDF数据，与下面的RDF/XML所表示的数据是一模一样的：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12805.png"><img title="wps_clip_image-12805" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12805" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12805_thumb.png" width="244" height="60"></a></p>
+<p>&nbsp;</p>
+<p>从上面的例子可以看出，使用N-Triple，几乎只要记住几个概念就可以了。</p>
+<p>下面笔者来看看汉语主题词表的数据库存储示例，下图取自汉语主题词表：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12876.png"><img title="wps_clip_image-12876" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12876" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12876_thumb.png" width="244" height="136"></a></p>
+<p></p>
+<p>从上面看，汉语主题词表是非常典型的三元组模型。款目词，属性，属性值刚好构成三元组的subject,property,object。其实，几乎所有的词表或者术语数据，都能转换成这样的三元组模型。而三元组模型通过N-Triple可极方便简单转换为RDF数据。参考欧石燕老师制作的汉语主题词表与SKOS标签对应关系表，用Jena制作出了如下的N-Triple数据(为了更好显示三元组模型，此处特意用图片展示）。</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12912.png"><img title="wps_clip_image-12912" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12912" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12912_thumb.png" width="244" height="60"></a></p>
+<p></p>
+<p>对应代码的主要部分如下：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image12958.png"><img title="wps_clip_image-12958" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-12958" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image12958_thumb.png" width="244" height="155"></a></p>
+<p></p>
+<p>先前已经多次提到N-Triple的缺点——不支持Unicode编码。对于这个问题的解决，W3C官方给出的建议是先将非Unicode字符转换为Unicode编码的形式，然后再构建N-Triple。实际上，在实际编程过程中，笔者发现，利用Jena其实可以以更好的方式解决这个问题，但也仅有Jena能够实现这个目的，其他的Semantic Web工具包均不行，这也是这个解决方案的不足之处。譬如：</p>
+<p>&lt;http://skos/CT/葱白&gt; &lt;http://w3/skos/core#prefLabel&gt; "葱白"@zh .</p>
+<p>这样一条N-Triple三元组，Jena是可以读取并进行解析的，解析之后，Jena会把非Unicode字符转换为标准的N-Triple格式中的Unicode编码。因此，利用Jena，笔者可以在制作N-Triple数据的时候，保持更好的可读性，从而极大方便数据交流。</p>
+<p>实际上，使用N-Triple还有另外一个问题，即前缀问题。在N-Triple是，是没有设置前缀缩写的，所有URI都是全部写出来的，这对于查询非常不方便。不过，Jena可以极为优秀地解决这些问题，通过把N-Triple数据读取进来构建一个model，Jena可以对这个model进行非常丰富而有意义的操作，比如设置前缀、转换数据格式等。</p>
+<p>笔者在转换汉语主题词表的过程中，还发现了些问题。以下图的两个词为例，布莱尔模型是叙词，其代项是布莱尔相规则，亦即布莱尔相规则是一个非叙词。它们两个都同存在同一个数据库表中。在欧老师所做的映射关系里，非叙词不能作为一个skos:Concept存在于转换好的文档之中。</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image13017.png"><img title="wps_clip_image-13017" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-13017" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image13017_thumb.png" width="244" height="155"></a></p>
+<p></p>
+<p>为解决这个问题，笔者先将叙词从数据库抽取出来，构造完整的skos:Concept。然后抽取出非叙词，由于分类号范畴号等其与对应的叙词是一样的，所以只需要三个数据：非叙词的中文，英文和拼音。笔者将这三个数据作为叙词的skos:altLabel。转换好的数据如下图所示：</p>
+<p>&nbsp;</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image13059.png"><img title="wps_clip_image-13059" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-13059" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image13059_thumb.png" width="244" height="71"></a></p>
+<p></p>
+<p>转换完毕之后，又发现了新的问题。现实情况是：一个叙词有多个非叙词，那么在skos:altLabel里将会呈现多个非叙词的数据，非叙词甲与非叙词乙的英文都放在同一个skos:altLabel里，如何区分这个英文是属于乙的还是属于甲的呢？另外，很多的叙词，是有多个英文名和多个拼音的，假如按照上面的转换关系，即英文用prefLabel，那么有些叙词将出现两个英文的prefLabel，这是违反了SKOS的完整性约束的，显然不行。此时，利用标准的SKOS已经无法解决这个问题了，因为在SKOS的定义里，altLabel和prefLabel都只能是字符串，或者说literal value，而且同一种语言的prefLabel，只能有一个。</p>
+<p>所幸W3C已经提供了解决方案，即skos-xl,该标准提供了对标准的SKOS的lexical entities的扩展。所谓的lexical entities，主要指prefLabel，altLabel和hiddenLabel这三个标签，它们在标准的SKOS里都只能用字符串。而skos-xl对其进行扩展之后，这三个标签都能变成实体，从而具有更好的表达能力。如下图，磁天平这个叙词除了磁环秤这个代项之外，还有另一个代项：磁秤，根据skos-xl构建的RDF如下：</p>
+<p>CT:磁天平</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:Concept ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:altLabel skosxl:磁环秤 , skosxl:磁秤 ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:broadMatch CLC:TB972 , &lt;http://www.example.com/CT_SCI/Concept#81E&gt; , &lt;http://www.example.com/NCT_SCI/Concept#61AN&gt; , CLC:TB971 ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:broader CT:天平 , CT:测磁仪器 ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:prefLabel "磁天平"@zh ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:altLabel &lt;http://www.example.com/temp/Concept#磁环秤&gt; , &lt;http://www.example.com/temp/Concept#磁秤&gt; ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:prefLabel &lt;http://www.example.com/temp/Concept#Magnetic balances&gt; , &lt;http://www.example.com/temp/Concept#Cí tiān píng&gt; .</p>
+<p>&lt;http://www.example.com/temp/Concept#磁环秤&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:Label ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:literalForm "磁环秤"@zh , "Magnetic balances"@en , "Cí huán chèng"@zh-Latn .</p>
+<p>&lt;http://www.example.com/temp/Concept#磁秤&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:Label ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:literalForm "磁秤"@zh , "Magnetic balances"@en , "Cí chèng"@zh-Latn .</p>
+<p>&lt;http://www.example.com/temp/Concept#Magnetic balances&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:Label ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:literalForm "Magnetic balances"@en .</p>
+<p>&lt;http://www.example.com/temp/Concept#Cí tiān píng&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:Label ;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skosxl:literalForm "Cí tiān píng"@zh-Latn .</p>
+<p>从上可以看出，利用skos-xl可以很好地解决叙词有多个非叙词的混淆问题。不过，skos-xl虽然解决了这个问题，但是其却增加了其他的问题，比如其增加了工程实现的复杂度，同时，如上方式做出来的词表，进行查询的时候，查询方式就与标准的SKOS写成的有很大不同。因此，在最终实现上，两者要选其一，而不能混合使用。由于汉语主题词表里，有不少叙词拥有多个非叙词，因此，最终转换方式上，笔者将采用skos-xl的解决方案。</p>
+<p>除了上面所提到的利用N-Triple格式，可以高效将传统术语数据转换为SKOS的方法之外，有人提出了利用JPA（Java Persistence API）的方式，利用面向对象的知识，将RDF和SPARQL转换为程序员熟悉的JPA模式，让程序员无需学习RDF等知识，就能制作、存储和查询RDF数据。Empire正是这样的一个项目。通过程序员熟悉的JPA，Empire让程序员利用他们熟悉的工具做东西，可以说对Semantic Web的发展有极大的促进作用。之所以本文不采取Empire作为首选的转换方式，一是因为这个项目依旧不成熟，网上文档极少。二是这个项目严重依赖于Java，在这一点上就不如N-Triple。笔者希望，术语服务系统的构建是自由的，除了数据用RDF表示，存储用Triple Storage，查询用SPARQL，其他的并不会做硬性的要求。</p>
+<h4><a name="_Toc4367"></a><a name="_Toc26944"></a><a name="_Toc24204"></a><a name="_Toc28333"></a><a name="_Toc28442"></a><a name="_Toc12470"></a><a name="_Toc19830"></a><a name="_Toc32369"></a><a name="_Toc4991">3.3：词表SKOS文档的完整性约束验证</a></h4>
+<p>上面笔者已经能够成功批量将汉语主题词表转换为SKOS了，但还有一个问题需要解决，即如何证明你的SKOS数据转换是正确的。W3C在定义SKOS的时候，为SKOS提供了一个OWL本体，该本体里描述了SKOS的一些基本原则概念，也声明了许多的完整性约束原则，合格的SKOS数据都不能违反这些原则。譬如，对于prefLabel这个标签来说，一个Concept里面，只允许存在一个同语言的prefLabel，假如已经出现了一个汉字的prefLabel，就不能再出现另一个了。<a href="http://www.w3.org/2009/08/skos-reference/skos.rdf">http://www.w3.org/2009/08/skos-reference/skos.rdf</a> 这是W3C所写的SKOS的OWL文件，上面是关于SKOS的本体定义。在W3C的网站上，SKOS Reference详细列出了关于SKOS的62条完整性约束。这62条既包含了SKOS Core，也包括了skos-xl。完整的约束可以到<a href="http://www.w3.org/TR/skos-reference/">http://www.w3.org/TR/skos-reference/</a> 查看。</p>
+<p>通过搜索，找到这篇文章：Integrity constraints in SKOS，其在文章中介绍了两种方式来进行完整性约束的验证，一个是通过SPARQL的ASK查询，一个是通过使用TopQuadrant所开发的SPIN工具进行完整性验证。在文中，作者主要介绍了用SPARQL进行完整性约束。作者举例如下：</p>
+<p> :Concept1 skos:prefLabel "love"@en ; </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skos:prefLabel "adoration"@en .</p>
+<p>这是一段违反完整性约束的SKOS，因为英文的prefLabel有两个，在SKOS里是不允许的。作者通过一段SKOS检测出了这个问题：</p>
+<p>ASK</p>
+<p>{ </p>
+<p> {SELECT ?lang (count(?lang) as ?nr ) </p>
+<p> WHERE</p>
+<p>&nbsp; {?subject skos:prefLabel ?label .</p>
+<p>&nbsp;&nbsp; LET (?lang := lang(?label))}</p>
+<p>&nbsp;&nbsp; GROUP BY ?lang} </p>
+<p>FILTER (?nr &gt; 1)}</p>
+<p>这种方法堪称是没有方法下比较好的方法了。RDF是Schema less的语言，OWL又是基于开放世界假设的，即认为存在就是合理的，所以对于完整性方面的约束基本上没有。而SKOS由于应用领域的需求，又需要较多的完整性约束。但是通过SPARQL的这种方式，需要对SPARQL极为精通才行，如上所示，这个比较简单的完整性约束的SPARQL就不那么简单了，何况是后面更复杂的那些呢。也正是由于现实工作中有极大的约束需求，所以TopQuadrant公司开发了SPIN（SPARQL Inferencing Notation ），专门用于基于RDF的如SKOS一类的词表的完整性约束实现。<a href="http://topbraid.org/spin/api/1.2.0/index.html">http://topbraid.org/spin/api/1.2.0/index.html</a> 此处可以下载到SPIN API，而<a href="http://topbraid.org/spin/skosspin">http://topbraid.org/spin/skosspin</a>则可以下载到实现了SKOS完整性约束的SPIN文件。通过这两者的搭配，少量代码就能实现完整性约束的功能，下面是核心代码：</p>
+<p><a href="http://www.shahuwang.com/wp-content/uploads/2013/06/wps_clip_image13402.png"><img title="wps_clip_image-13402" style="border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px; display: inline" border="0" alt="wps_clip_image-13402" src="./沙湖王   基于SKOS的术语服务构建（三）_files/wps_clip_image13402_thumb.png" width="244" height="111"></a></p>
+<p>提供一段违反了SKOS完整性约束的SKOS数据如下：</p>
+<p>&lt;skos:Concept rdf:about="http://www.example.com/CT/冲击熔岩"&gt;</p>
+<p>&lt;skos:prefLabel xml:lang="zh"&gt;冲击熔岩&lt;/skos:prefLabel&gt;</p>
+<p>&lt;skos:prefLabel xml:lang="zh"&gt;熔岩&lt;/skos:prefLabel&gt;</p>
+<p>&lt;/skos:Concept&gt;</p>
+<p>代码运行后，得到如下结果：</p>
+<p>Constraint violations:</p>
+<p> -at &lt;http://www.example.com/CT/冲击熔岩&gt;:Constraint S14: a resource has no more than one value of skos:prefLabel per language tag (@zh).</p>
+<p>如上可看出，SPIN检查出了错误的地方。该SKOS文件违反了S14这条约束。用这个SPIN来检测笔者做出来的SKOS文件，显示没有违反完整性约束。</p>
+<h4><a name="_Toc12690"></a><a name="_Toc20276"></a><a name="_Toc18362"></a><a name="_Toc32167"></a><a name="_Toc19800"></a><a name="_Toc2471"></a><a name="_Toc19144"></a><a name="_Toc15037"></a><a name="_Toc30638">3.4：词表SKOS文件的存储</a></h4>
+<p>RDF不似传统的数据格式，不能像关系数据库那样用SQL语言进行查询，也不能像XML那样用XSLT来进行查询。更关键的是，RDF数据的特殊性以及其要实现的语义识别和无缝集成，都使得传统的关系数据库存储方式不得奏效。目前主流的存储RDF数据的数据库是triplestore，标准的查询语言是sparql。Triplestore是一类数据库的统称，主要用来存储和查询三元组的。在W3C的这个页面上<a href="http://www.w3.org/2001/sw/wiki/Category:Triple_Store">http://www.w3.org/2001/sw/wiki/Category:Triple_Store</a> 列举了当前实现的Triplestore，而根据目前的情况来看， AllegroGraph，Bigdata， Virtuoso， Sesame， TDB， Stardog， Oracle，Owlim是当前比较好的Triplestore，但其中只有TDB和Sesame是免费的，其他的几个顶多提供功能有限制的免费版。各家的Triplestore功能各有优劣，商业的Triplestore主要在速度、大数据量、推理功能上有较大优势。<a href="http://www.w3.org/wiki/RdfStoreBenchmarking">http://www.w3.org/wiki/RdfStoreBenchmarking</a> W3C提供了各个Triplestore的性能测试与对比。</p>
+<p>由于是科研项目，笔者将选用免费开源的TDB作为笔者的存储。为什么选TDB不选Sesame？主要是因为TDB与Jena结合得更好。Jena最初是由惠普实验室开发的一套Semantic Web工具包，被公认为是最好用的。后Jena被Apache接收为孵化器项目，由Apache基金会的工作人员做了较大修改之后，成为Apache的顶级项目。现在的Jena文档丰富，社区使用者较多，功能实现上较好。TDB曾经是Jena的一个附属项目，现在已经集成到Jena工具包里，成为了Jena的一部分。</p>
+<p>由于当前网络上所见的性能测试与对比，多是2011年之前的。这两年里，Sesame和TDB都有了非常大的改进，所以这里无法提供两者详细对比的数据。从个人使用经验上来看，TDB提供了更好的数据加载功能，面对大量数据时表现更好。而Sesame则在查询上表现更好，同时具备一定推理功能。</p>
+<p>其实后面提到的一个框架，完全可以屏蔽底层的存储，所以最终你选择TDB还是Sesame，关系并不大，根据自己的需求做技术选型即可。</p>
+<h4>3.5：词表数据的查询</h4>
+<p>存储选取好之后，就需要确定查询语言。毫无疑问，首选是SPARQL。SPARQL是W3C定义的一套RDF查询语言，和RDF/XML一样是唯一的标准，因此所有的Triplestore都内置SPARQL引擎，支持SPARQL查询。在功能上，SPARQL与SQL有点儿像，而在语法上，SPARQL则与Turtle挺相似的，譬如下面语句可以查询到一个“葱白”一词的prefLabel：</p>
+<p>Select * </p>
+<p>Where{ CT:葱白 skos:prefLabel ?p}</p>
+<p>Where里面的语句和Turtle是相似的，而且SPARQL利用里函数式语言的模式匹配，即这里的CT:葱白 skos:prefLabel ?p 会匹配Triplestore里类似于这样的三元组，然后将匹配到的值绑定到?p上返回，再继续匹配下一个。不过说实在的，这样的实现原理，也导致SPARQL的性能确实比较低下。</p>
+<h4>3.6：小结</h4>
+<p>上面一下子就提到了非常多的技术，很显然，即使SKOS再有优势，也会因为实施这一整套技术的难度而得不偿失。更何况，管理术语词表的机构一般在技术积累上都比较薄弱，让他们撤换掉原来的系统，而去用Semantic Web这一套显然不太可能。一门技术要得到流行，必须是足够简单的，或者在这个环境里，只有这门技术能行得通，如JavaScript。SKOS对于术语服务来说，是功能增强，而不是唯一选择。所以，如果构建这一系列技术的工程不能简单的话，那么SKOS要想被接受，显然是不太可能的。因此，寻找一条简单的道路，让基于SKOS的术语服务更加流行很重要。</p>
+<div class="wumii-hook"><div id="wumiiBtnDiv" style="clear:both;overflow:visible;position:relative;left:0;top:0;height:28px;margin:0;padding:10px 0 0;text-shadow: none;text-indent:0;">
+    <div id="wumiiLikeBtnDiv" style="position: static; float: left; display: inline; width: 89px; height: 28px; margin: 0px 0px 0px 323px; padding: 0px; text-indent: 0px; background: url(http://static.wumii.cn/images/blogWidget/widget_buttons_deepBlue.png) 0px 0px no-repeat;" onmouseover="this.style.backgroundPosition=&#39;-89px 0&#39;;" onmouseout="this.style.backgroundPosition=&#39;0 0&#39;;">
+        <a href="http://www.wumii.com/item/RvPQ6Uh0" target="_blank" id="wumiiNumLikes" style="float:left;width:38px;height:20px;line-height:21px;margin:4px 0 0 4px;padding:0;border:none;background-color:#fff;color:#385c80;letter-spacing:0;text-decoration:none;text-align:center;text-indent:0;font-size:12px;" onmouseover="this.style.fontWeight=&#39;bold&#39;;" onmouseout="this.style.fontWeight=&#39;normal&#39;;">0</a>
+        <span style="float:left;width:40px;height:29px;margin:0;padding:0;outline:none;cursor:pointer;" id="wumiiLikeBtn" hidefocus="true"></span>
+    </div>
+    <div id="wumiiRecommendBtnDiv" style="position:static;clear:none;float:left;display:inline;height:28px;margin:0;padding:0 5px;text-indent:0;">
+        <span id="wumiiRecommendBtn" hidefocus="true" style="float:left;display:inline;width:60px;height:28px;margin:0 0 0 5px;padding:0;background:url(&#39;http://static.wumii.cn/images/blogWidget/widget_buttons_deepBlue.png&#39;) no-repeat -267px 0;cursor:pointer;outline:none;" onmouseover="this.style.backgroundPosition=&#39;-328px 0&#39;;" onmouseout="this.style.backgroundPosition=&#39;-267px 0&#39;;"></span>
+        <img src="./沙湖王   基于SKOS的术语服务构建（三）_files/loading.gif" id="wumiiLoading" style="clear:none;display:none;height:15px;margin:7px 0 0 8px;padding:0;border:0;background:none;cursor:default;" alt="正在加载推荐文章">
+    </div>
+</div>
+<div class="wumii-related-items-div" wmode="2" style="margin: 0; border: none; padding: 0; clear: both; overflow: hidden; *zoom: 1; *position: relative;">
+    
+    
+    
+        <div class="wumii-internal" style="padding: 0; margin: 0; border: none; clear: both; display: block;">
+        <div class="wumii-widget-title" style="margin: 0; border: none; padding: 20px 0 5px; _padding-top:10px; text-indent: 0; text-align: left; font-weight: bold; color: #2676FF;">您可能也喜欢：</div>
+                <div class="wumii-image-row" style="clear: both; overflow: hidden; border: none; padding: 0;margin: 0;_zoom: 1;" fromurl="http%3A%2F%2Fwww.shahuwang.com%2F2013%2F06%2F20%2F%25E5%259F%25BA%25E4%25BA%258Eskos%25E7%259A%2584%25E6%259C%25AF%25E8%25AF%25AD%25E6%259C%258D%25E5%258A%25A1%25E6%259E%2584%25E5%25BB%25BA-2.html"><a class="wumii-image-block" hidefocus="true" title="基于SKOS的术语服务构建（五）" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#E3E4FA&#39;" style="display: block; float: left; text-decoration: none; border-bottom: none; cursor: pointer; position: relative; margin: 5px 0 0 -1px; padding: 5px; text-align: left; outline: none; background-image: none; border-left: 1px solid #DDDDDD !important;" href="http://www.shahuwang.com/?p=1721" redirecturl="">
+    <span class="wumii-image-clip" style="overflow: hidden; position: relative; display: block; width: 100px; height: 100px; margin: 0 0 5px; padding: 0; border: 1px solid #DDDDDD;">
+        <img class="wumii-image" style="position: absolute; margin: 0px; padding: 0px; border: none; left: 2px; top: 2px; width: 94px; height: 94px; clip: rect(0px 94px 94px 0px); visibility: visible; background: none;" image-url="http://static.wumii.cn/site_images/ti/LQzE7AsD.png?i=cny2wvVV" src="./沙湖王   基于SKOS的术语服务构建（三）_files/LQzE7AsD.png">
+    </span>
+    <div class="wumii-image-title" style="width: 102px; height: 60px; margin: 3px 0 0 0; padding: 0; text-indent: 0; text-align: left; border: none; font: 12px/15px arial; color: #4134ED; overflow: hidden; white-space: normal; clear: both;">基于SKOS的术语服务构建（五）</div>
+</a><a class="wumii-image-block" hidefocus="true" title="基于SKOS的术语服务构建(二）" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#E3E4FA&#39;" style="display: block; float: left; text-decoration: none; border-bottom: none; cursor: pointer; position: relative; margin: 5px 0 0 -1px; padding: 5px; text-align: left; outline: none; background-image: none; border-left: 1px solid #DDDDDD !important;" href="http://www.shahuwang.com/2013/06/20/%E5%9F%BA%E4%BA%8Eskos%E7%9A%84%E6%9C%AF%E8%AF%AD%E6%9C%8D%E5%8A%A1%E6%9E%84%E5%BB%BA%E4%BA%8C%EF%BC%89.html" redirecturl="">
+    <span class="wumii-image-clip" style="overflow: hidden; position: relative; display: block; width: 100px; height: 100px; margin: 0 0 5px; padding: 0; border: 1px solid #DDDDDD;">
+        <img class="wumii-image" style="position: absolute; margin: 0px; padding: 0px; border: none; left: 2px; top: 2px; width: 94px; height: 94px; clip: rect(0px 94px 94px 0px); visibility: visible; background: none;" image-url="http://static.wumii.cn/site_images/ti/sfC3h0LZ.png?i=p4gPHnUQ" src="./沙湖王   基于SKOS的术语服务构建（三）_files/sfC3h0LZ.png">
+    </span>
+    <div class="wumii-image-title" style="width: 102px; height: 60px; margin: 3px 0 0 0; padding: 0; text-indent: 0; text-align: left; border: none; font: 12px/15px arial; color: #4134ED; overflow: hidden; white-space: normal; clear: both;">基于SKOS的术语服务构建(二）</div>
+</a><a class="wumii-image-block" hidefocus="true" title="基于SKOS的术语服务构建(一）" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#E3E4FA&#39;" style="display: block; float: left; text-decoration: none; border-bottom: none; cursor: pointer; position: relative; margin: 5px 0 0 -1px; padding: 5px; text-align: left; outline: none; background-image: none; border-left: 1px solid #DDDDDD !important;" href="http://www.shahuwang.com/2013/06/20/%E5%9F%BA%E4%BA%8Eskos%E7%9A%84%E6%9C%AF%E8%AF%AD%E6%9C%8D%E5%8A%A1%E6%9E%84%E5%BB%BA.html" redirecturl="">
+    <span class="wumii-image-clip" style="overflow: hidden; position: relative; display: block; width: 100px; height: 100px; margin: 0 0 5px; padding: 0; border: 1px solid #DDDDDD;">
+        <img class="wumii-image" style="position: absolute; margin: 0px; padding: 0px; border: none; left: 2px; top: 2px; width: 94px; height: 94px; clip: rect(0px 94px 94px 0px); visibility: visible; background: none;" image-url="http://static.wumii.cn/resources/images/related_item_default/71.jpg" src="./沙湖王   基于SKOS的术语服务构建（三）_files/71.jpg">
+    </span>
+    <div class="wumii-image-title" style="width: 102px; height: 60px; margin: 3px 0 0 0; padding: 0; text-indent: 0; text-align: left; border: none; font: 12px/15px arial; color: #4134ED; overflow: hidden; white-space: normal; clear: both;">基于SKOS的术语服务构建(一）</div>
+</a><a class="wumii-image-block" hidefocus="true" title="用jena从数据库里抽取数据生成skos文件" onmouseout="this.style.backgroundColor=&#39;&#39;" onmouseover="this.style.backgroundColor=&#39;#E3E4FA&#39;" style="display: block; float: left; text-decoration: none; border-bottom: none; cursor: pointer; position: relative; margin: 5px 0 0 -1px; padding: 5px; text-align: left; outline: none; background-image: none; border-left: 1px solid #DDDDDD !important;" href="http://www.shahuwang.com/2012/02/24/%E7%94%A8jena%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E9%87%8C%E6%8A%BD%E5%8F%96%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90skos%E6%96%87%E4%BB%B6.html" redirecturl="">
+    <span class="wumii-image-clip" style="overflow: hidden; position: relative; display: block; width: 100px; height: 100px; margin: 0 0 5px; padding: 0; border: 1px solid #DDDDDD;">
+        <img class="wumii-image" style="position: absolute; margin: 0px; padding: 0px; border: none; left: 2px; top: 2px; width: 94px; height: 94px; clip: rect(0px 94px 94px 0px); visibility: visible; background: none;" image-url="http://static.wumii.cn/site_images/ti/ywsBQitK.jpg?i=mCoEi9pS" src="./沙湖王   基于SKOS的术语服务构建（三）_files/ywsBQitK.jpg">
+    </span>
+    <div class="wumii-image-title" style="width: 102px; height: 60px; margin: 3px 0 0 0; padding: 0; text-indent: 0; text-align: left; border: none; font: 12px/15px arial; color: #4134ED; overflow: hidden; white-space: normal; clear: both;">用jena从数据库里抽取数据生成skos文件</div>
+</a></div>
+    </div><div class="wumii-footer" style="margin: 0px; border: none; padding: 5px 0px; clear: both; text-align: right; width: 451px;">
+            <a href="http://www.wumii.com/widget/relatedItems" target="_blank" title="无觅关联推荐" style="font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 12px; line-height: normal; font-family: arial; color: rgb(187, 187, 187); border-bottom-style: none; word-wrap: normal; display: inline; cursor: pointer;">无觅关联推荐[?]</a>
+                
+        </div>
+</div></div>
+<div style="clear:both; margin-top:5px; margin-bottom:5px;"></div><div style="float:left"><!-- JiaThis Button BEGIN -->
+<div id="jiathis_style_32x32">
+	<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+	<a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+	<a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+	<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+	<a class="jiathis_button_kaixin001" title="分享到开心网"><span class="jiathis_txt jtico jtico_kaixin001"></span></a>
+	<a href="http://www.jiathis.com/share/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_52" title="累计分享0次">0</span></a>
+</div>
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/jia.js" charset="utf-8"></script>
+<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax:{inlineMath:[['$$$','$$$']]}});</script>
+<script src="./沙湖王   基于SKOS的术语服务构建（三）_files/MathJax.js"></script>
+<!-- JiaThis Button END --></div><div style="clear:both; margin-top:5px; margin-bottom:5px;"></div><div class="yarpp-related">
+<h3>Related posts:</h3><ol>
+<li><a href="http://www.shahuwang.com/2012/02/14/%e7%94%a8python%e7%ae%80%e5%8d%95%e9%aa%8c%e8%af%81skos%e6%a0%87%e7%ad%be.html" rel="bookmark" title="用python简单验证skos标签">用python简单验证skos标签 </a></li>
+<li><a href="http://www.shahuwang.com/2012/04/14/%e7%94%a8jena-schemagen%e6%89%a9%e5%b1%95jena%e5%af%b9skos%e7%9a%84%e6%a0%87%e7%ad%be%e6%94%af%e6%8c%81.html" rel="bookmark" title="用Jena schemagen扩展Jena对skos的标签支持">用Jena schemagen扩展Jena对skos的标签支持 </a></li>
+<li><a href="http://www.shahuwang.com/2012/04/09/skos%e6%96%87%e4%bb%b6%e7%9a%84%e5%ae%8c%e6%95%b4%e6%80%a7%e7%ba%a6%e6%9d%9f%e7%9a%84%e5%ae%9e%e7%8e%b0.html" rel="bookmark" title="SKOS文件的完整性约束的实现">SKOS文件的完整性约束的实现 </a></li>
+<li><a href="http://www.shahuwang.com/2012/04/12/owlim%e5%ae%9e%e7%8e%b0skos%e4%bb%a5%e5%8f%8aowl%e6%8e%a8%e7%90%86%ef%bc%88inference%ef%bc%89.html" rel="bookmark" title="owlim实现skos以及owl推理（inference）">owlim实现skos以及owl推理（inference） </a></li>
+</ol>
+</div>
+		</div>
+		
+				
+		<footer class="entry-footer">
+						
+						
+			<div class="entry-meta">
+				<p class="tags">标签：<a href="http://www.shahuwang.com/tag/jena" rel="tag">jena</a>, <a href="http://www.shahuwang.com/tag/skos" rel="tag">skos</a>, <a href="http://www.shahuwang.com/tag/%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1" rel="tag">术语服务</a>, <a href="http://www.shahuwang.com/tag/%e8%af%ad%e4%b9%89%e7%bd%91" rel="tag">语义网</a></p>
+				<p class="categories">分类：<a href="http://www.shahuwang.com/category/%e8%af%ad%e4%b9%89%e7%bd%91" rel="category tag">语义网</a></p>
+									<p class="date"><span class="posted-on">发布于 <a href="./沙湖王   基于SKOS的术语服务构建（三）_files/沙湖王   基于SKOS的术语服务构建（三）.html" rel="bookmark"><time class="entry-date published" datetime="2013-06-20T00:58:53+00:00">2013 年 6 月 20 日</time><time class="updated screen-reader-text" datetime="2014-05-11T21:45:03+00:00">2014 年 5 月 11 日</time></a></span><span class="byline"> 作者 <span class="author vcard"><a class="url fn n" href="http://www.shahuwang.com/author/rickey">rickey</a></span></span></p>
+							</div>
+		</footer><!-- .entry-footer -->
+		
+			</article><!-- #post-1703 -->
+		
+		
+		 	
+	<div id="comments" class="comments-area">
+
+	
+		
+		
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html#respond" style="display:none;">取消回复</a></small></h3>
+									<form action="http://www.shahuwang.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+																			<p class="comment-notes">电子邮件地址不会被公开。 必填项已用<span class="required">*</span>标注</p>							<p class="comment-form-author"><label for="author">姓名 <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">电子邮件 <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">站点</label> <input id="url" name="url" type="url" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment" style="display: none;">评论</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" style="visibility: hidden; display: none;"></textarea><div id="cke_comment" class="cke_1 cke cke_reset cke_chrome cke_editor_comment cke_ltr cke_browser_webkit" dir="ltr" lang="zh-cn" role="application" aria-labelledby="cke_comment_arialbl"><span id="cke_comment_arialbl" class="cke_voice_label">所见即所得编辑器, comment</span><div class="cke_inner cke_reset" role="presentation"><span id="cke_1_top" class="cke_top cke_reset_all" role="presentation" style="height: auto; -webkit-user-select: none;"><span id="cke_9" class="cke_voice_label">工具栏</span><span id="cke_1_toolbox" class="cke_toolbox" role="group" aria-labelledby="cke_9" onmousedown="return false;"><span id="cke_10" class="cke_toolbar" aria-labelledby="cke_10_label" role="toolbar"><span id="cke_10_label" class="cke_voice_label">基本格式</span><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_11" class="cke_button cke_button__bold  cke_button_off" href="javascript:void('加粗')" title="加粗" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_11_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(2,event);" onfocus="return CKEDITOR.tools.callFunction(3,event);" onclick="CKEDITOR.tools.callFunction(4,this);return false;"><span class="cke_button_icon cke_button__bold_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -24px;background-size:auto;">&nbsp;</span><span id="cke_11_label" class="cke_button_label cke_button__bold_label" aria-hidden="false">加粗</span></a><a id="cke_12" class="cke_button cke_button__italic  cke_button_off" href="javascript:void('倾斜')" title="倾斜" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(5,event);" onfocus="return CKEDITOR.tools.callFunction(6,event);" onclick="CKEDITOR.tools.callFunction(7,this);return false;"><span class="cke_button_icon cke_button__italic_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -48px;background-size:auto;">&nbsp;</span><span id="cke_12_label" class="cke_button_label cke_button__italic_label" aria-hidden="false">倾斜</span></a><a id="cke_13" class="cke_button cke_button__strike  cke_button_off" href="javascript:void('删除线')" title="删除线" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(8,event);" onfocus="return CKEDITOR.tools.callFunction(9,event);" onclick="CKEDITOR.tools.callFunction(10,this);return false;"><span class="cke_button_icon cke_button__strike_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -72px;background-size:auto;">&nbsp;</span><span id="cke_13_label" class="cke_button_label cke_button__strike_label" aria-hidden="false">删除线</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_14" class="cke_button cke_button__removeformat  cke_button_off" href="javascript:void('清除格式')" title="清除格式" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(11,event);" onfocus="return CKEDITOR.tools.callFunction(12,event);" onclick="CKEDITOR.tools.callFunction(13,this);return false;"><span class="cke_button_icon cke_button__removeformat_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1680px;background-size:auto;">&nbsp;</span><span id="cke_14_label" class="cke_button_label cke_button__removeformat_label" aria-hidden="false">清除格式</span></a></span><span class="cke_toolbar_end"></span></span><span id="cke_15" class="cke_toolbar" aria-labelledby="cke_15_label" role="toolbar"><span id="cke_15_label" class="cke_voice_label">段落</span><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_16" class="cke_button cke_button__blockquote  cke_button_off" href="javascript:void('块引用')" title="块引用" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_16_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(14,event);" onfocus="return CKEDITOR.tools.callFunction(15,event);" onclick="CKEDITOR.tools.callFunction(16,this);return false;"><span class="cke_button_icon cke_button__blockquote_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -216px;background-size:auto;">&nbsp;</span><span id="cke_16_label" class="cke_button_label cke_button__blockquote_label" aria-hidden="false">块引用</span></a><span class="cke_toolbar_separator" role="separator"></span><a id="cke_17" class="cke_button cke_button__justifyleft  cke_button_off" href="javascript:void('左对齐')" title="左对齐" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_17_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(17,event);" onfocus="return CKEDITOR.tools.callFunction(18,event);" onclick="CKEDITOR.tools.callFunction(19,this);return false;"><span class="cke_button_icon cke_button__justifyleft_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1128px;background-size:auto;">&nbsp;</span><span id="cke_17_label" class="cke_button_label cke_button__justifyleft_label" aria-hidden="false">左对齐</span></a><a id="cke_18" class="cke_button cke_button__justifycenter  cke_button_off" href="javascript:void('居中')" title="居中" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_18_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(20,event);" onfocus="return CKEDITOR.tools.callFunction(21,event);" onclick="CKEDITOR.tools.callFunction(22,this);return false;"><span class="cke_button_icon cke_button__justifycenter_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1104px;background-size:auto;">&nbsp;</span><span id="cke_18_label" class="cke_button_label cke_button__justifycenter_label" aria-hidden="false">居中</span></a><a id="cke_19" class="cke_button cke_button__justifyright  cke_button_off" href="javascript:void('右对齐')" title="右对齐" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_19_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(23,event);" onfocus="return CKEDITOR.tools.callFunction(24,event);" onclick="CKEDITOR.tools.callFunction(25,this);return false;"><span class="cke_button_icon cke_button__justifyright_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1152px;background-size:auto;">&nbsp;</span><span id="cke_19_label" class="cke_button_label cke_button__justifyright_label" aria-hidden="false">右对齐</span></a></span><span class="cke_toolbar_end"></span></span><span id="cke_20" class="cke_toolbar" aria-labelledby="cke_20_label" role="toolbar"><span id="cke_20_label" class="cke_voice_label">链接</span><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_21" class="cke_button cke_button__link  cke_button_off" href="javascript:void('插入/编辑超链接')" title="插入/编辑超链接" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_21_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(26,event);" onfocus="return CKEDITOR.tools.callFunction(27,event);" onclick="CKEDITOR.tools.callFunction(28,this);return false;"><span class="cke_button_icon cke_button__link_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1248px;background-size:auto;">&nbsp;</span><span id="cke_21_label" class="cke_button_label cke_button__link_label" aria-hidden="false">插入/编辑超链接</span></a><a id="cke_22" class="cke_button cke_button__unlink cke_button_disabled " href="javascript:void('取消超链接')" title="取消超链接" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_22_label" aria-haspopup="false" aria-disabled="true" onkeydown="return CKEDITOR.tools.callFunction(29,event);" onfocus="return CKEDITOR.tools.callFunction(30,event);" onclick="CKEDITOR.tools.callFunction(31,this);return false;"><span class="cke_button_icon cke_button__unlink_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1272px;background-size:auto;">&nbsp;</span><span id="cke_22_label" class="cke_button_label cke_button__unlink_label" aria-hidden="false">取消超链接</span></a></span><span class="cke_toolbar_end"></span></span><span id="cke_23" class="cke_toolbar" aria-labelledby="cke_23_label" role="toolbar"><span id="cke_23_label" class="cke_voice_label">插入</span><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><a id="cke_24" class="cke_button cke_button__image  cke_button_off" href="javascript:void('图像')" title="图像" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_24_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(32,event);" onfocus="return CKEDITOR.tools.callFunction(33,event);" onclick="CKEDITOR.tools.callFunction(34,this);return false;"><span class="cke_button_icon cke_button__image_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -936px;background-size:auto;">&nbsp;</span><span id="cke_24_label" class="cke_button_label cke_button__image_label" aria-hidden="false">图像</span></a><a id="cke_25" class="cke_button cke_button__specialchar  cke_button_off" href="javascript:void('插入特殊符号')" title="插入特殊符号" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_25_label" aria-haspopup="false" onkeydown="return CKEDITOR.tools.callFunction(35,event);" onfocus="return CKEDITOR.tools.callFunction(36,event);" onclick="CKEDITOR.tools.callFunction(37,this);return false;"><span class="cke_button_icon cke_button__specialchar_icon" style="background-image:url(http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/plugins/icons.png?t=E8PB);background-position:0 -1848px;background-size:auto;">&nbsp;</span><span id="cke_25_label" class="cke_button_label cke_button__specialchar_label" aria-hidden="false">插入特殊符号</span></a></span><span class="cke_toolbar_end"></span></span></span></span><div id="cke_1_contents" class="cke_contents cke_reset" role="presentation" style="height: 160px;"><span id="cke_30" class="cke_voice_label">按 ALT+0 获得帮助</span><iframe src="" frameborder="0" class="cke_wysiwyg_frame cke_reset" style="width: 808px; height: 100%;" title="所见即所得编辑器, comment" aria-describedby="cke_30" tabindex="0" allowtransparency="true"></iframe></div><span id="cke_1_bottom" class="cke_bottom cke_reset_all" role="presentation" style="-webkit-user-select: none;"><span id="cke_1_resizer" class="cke_resizer cke_resizer_vertical cke_resizer_ltr" title="拖拽以改变大小" onmousedown="CKEDITOR.tools.callFunction(0, event)">◢</span><span id="cke_1_path_label" class="cke_voice_label">元素路径</span><span id="cke_1_path" class="cke_path" role="group" aria-labelledby="cke_1_path_label"><span class="cke_path_empty">&nbsp;</span></span></span></div></div></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="发表评论">
+							<input type="hidden" name="comment_post_ID" value="1703" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="881f14c2ad"></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1422072443164"></form>
+							</div><!-- #respond -->
+				
+		
+	
+</div><!-- #comments -->
+	
+
+	
+	</main><!-- #main -->
+	
+	        <nav class="navigation post-navigation" role="navigation">
+                <h1 class="screen-reader-text">文章导航</h1>
+                <div class="nav-links">
+                	<div class="nav-previous"><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba%e4%ba%8c%ef%bc%89.html" rel="prev"><span class="meta-nav">←</span>&nbsp;基于SKOS的术语服务构建(二）</a></div><div class="nav-next"><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba%ef%bc%88%e5%9b%9b%ef%bc%89.html" rel="next">基于SKOS的术语服务构建（四）&nbsp;<span class="meta-nav">→</span></a></div>                </div><!-- .nav-links -->
+        </nav><!-- .navigation -->
+        
+</div><!-- #primary -->
+
+
+	</div><!-- #content -->
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+	
+	
+		
+		<div class="theme-info">
+		<p><a href="http://scotthsmith.com/projects/decode/" rel="designer">Decode</a> &nbsp;主题由&nbsp;Scott Smith&nbsp;设计</p>
+	</div><!-- .theme-info -->
+		
+	</footer><!-- #colophon -->
+	</div><!-- #page -->
+
+
+	
+<div id="sidebar" class="sidebar left">
+	<div id="sidebar-top" class="sidebar-top SidebarTop">
+		<button id="sidebar-close" class="sidebar-close SidebarClose" title="隐藏侧边栏">
+			<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+			<path class="close-icon" d="M0,172.881356 L72.8813559,100 L1.0658141e-14,27.1186441 L27.1186441,-2.84217094e-14 L100,72.8813559 L172.881356,0 L200,27.1186441 L127.118644,100 L200,172.881356 L172.881356,200 L100,127.118644 L27.1186441,200 Z M0,172.881356" fill="#444444"></path>
+			</svg>
+		</button>
+	</div>
+	<div class="sidebar-content">
+
+		
+		<div class="widget-area" role="complementary">
+	
+				<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://www.shahuwang.com/">
+				<label>
+					<span class="screen-reader-text">搜索：</span>
+					<input type="search" class="search-field" placeholder="搜索…" value="" name="s" title="搜索：">
+				</label>
+				<input type="submit" class="search-submit" value="搜索">
+			</form></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://www.shahuwang.com/2014/10/17/weed-fs-%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb-%e5%88%86%e5%b8%83%e5%bc%8f%e5%a4%84%e7%90%86%e8%bf%87%e7%a8%8b.html">weed-fs 源码解读—分布式处理过程</a>
+						</li>
+					<li>
+				<a href="http://www.shahuwang.com/2014/10/02/weed-fs-%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb-%e5%ad%98%e5%82%a8.html">weed-fs 源码解读—-存储</a>
+						</li>
+					<li>
+				<a href="http://www.shahuwang.com/2014/07/04/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d%e5%8f%af%e4%bb%a5%e5%8f%88%e5%bf%ab%e5%8f%88%e7%ae%80%e5%8d%95%ef%bc%88%e4%ba%8c%ef%bc%89.html">正则匹配可以又快又简单（二）</a>
+						</li>
+					<li>
+				<a href="http://www.shahuwang.com/2014/07/01/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d%e5%8f%af%e4%bb%a5%e5%8f%88%e5%bf%ab%e5%8f%88%e7%ae%80%e5%8d%95%e4%b8%80.html">正则匹配可以又快又简单(一)</a>
+						</li>
+					<li>
+				<a href="http://www.shahuwang.com/2014/06/28/%e6%af%95%e4%b8%9a%e4%b8%80%e5%91%a8%e5%b9%b4%e8%ae%b0.html">毕业一周年记</a>
+						</li>
+				</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">rickey</span>发表在《<a href="http://www.shahuwang.com/2011/11/24/%e7%94%a8jena%e5%b0%86rdf%e6%96%87%e4%bb%b6%e5%af%bc%e5%85%a5tdb.html#comment-25343">Jena TDB的使用简介</a>》</li><li class="recentcomments"><span class="comment-author-link">Tina</span>发表在《<a href="http://www.shahuwang.com/2011/11/24/%e7%94%a8jena%e5%b0%86rdf%e6%96%87%e4%bb%b6%e5%af%bc%e5%85%a5tdb.html#comment-25275">Jena TDB的使用简介</a>》</li><li class="recentcomments"><span class="comment-author-link">chzyer</span>发表在《<a href="http://www.shahuwang.com/2014/10/02/weed-fs-%e6%ba%90%e7%a0%81%e8%a7%a3%e8%af%bb-%e5%ad%98%e5%82%a8.html#comment-24576">weed-fs 源码解读—-存储</a>》</li><li class="recentcomments"><span class="comment-author-link">rickey</span>发表在《<a href="http://www.shahuwang.com/2014/06/28/%e6%af%95%e4%b8%9a%e4%b8%80%e5%91%a8%e5%b9%b4%e8%ae%b0.html#comment-24038">毕业一周年记</a>》</li><li class="recentcomments"><span class="comment-author-link">rickey</span>发表在《<a href="http://www.shahuwang.com/2012/05/25/%e7%ae%80%e5%8d%95%e7%9a%84%e8%87%aa%e5%ae%9a%e4%b9%89%e6%8e%a8%e7%90%86%e7%9a%84%e5%ae%9e%e7%8e%b0.html#comment-24037">简单的自定义推理的实现</a>》</li></ul></aside><aside id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-168"><a href="http://www.shahuwang.com/category/go%e8%af%ad%e8%a8%80">Go语言</a>
+</li>
+	<li class="cat-item cat-item-179"><a href="http://www.shahuwang.com/category/java-2">Java</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="http://www.shahuwang.com/category/python">Python</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.shahuwang.com/category/ubuntu">Ubuntu</a>
+</li>
+	<li class="cat-item cat-item-190"><a href="http://www.shahuwang.com/category/%e5%8f%af%e8%ae%a1%e7%ae%97%e7%90%86%e8%ae%ba">可计算理论</a>
+</li>
+	<li class="cat-item cat-item-185"><a href="http://www.shahuwang.com/category/%e6%95%b0%e6%8d%ae%e5%ba%93">数据库</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.shahuwang.com/category/c%e5%92%8cjava">数据结构</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.shahuwang.com/category/%e6%9d%82%e8%af%84">杂评</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.shahuwang.com/category/r%e8%af%ad%e8%a8%80">科学计算</a>
+</li>
+	<li class="cat-item cat-item-193"><a href="http://www.shahuwang.com/category/%e7%b3%bb%e7%bb%9f%e7%bc%96%e7%a8%8b">系统编程</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.shahuwang.com/category/%e8%af%ad%e4%b9%89%e7%bd%91">语义网</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.shahuwang.com/category/collection" title="我平时阅读过，觉得值得收藏的文章">阅读收藏的文章</a>
+</li>
+		</ul>
+</aside><aside id="statpress" class="widget widget_statpress"><h2 class="widgettitle">访问数据</h2>
+今日访问人数： 258
+总访问人数：4785+24500</aside><aside id="rss-2" class="widget widget_rss"><h2 class="widgettitle"><a class="rsswidget" href="http://feed.feedsky.com/m5i0"><img style="border:0" width="14" height="14" src="./沙湖王   基于SKOS的术语服务构建（三）_files/rss.png" alt="RSS"></a> <a class="rsswidget" href="">沙湖王</a></h2>
+</aside><aside id="statpress-topposts" class="widget widget_statpresstopposts"><h2 class="widgettitle">StatPress TopPosts</h2>
+
+<ul>
+<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=848">让你的Emacs和Sublime Text2一样漂亮</a></li>
+ (1515)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=497">R语言绘图</a></li>
+ (1489)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=936">N-Triple的一些问题</a></li>
+ (1454)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=780">ipython notebook——超级强大的工具</a></li>
+ (1034)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=153">Archlinux 安装</a></li>
+ (1007)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=913">转载：RDF语法检查一</a></li>
+ (986)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=311">R语言最好的IDE——RStudio</a></li>
+ (963)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=1620">scrapy爬取了链接之后如何继续进一步爬取该链接对应的内容</a></li>
+ (951)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=1535"></a></li>
+ (842)<li><a href="http://www.shahuwang.com/2013/06/20/%e5%9f%ba%e4%ba%8eskos%e7%9a%84%e6%9c%af%e8%af%ad%e6%9c%8d%e5%8a%a1%e6%9e%84%e5%bb%ba-2.html?p=1552"></a></li>
+ (770)</ul>
+</aside><aside id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://www.shahuwang.com/wp-login.php">登录</a></li>
+			<li><a href="http://www.shahuwang.com/feed">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://www.shahuwang.com/comments/feed">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+</aside>				
+	</div><!-- .widget-area -->
+		
+	</div>
+</div><!-- #sidebar -->
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fdea835f4abb60ae632d73a997b2e9662' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./沙湖王   基于SKOS的术语服务构建（三）_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=dea835f4abb60ae632d73a997b2e9662" target="_blank"><img border="0" src="./沙湖王   基于SKOS的术语服务构建（三）_files/21.gif" width="20" height="20"></a>
+<p style="margin:0;padding:0;height:1px;overflow:hidden;">
+    <script type="text/javascript"><!--
+        var wumiiSitePrefix = "http://www.shahuwang.com";
+        var wumiiEnableCustomPos = false;
+        var wumiiParams = "&num=4&mode=3&displayInFeed=1&version=1.0.5.7&pf=WordPress4.0.1";
+        var wumiiCategories = ["\u8bed\u4e49\u7f51"];
+    //--></script><script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/relatedItemsWidget"></script><a href="http://www.wumii.com/widget/relatedItems" style="border:0;"><img src="./沙湖王   基于SKOS的术语服务构建（三）_files/pixel.png" alt="无觅相关文章插件，快速提升流量" style="border:0;padding:0;margin:0;"></a>
+</p><script type="text/javascript">
+/* <![CDATA[ */
+window.CKEDITOR_BASEPATH = "http://www.shahuwang.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/";
+var ckeditorSettings = { "textarea_id": "comment", "pluginPath": "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/", "autostart": true, "excerpt_state": false, "qtransEnabled": false, "outputFormat": { "indent": true, "breakBeforeOpen": true, "breakAfterOpen": true, "breakBeforeClose": true, "breakAfterClose": true }, "configuration": { "height": "160px", "skin": "moono", "scayt_autoStartup": false, "entities": true, "entities_greek": true, "entities_latin": true, "toolbar": "WordpressBasic", "templates_files": [ "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.templates.js" ], "stylesCombo_stylesSet": "wordpress:http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.styles.js", "allowedContent": true, "customConfig": "http:\/\/www.shahuwang.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.config.js" }, "externalPlugins": [  ], "additionalButtons": [  ] }
+/* ]]> */
+</script>		<style type="text/css">
+				#content table.cke_editor { margin:0; }
+				#content table.cke_editor tr td { padding:0;border:0; }
+		</style>
+		<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/form.js"></script>
+<link rel="stylesheet" id="yarppRelatedCss-css" href="./沙湖王   基于SKOS的术语服务构建（三）_files/related.css" type="text/css" media="all">
+<script type="text/javascript" src="./沙湖王   基于SKOS的术语服务构建（三）_files/decode.js"></script>
+
+
+</body></html>
