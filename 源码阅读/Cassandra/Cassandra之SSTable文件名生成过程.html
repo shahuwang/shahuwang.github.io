@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>Cassandra之SSTable文件名生成过程</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">Cassandra之SSTable文件名生成过程</h1>
+		<p/><p/>
+        <p>之前看 Go 语言的项目，很快懂了不少。最近看 Cassandra 的代码，Java 各种继承绕得我头都晕了，实在是好难懂。</p>
+
+<p>目前对 Cassandra 的认知还停留在比较初始的阶段，所以好多东西都看不明白。看代码的时候，找着注释的说明，写了如下一个测试程序：</p>
+
+<pre><code>package com.shahuwang;
+
+import org.apache.cassandra.io.sstable.CQLSSTableWriter;
+import org.junit.Test;
+
+import java.io.IOException;
+
+/**
+ * Created by rickey on 2015/3/11.
+ */
+public class sstableTest {
+    @Test
+    public void cqlWriter(){
+        String schema = &quot;create table test2.myTable2(k int primary key, v1 text, v2 int);&quot;;
+        String insert = &quot;insert into test2.myTable2(k, v1, v2) values (?, ?, ?)&quot;;
+        CQLSSTableWriter writer = CQLSSTableWriter.builder().inDirectory(&quot;E:\\share\\github\\cassandra\\data\\test&quot;).forTable(schema).using(insert).build();
+        try{
+            writer.addRow(0, &quot;test1&quot;, 24);
+            writer.addRow(1, &quot;test2&quot;, null);
+            writer.addRow(2, &quot;test3&quot;, 42);
+            writer.close();
+        }catch (IOException e){
+            System.out.println(e);
+        }
+
+
+    }
+}
+</code></pre>
+
+<p>代码运行后，在指定的文件夹下，生成了如下图所示的几个文件：
+<img src="https://raw.githubusercontent.com/shahuwang/images/master/Cassandra/sstable.png" alt="sstable files">
+</p>
+
+<p>看了这些文件之后，我主要想知道各个文件所存储的内容，文件名里各个部分的意义，以及这些文件名生成的过程。</p>
+
+<p>各个文件的意义，在cassandra/io/sstable/Component.java 里面有讲解：</p>
+
+<ul>
+<li>Data.db 是 SSTable 的基础数据，其他所有的文件都可以根据这个文件重新生成出来。</li>
+<li>Index.db 是 row key的索引，具有指向其实际数据位置的指针</li>
+<li>Filter.db 是序列化后的布隆过滤器，处理的是 row keys.</li>
+<li>CompressionInfo.db 存储未压缩数据长度，chunk 偏移量等数据</li>
+<li>Statistics.db SSTable 上内容的统计元数据</li>
+<li>Digest.sha1 存储data file 的 sha1 和</li>
+<li>TOC.txt , 存储 SSTable 的所有 component 的列表</li>
+</ul>
+
+<p>文件名的第一部分： la， 代表 SSTable的Version，在 cassandra/io/sstable/format/big/BigFormat.java 可以看到，la 是3.0.0 版本的。</p>
+
+<p>数字 1 代表当前 SSTable 的generation，1是第一代的意思。</p>
+
+<p>Big 是 SSTable 的格式名。</p>
+
+<p>这个名字生成的开始是 cassandra/io/sstable/Descriptor.java 的 filenameFor(Component component)。</p>
+
+<p>generation 的作用是什么？ Big 这种格式有什么新内涵？ 下一篇再继续说吧</p>
+
+        <p/></p>
+        <div> 2015-03-24 10:46</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
