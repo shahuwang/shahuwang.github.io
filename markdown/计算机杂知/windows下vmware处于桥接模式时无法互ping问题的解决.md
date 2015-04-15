@@ -12,7 +12,9 @@
 ![连接状态](https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/2.png)
 
 不太明白意思，貌似是不是 VMnet8 是通过 WLAN 这个连接来进行？然后回到网络连接页面，点击 VMnet8，点击属性，如下图：
+
 ![vmnet8](https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/3.png)
+
 把 VMware Bridge Protocol 这个勾选上，然后拉到下面，找到 Internet 协议版本 4（TCP/IPv4) ，选择它（不要去掉勾选），然后点击属性，设置如下图即可：
 
 ![ip设置](https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/4.png)
