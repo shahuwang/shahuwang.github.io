@@ -21,4 +21,19 @@
 
 另外，这里的 IP 地址一栏， 你可以填 192.168.0. xx， 不一定是 192.168.0.6 。
 
-终于解决了这个问题了，不容易呀
+现在在 Windows 下可以 ping通虚拟机的ubuntu了，但是虚拟机的Ubuntu却无法ping通windows。现在需要修改 Ubuntu 的 ip 设置：
+sudo vim /etc/network/interfaces
+
+默认只有两行，然后将内容修改如下：
+
+    auto lo
+    iface lo inet static
+    address 192.168.0.6
+    gateway 192.168.0.1
+    netmask 255.255.255.0
+
+再关闭掉防火墙 sudo ufw disable
+
+重启虚拟机，应该就可以ping通windows了。
+
+
