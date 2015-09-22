@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>Rust的指针类型</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">Rust的指针类型</h1>
+		<p/><p/>
+        <p>﻿## Rust 的指针类型</p>
+
+<p>Rust有N多种指针类型，这复杂度，比C++都要高，也真是醉了。实际上，Rust为了实现不用GC又不用手动管理内存，在语法很多地方都做得很不优雅，甚至复杂度颇高。这篇文章不错：<a href="http://blog.yikuyiku.com/?p=4485">Rust官方指南摘抄（四）指针</a></p>
+
+<p>Rust 的指针分别如下：</p>
+
+<ol>
+<li>&amp;T， 称为引用，允许一个或者多个需求者读取 T</li>
+<li>&amp;mut T， 可变引用，允许仅一个需求者读写 T，就是说 &amp;mut T 之后，就不能再 &amp;T 或者 &amp;mut T 了。 这个其实很好理解了，因为被可变借出去了，对方不知道会对 T 做什么修改，如果还有另一个需求者在读或者写 T 的话，就不合法了。</li>
+
+<li><p>Box<T>, Box，这个Box好像到现在还不是很稳定，处于试验状态的样子。这是把数据的内存分配放到堆上了，被 box 之后，这个 T 就只能有一个需求者（或者称持有者），就是说 :</p>
+
+<p><code>let x = Box::new(5i);
+    let y = x;
+    *x;
+</code>
+这样子是非法的，一旦 box 的数据被借出去了，其持有者就变了。另外，box 的数据还有一个好处，其会在离开 scope 的时候自动清理掉。</p></li>
+
+<li><p>Rc<T>, &quot;arr cee&quot;指针， 堆分配一个可多人读取的 T</p></li>
+
+<li><p>Arc<T>, Arc指针，同上，但是线程间共享是安全的</p></li>
+
+<li><p>*const T , Raw 指针， 不安全读访问 T</p></li>
+
+<li><p>*mut T , 可变 raw 指针， 不安全读写访问 T</p></li>
+</ol>
+
+<p>因为对后面四种指针很不熟悉，所以这里需要讲一下（我写博客主要是给自己看的，用于整理自己的思路）。</p>
+
+<p>使用Box封装的对象，只能被一个所有者拥有，但是有时候我们需要将存在堆上的对象，分配多个使用者（只读，可改必然都只能是一个使用者），这时候Box就做不到了。</p>
+
+<p>为了解决这个问题，可以使用 Rc<T>, 当然，它是不可改的，它采取引用计数的方式，每被分配一次，计数加1；每销毁了一次引用，计数减1； 在计数为0的时候自动销毁，或者在离开scope的时候也自动销毁。</p>
+
+<p>同时还提供了一个Weak指针类型，不过现在还不是稳定状态。Python也有类型的东西。</p>
+
+<p>具体内容可看 <a href="https://doc.rust-lang.org/std/rc/">std::rc</a></p>
+
+<p>Arc 指针提供了线程安全的保证，不过目前我对线程安全并不了解，不多写了。</p>
+
+<p>raw 指针，其实挺像 c/c++ 的指针的，就是在你需要突破 Rust 的安全性限制写一些代码的时候用到的。当然，你写的函数给其他人用还依旧必须是符合 Rust 的安全要求的。
+目前 raw 指针有几个要求是要记住的：</p>
+
+<ul>
+<li>不保证指向合法的地址，不保证不为null</li>
+<li>不会自动清理内存，需要手动清理</li>
+<li>不移交ownership</li>
+<li>没有Lifetime</li>
+<li>have no guarantees about aliasing or mutability other than mutation not being allowed directly through a *const T. 这句没怎么搞懂</li>
+</ul>
+
+        <p/></p>
+        <div> 2015-09-22 10:26</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
