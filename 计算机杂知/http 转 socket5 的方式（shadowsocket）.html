@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>http 转 socket5 的方式（shadowsocket）</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">http 转 socket5 的方式（shadowsocket）</h1>
+		<p/><p/>
+        <p>﻿# http 转 socket5 的方式（shadowsocket）</p>
+
+<p>有一些穿越长城的工具如是只提供socket5的上网方式的，但是很多的访问时需要使用到http和https的协议的。总不能买好几个不同类型的账号来穿越吧。</p>
+
+<p>ubuntu 下有一款工具挺好用的，Privoxy， sudo apt-get install privoxy 即可安装。</p>
+
+<p>然后打开文件 /etc/privoxy/config， 在文件的最后面添加这么一句： <code>forward-socks5 / 127.0.0.1:1080 .</code></p>
+
+<p>一定要看仔细了， 是 forward-socks5, 不是 socket5 喔， 特别是最后是有一个圆点句号的. 127.0.0.1:1080 是你的socket5 穿越工具的代理地址。</p>
+
+<p>然后执行命令 sudo service privoxy restart 就可以用了。</p>
+
+<p>然后现在所有的http请求都可以指向 127.0.0.1:8118了</p>
+
+<p>我用的是 linux mint， 在控制中心找到网络代理，设置手动配置，将http代理设置为 127.0.0.1， 端口8118就行了.</p>
+
+        <p/></p>
+        <div> 2015-10-20 11:09</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
