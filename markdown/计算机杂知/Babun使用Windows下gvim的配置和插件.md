@@ -18,14 +18,8 @@ windows自带的CMD屎一样，但是平时在家的时候又不想使用Linux�
 
 不过，光是这样配置还是有问题的，因为在babun启动的时候使用的是babun的路径模式，但是在使用gvim的时候，使用的是windows的路径，一保存，就会出现保存不了，因为路径找不到。
 
-所以首先，在/home/rickey/bin 目录下创建一个gvim.sh, 内容如下：
+这时候需要使用到另一个脚本，[cyg-wrapper.sh](https://raw.githubusercontent.com/LucHermitte/Bash-scripts/master/cyg-wrapper.sh), 打开babun，进入 ~/bin, 执行 wget 下载下来。然后，对cyg-wrapper.sh 执行命令： `chmod a+x cyg-wrapper.sh`, 再打开 ~/.zshrc， 在最后面加上：`alias gvim='cyg-wrapper.sh "C:/Program Files/Vim/vim74/gvim.exe" --fork=1'`
 
-```
-#!/usr/bin/env bash
-gvim `cygpath -W $a` &
-```
-
-保存完毕后，对这个文件执行命令 chmod a+x gvim.sh, 然后，再打开 ~/.zshrc 文件，在最后面添加上 alias gvim=gvim.sh,大功告成。
 另外，还有一个要注意的点，就是在cygwin下使用git， git st的时候会出现乱码，使用命令：git config --global core.quotepath false 解决问题。
 
 

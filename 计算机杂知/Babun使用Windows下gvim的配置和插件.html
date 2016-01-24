@@ -44,17 +44,12 @@
 
 <p>不过，光是这样配置还是有问题的，因为在babun启动的时候使用的是babun的路径模式，但是在使用gvim的时候，使用的是windows的路径，一保存，就会出现保存不了，因为路径找不到。</p>
 
-<p>所以首先，在/home/rickey/bin 目录下创建一个gvim.sh, 内容如下：</p>
+<p>这时候需要使用到另一个脚本，<a href="https://raw.githubusercontent.com/LucHermitte/Bash-scripts/master/cyg-wrapper.sh">cyg-wrapper.sh</a>, 打开babun，进入 ~/bin, 执行 wget 下载下来。然后，对cyg-wrapper.sh 执行命令： <code>chmod a+x cyg-wrapper.sh</code>, 再打开 ~/.zshrc， 在最后面加上：<code>alias gvim='cyg-wrapper.sh &quot;C:/Program Files/Vim/vim74/gvim.exe&quot; --fork=1'</code></p>
 
-<pre><code>#!/usr/bin/env bash
-gvim `cygpath -W $a` &amp;
-</code></pre>
-
-<p>保存完毕后，对这个文件执行命令 chmod a+x gvim.sh, 然后，再打开 ~/.zshrc 文件，在最后面添加上 alias gvim=gvim.sh,大功告成。
-另外，还有一个要注意的点，就是在cygwin下使用git， git st的时候会出现乱码，使用命令：git config --global core.quotepath false 解决问题。</p>
+<p>另外，还有一个要注意的点，就是在cygwin下使用git， git st的时候会出现乱码，使用命令：git config --global core.quotepath false 解决问题。</p>
 
         <p/></p>
-        <div> 2016-01-23 07:45</div>
+        <div> 2016-01-24 10:45</div>
 		
 		<div id="uyan_frame"></div>
 		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
