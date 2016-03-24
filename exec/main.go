@@ -22,7 +22,8 @@ var ignore []string = []string{
 
 func main() {
 	var filename, dirname string
-	var latex, index bool
+	var auto, latex, index bool
+	flag.BoolVar(&auto, "auto", true, "auto find the Markdown file and convert it into html")
 	flag.StringVar(&filename, "file", "", "The path of the file you want to generate")
 	flag.StringVar(&dirname, "dir", "", "Where the generated HTML page you would like to put on")
 	flag.BoolVar(&latex, "latex", false, "whether to include mathjax to render LaTex")
@@ -43,17 +44,62 @@ func main() {
 		GenIndex("../", tp)
 		return
 	}
-	var input []byte
+	if auto {
+		Auto(latex, tp)
+		return
+	}
 	if filename != "" && dirname != "" {
-		if !path.IsAbs(filename) {
-			filename, _ = filepath.Abs(filename)
-		}
-		if input, err = ioutil.ReadFile(filename); err != nil {
-			fmt.Fprintf(os.Stderr, "Error reading from ", filename, ":", err)
-			os.Exit(-1)
-		}
-	} else {
-		flag.Usage()
+		Run(dirname, filename, latex, tp)
+		return
+	}
+	flag.Usage()
+	os.Exit(-1)
+}
+
+var FILELIST [][]string
+
+func Auto(latex bool, tp *template.Template) {
+	// 在markdown文件夹里找到所有的md文档，然后到html目录对应的文件夹里面
+	// 找找看有没有对应的html文件，没有的都直接编译为html文件
+	FILELIST = make([][]string, 0)
+	filepath.Walk("../markdown", walk)
+	for _, elem := range FILELIST {
+		Run(elem[0], elem[1], latex, tp)
+	}
+}
+
+func walk(p string, info os.FileInfo, err error) error {
+	if err != nil {
+		return err
+	}
+	if info.IsDir() {
+		return nil
+	}
+	if path.Ext(p) != ".md" {
+		return nil
+	}
+	dir := filepath.Dir(p)
+	base := filepath.Base(p)
+	dir = "../" + dir[12:] // 进入存放html的文件夹
+	i := strings.Index(base, ".md")
+	file := base[0:i] + ".html"
+	newp := path.Join(dir, file)
+	if _, err := os.Stat(newp); os.IsNotExist(err) {
+		p = filepath.ToSlash(p)
+		elem := []string{dir, p}
+		FILELIST = append(FILELIST, elem)
+	}
+	return nil
+}
+
+func Run(dirname, filename string, latex bool, tp *template.Template) {
+	var err error
+	var input []byte
+	if !path.IsAbs(filename) {
+		filename, _ = filepath.Abs(filename)
+	}
+	if input, err = ioutil.ReadFile(filename); err != nil {
+		fmt.Fprintf(os.Stderr, "Error reading from ", filename, ":", err)
 		os.Exit(-1)
 	}
 	extensions := 0
@@ -65,7 +111,8 @@ func main() {
 	extensions |= blackfriday.EXTENSION_SPACE_HEADERS
 	htmlFlags := 0
 	htmlFlags |= blackfriday.HTML_OMIT_CONTENTS
-	base := path.Base(filename)
+
+	base := filepath.Base(filename)
 	title := base[:len(base)-3]
 	render := blackfriday.HtmlRenderer(htmlFlags, title, "")
 	output := blackfriday.Markdown(input, render, extensions)
