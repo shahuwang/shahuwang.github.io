@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>协议设计和二进制文件存储方式设计</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">协议设计和二进制文件存储方式设计</h1>
+		<p/><p/>
+        <p>﻿# 协议设计和二进制文件存储方式设计</p>
+
+<p>公司有个面试题，问的是文件存储如何设计。这个题目，其实和问网络协议设计是一样的意思，大约计算机基础学得认真点的人，应该都能答出点东西吧。</p>
+
+<p>计算机基础这一块，大约是我最薄弱的一环，很多东西不太了解。譬如文件存储（或者说文件格式）是如何实现的，我以为教科书上是没教的，今天在群里说起，才知道原来这是计算机基础里面的内容，《深入理解计算机系统》这本书，就有。</p>
+
+<p>我知道二进制文件如何存储这个知识点，倒是从读weed-fs这个分布式存储的源码了解到的，记得当时读完，还有点儿开悟的感觉，感叹了下原来高大上的数据库存储，其实是这样实现的呀，所以这个知识点倒是记得很牢。</p>
+
+<p>那个来面试的人，号称读过Redis的源码，却未能答出这道题，也是怪哉。想来人的悟性，总是有层次高低之分的，时常也惊叹一些同事分析问题、学习技术时的条理与深度。</p>
+
+<p>今天在知乎专栏上看到这片文章<a href="http://zhuanlan.zhihu.com/p/20693043">《二进制文件格式设计》</a>， 甚是惊喜，总算看到一篇讲解这方面内容的文章了，虽然不长，但是总结出的点，还是非常有价值的。</p>
+
+<p>有些东西，不知道是写到文章上比较困难还是怎么滴，往往很少能见到这方面的内容。有段时间我对如何实现一个ORM很感兴趣，然后就去搜索了下，却一无所获，只能去读代码，读代码比起读文章来，效率慢得不是一点半点，而且有些总结性的东西，很难从代码里体会出来。</p>
+
+<p>最近这一两个星期，主要是在读 <a href="ttps://github.com/xjdrew/gotunnel">gotunnel</a>的代码。这个东东是公司同事写的，主要用来加密数据传输，在client和server端之间建立一个tunnel，所有经过tunnel的数据都被加密了。所以，GFW便无从分析这些数据流是用来干嘛的（fanqiang咯），于是乎便可以通过一台在境外的主机做跳板，达到穿墙的目的。</p>
+
+<p>为了高效使用网络通道，一个tunnel是可以被多个用户共享的，又由于tunnel是keepalive的，所以需要给两端的连接，数据是否已经传输完毕的信号。于是，就得设计协议，标示每份数据属于谁的，以及什么情况下标示传输已经完成了。</p>
+
+<p>gotunnel 设计了一个header结构，每份传输的数据，其实是 header + data, header结构如下：</p>
+
+<pre><code> type header struct{
+     Len int16
+     Linkid int16
+ }
+</code></pre>
+
+<p>对端先从连接中读取出header结构，根据Linkid判断这份数据的归属，根据Len判断data部分的长度，好安排足够的空间去读取数据。当Linkid==0的时候，data区的数据其实是一个指令的结构数据type Cmd struct，读取出这个指令，就可以知道对端发过来的指令是什么了。</p>
+
+<p>这样，就是一份简单的网络传输协议了。不过，作为一个经常懵逼的菜鸟，看完这片文章，我估计也是不懂得该怎么实现代码的。我把整个协议抽象出来，写了段简单的代码做示例，简单的说明下这个协议的实现：</p>
+
+<pre><code>package main
+
+import (
+    &quot;bufio&quot;
+    &quot;encoding/binary&quot;
+    &quot;github.com/qiniu/log&quot;
+    &quot;net&quot;
+    &quot;time&quot;
+)
+
+type Header struct {
+    Len    int16
+    Linkid int16
+}
+
+func main() {
+    go server()
+    client()
+    time.Sleep(time.Duration(5) * time.Second)
+}
+
+func client() {
+    baddr, _ := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;localhost:8088&quot;)
+    conn, err := net.DialTCP(&quot;tcp&quot;, nil, baddr)
+    if err != nil {
+        log.Error(err)
+        return
+    }
+    header := Header{Len: 11, Linkid: 10}
+    writer := bufio.NewWriter(conn)
+    binary.Write(writer, binary.BigEndian, header)
+    writer.Write([]byte(&quot;hello world&quot;))
+    writer.Flush()
+    conn.Close()
+    log.Info(&quot;end&quot;)
+}
+
+func server() {
+    laddr, _ := net.ResolveTCPAddr(&quot;tcp&quot;, &quot;localhost:8088&quot;)
+    listener, err := net.ListenTCP(&quot;tcp&quot;, laddr)
+    if err != nil {
+        log.Error(err)
+        return
+    }
+    for {
+        conn, err := listener.AcceptTCP()
+        if err != nil {
+            log.Error(err)
+            log.Info(err.Error())
+            break
+        }
+        log.Info(&quot;recieve&quot;)
+        var header Header
+        binary.Read(conn, binary.BigEndian, &amp;header)
+        buffer := make([]byte, header.Len, header.Len)
+        conn.Read(buffer)
+        log.Info(string(buffer))
+        log.Info(len(buffer))
+        log.Info(header.Len)
+    }
+}
+</code></pre>
+
+<p>单纯的阅读代码，能学到的东西，感觉总是很少的。以前我是读完代码之后，我是通过写博客来让自己记得牢固一点。但是写博客并不能让我掌握会写这种程序，最近尝试一个方法，去掉别人源码的抽象层，临摹代码，自己设计最简单的抽象层，遇到不能解决的情况时，再添加一个抽象层，继续临摹代码。做到最后，其实抽象程度都差不多了，代码虽然大部分是临摹的，但是这种从最小抽象开始逐渐累加，可以让自己明白不少源码的设计构思。</p>
+
+<p>gotunnel后续还有几个知识点，值得我写博客记录下，比如可信连接认证的过程，binary.Read是如何实现读取出header结构的等等内容。</p>
+
+        <p/></p>
+        <div> 2016-04-01 01:25</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
