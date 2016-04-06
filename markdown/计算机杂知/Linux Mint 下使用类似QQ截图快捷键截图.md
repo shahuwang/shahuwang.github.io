@@ -12,9 +12,14 @@
 +  在 /bin 目录下创建一个文件: screenshot
 +  在 screenshot 写入如下内容：
 
-    \#!/bin/bash
-    sleep 0.1
-    exec /usr/bin/mate-screenshot -a $@
+   
+
+        #!/bin/bash
+        
+        sleep 0.1
+        
+        exec /usr/bin/mate-screenshot -a $@
+    
 + 执行 sudo chmod a+x /bin/screenshot
 + 如上设置快捷键，不过命令变成： screenshot
 
