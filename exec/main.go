@@ -84,7 +84,8 @@ func walk(p string, info os.FileInfo, err error) error {
 	i := strings.Index(base, ".md")
 	file := base[0:i] + ".html"
 	newp := path.Join(dir, file)
-	if _, err := os.Stat(newp); os.IsNotExist(err) {
+	f, err := os.Stat(newp)
+	if os.IsNotExist(err) || f.ModTime().Before(info.ModTime()) {
 		p = filepath.ToSlash(p)
 		elem := []string{dir, p}
 		FILELIST = append(FILELIST, elem)
