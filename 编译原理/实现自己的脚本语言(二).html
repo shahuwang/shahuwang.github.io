@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>实现自己的脚本语言(二)</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">实现自己的脚本语言(二)</h1>
+		<p/><p/>
+        <p>Go 语言自带了 <a href="https://golang.org/cmd/yacc/">Yacc</a> 工具，虽然挺简单的，反正是能用。这篇先来讲讲 Go 语言的这个 Yacc 工具的使用。</p>
+
+<p>实际上 Go 的这个 Yacc 工具，是从 Plan 9 上的 C 语言版本转译过来的， 不过目前支持的功能没有那么完备，命令参数很多都不支持。</p>
+
+<p>废话不多说，直接上代码，如<a href="http://shahuwang.com/编译原理/实现自己的脚本语言（一）.html">上一篇</a>所述，我照着《自制编程语言》里面计算器的例子，用 Go 以及它自带的 Yacc 工具重写了这个计算器。这里面 Yacc 的使用费了我不少的时间，主要是因为网上的教程实在是太少了。计算器的 Yacc 代码如下：</p>
+
+<pre><code>%{
+package main
+import(
+    &quot;fmt&quot;
+    &quot;bufio&quot;
+    &quot;os&quot;
+)
+const(
+    Debug = 4
+    ErrorVerbose = true
+)
+%}
+
+%union {
+    int_value int
+    float_value float64
+}
+
+%token &lt;float_value&gt; DOUBLE_LITERAL
+%token ADD SUB MUL DIV CR LP RP
+
+%type &lt;float_value&gt; expression term primary_expression
+
+%%
+line_list
+    : line
+    | line_list line
+    ;
+line
+    : expression CR
+    {
+        fmt.Printf(&quot;&gt;&gt;%1f\n&quot;, $1);
+    }
+    ;
+expression
+    : term
+    | expression ADD term
+    {
+        $$ = $1 + $3;
+    }
+    | expression SUB term
+    {
+        $$ = $1 - $3;
+    }
+    ;
+term
+    : primary_expression
+    | term MUL primary_expression
+    {
+        $$ = $1 * $3;
+    }
+    | term DIV primary_expression
+    {
+        $$ = $1 / $3;
+    }
+    ;
+primary_expression
+    : DOUBLE_LITERAL
+    | LP expression RP
+    {
+        $$ = $2;
+    }
+    | SUB primary_expression
+    {
+        $$ = -$2;
+    }
+    ;
+%%
+
+func main(){
+    scanner := bufio.NewScanner(os.Stdin)
+    for scanner.Scan(){
+        text := scanner.Text()
+        text = fmt.Sprintf(&quot;%s\n&quot;, text)
+        yyParse(&amp;GoCalcLex{Input: []byte(text)})
+    }
+}
+
+
+</code></pre>
+
+<p>具体的 Yacc 语法这里就不讲解了，只说下 Go 的 yacc 要注意的地方。 首先， package， import 这些都是正常的 Go 代码，
+然后 const 那里定义的两个变量， Debug 是定义级别的，0 不输出信息， 4 应该是最高一级了，parse 代码文本的时候的过程信息会很多显示出来，和 ErrorVerbose 配合，在写代码的时候对调试很有帮助。 这两个变量的使用，网上没找到呀，读了 Go 的 Yacc 的代码才找到的。</p>
+
+<p>yacc 里面的 {} 里可以写正常的 Go 代码， 比如 fmt.Println。</p>
+
+<p>main 函数可以不写在这里的，只要在同一个 package 下就行了。</p>
+
+<p>那 main 函数这里的 yyParse 是哪里来的呢？</p>
+
+<p>首先来看 Go 的 Yacc 工具支持哪些参数：</p>
+
+<pre><code>go tool yacc --help
+
+  -l    disable line directives
+  -o string
+        parser output (default &quot;y.go&quot;)
+  -p string
+        name prefix to use in generated code (default &quot;yy&quot;)
+  -v string
+        create parsing tables (default &quot;y.output&quot;)
+
+</code></pre>
+
+<p>这个 <code>-l</code> 参数貌似是用于禁用行数标示的，暂时不管了。</p>
+
+<p><code>-o</code> 参数用于指定从 yacc 代码生成的 Go 代码的文件名，默认是 y.go</p>
+
+<p><code>-p</code> 参数是指从 yacc 生成的 Go 代码里面对外的结构体和函数的前缀，默认是 yy。所以，上面的 yyParse 分两部分，前缀 yy，根据用户输入设置，Parse 则是默认的。所以，如果你给 p 参数的值是 Calc, 那么这个函数的调用就变成 CalcParse 。</p>
+
+<p><code>-v</code> 参数是指解析表的输出文件名，默认是 y.output 。</p>
+
+<p>其实这里面都用默认值即可， 主要是要理解这个 yy，以及 yyParse, 和后面 Lex 的实现里会用到的 yySymType 是怎么回事。</p>
+
+<p>再回到这个 main 函数里面，这里的 GoCalcLex 就是我自己实现的 Lex 代码。根据官方的文档，yyParse 接受的 Lex 实现必须实现了如下接口：</p>
+
+<pre><code>type yyLexer interface {
+    Lex(lval *yySymType) int
+    Error(e string)
+}
+</code></pre>
+
+<p>这个 yySymType 也是来自于 yacc 生成的代码，主要作用就是获取当前解析到的字符串对象。譬如，当前识别到一个关键字 <code>while</code>, Lex 函数的返回值是 KEYWORD ，这个字符串对象 <code>while</code> 就附着到 lval 上了。</p>
+
+<p>yacc 的其他部分，就是正常的 Yacc 工具的语法了。现在来看 Lex 的实现，如上面说的，只要实现 yyLexer 这个接口就可以了。这里坑得我最惨的，就是如何表示文本解析完了呢？ 最后终于明白，返回 0 即可。</p>
+
+<p>Lex 的实现，详情看 <a href="https://github.com/shahuwang/yaccalc">yaccalc</a> 。</p>
+
+<p>写完之后，发现会做简单的语法解析，真是拿到了一把锤子，又能敲掉几枚钉子了。</p>
+
+        <p/></p>
+        <div> 2016-12-14 11:57</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
