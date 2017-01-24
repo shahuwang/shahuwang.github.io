@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>用Go语言模仿Elixir的Plug</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">用Go语言模仿Elixir的Plug</h1>
+		<p/><p/>
+        <p>现在公司的项目，后端主要用两门语言，Python和Elixir，而且因为Elixir的一些基础库写得越来越完善了，所以现在大家都更偏向于用Elixir写新的项目或功能。目前所有的API接口，都是使用Plug来实现的，刚开始用的时候，对Elixir和Plug都不熟悉，网上文档非常少，当时觉得这破东西好难用。用多熟悉了之后，发现条理上还是很清晰的。</p>
+
+<p>Plug大致就这么三个部分，底层使用cowboy来处理http相关的部分，提供Router进行路由匹配，以及各种plug函数，对整个请求流程做统一的处理。精华当然就是这个plug了，按照规定的格式，写一个你自己的plug模块，方便又好用。</p>
+
+<pre><code>defmodule Example.Plug.Router do
+  use Plug.Router
+
+  plug :match
+  plug Plug.Parsers, parsers: [Plug.Parsers.Jiffy]
+  plug :dispatch
+
+  get &quot;/&quot;, do: send_resp(conn, 200, &quot;Welcome&quot;)
+  match _, do: send_resp(conn, 404, &quot;Oops!&quot;)
+end
+</code></pre>
+
+<p>如上代码，就写好了一个简单的 API 应用，plug :match 是找到匹配的路径，plug Plug.Parsers 会将请求参数解析为json，plug dispatch 表示去执行匹配到的处理函数了。</p>
+
+<p>plug的实现也很简单，如下 plug， 直接返回 hello world （后面的就不执行了）：</p>
+
+<pre><code>defmodule MyPlug do
+  import Plug.Conn
+
+  def init(options) do
+    # initialize options
+
+    options
+  end
+
+  def call(conn, _opts) do
+    conn
+    |&gt; put_resp_content_type(&quot;text/plain&quot;)
+    |&gt; send_resp(200, &quot;Hello world&quot;)
+  end
+end
+</code></pre>
+
+<p>公司的项目自己实现了相当多的plug，典型的如权限验证，参数解析，请求日志打印等等。</p>
+
+<p>用多了之后，就萌生了用Go语言来实现一个Plug，于是乎就有了这个 <a href="http://note.youdao.com/">glug</a> 。磨蹭了将近一个月，越写越没用动力，还有很多很多的功能没有写，目前就实现了最基本的路由功能，以及 glug 函数（参照plug）。</p>
+
+<p>Go的http库非常的完善非常好用，不像erlang的cowboy，非常不好用，所以elixir写了好大一堆代码来封装cowboy。因此，其实实现核心功能，需要的代码并不是很多。</p>
+
+<p>路由部分，我使用 Trie 树来进行路径查找，Get方法一棵树，Post方法一棵树。每个节点都包含一种segment，segment就是路径 /a/b/c 中的 a 呀，b 呀， c 呀。目前仅有两种 segment，NormalSegment和 VariantSegment，前者就是简单的字符串路径，后者就是 /a/:name/ 这个 :name 部分，用于捕获这个部分的值，值存放在 conn.PathParams 里面。后面如果需要，可以添加正则等之类的segment。</p>
+
+<p>glug函数需要符合 <code>type GlugFunc func(*Connection) bool</code> , 比如目前实行的 logger 如下：</p>
+
+<pre><code>package glug
+
+import (
+    &quot;log&quot;
+    &quot;net/http&quot;
+    &quot;time&quot;
+)
+
+func Logger(conn *Connection) bool {
+    start := time.Now()
+    addr := conn.Request.Header.Get(&quot;X-Real-IP&quot;)
+    if addr == &quot;&quot; {
+        addr = conn.Request.Header.Get(&quot;X-Forwarded-For&quot;)
+        if addr == &quot;&quot; {
+            addr = conn.Request.RemoteAddr
+        }
+    }
+    log.Printf(&quot;Started %s %s for %s&quot;, conn.Request.Method, conn.Request.URL.Path, addr)
+    fun := func(resp *Resp) {
+        status := resp.Status
+        statusText := http.StatusText(int(status))
+        duration := time.Since(start)
+        log.Printf(&quot;Completed %v %s in %v\n&quot;, status, statusText, duration)
+    }
+    conn.Register(fun)
+    return true
+}
+</code></pre>
+
+<p>返回值为true，就会执行下去，否则，直接终止。</p>
+
+<p>简单的使用例子如下：</p>
+
+<pre><code>package main
+import(
+    &quot;github.com/shahuwang/glug&quot;
+    &quot;net/http&quot;
+)
+
+func main() {
+    router := glug.NewRouter()
+    router.Use(router.Match)
+    router.Use(glug.Logger)
+    router.Use(router.Dispatch)
+    router.Get(&quot;/login&quot;, func(conn *glug.Connection){
+        conn.Sendresp(200, conn.Request.Header, []byte(&quot;hello world&quot;))
+    })
+    
+    http.ListenAndServe(&quot;:8080&quot;, router)
+}
+</code></pre>
+
+<p>大致就是这样的一个简单的东西，要做到能真正使用在生产环境中，还需要很多细节完善。</p>
+
+<p>每次构思写个东西的时候，都会臆想写出个多么牛逼的东西，功能多么强大，然后很多人来用，迎娶白富美，走上人生巅峰。但是写着写着，拖延症就开始发作了，接着就是懒癌发作，然后就草草了事了，并没有动力去做出一个真正能用的东西出来。</p>
+
+<p>无怪乎这些年我一直这么失败。</p>
+
+        <p/></p>
+        <div> 2017-01-24 11:55</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
