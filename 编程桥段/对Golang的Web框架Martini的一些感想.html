@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>对Golang的Web框架Martini的一些感想</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">对Golang的Web框架Martini的一些感想</h1>
+		<p/><p/>
+        <p>目前用过的Web框架并不多，学艺不精，工作上现在用得最多的是Elixir的Plug，说起来它并不是一个完整的web框架，比如没有模板功能。之前用过Python的一些web框架，一直用得糊里糊涂的，对这个框架并没有一种整体清晰的感觉。而Plug，用一组插件，对request进行一系列的处理，然后再经由路由转发到对应的处理函数上。</p>
+
+<p>最近用Golang来模仿实现一个Plug（懒癌发作没认真写完），参考了下Martini的实现，发现Martini的思路和Plug非常相似，Martini可以使用Use方法或者Handler方法，添加一系列中间件（类似于Plug的插件）对请求进行处理，然后再路由转发到对应的处理函数。</p>
+
+<p>由于Golang是静态语言，没有Elixir那么自由可以随便设置变量和值，Martini使用了 <a href="https://github.com/codegangsta/inject">inject</a> 这个库，用依赖注入的方式注入一些值。有关 inject 的实现和使用，可以参考这篇文章：<a href="https://my.oschina.net/goal/blog/195036">《golang: Martini之inject源码分析》</a>。</p>
+
+<p>不过，由于Golang底层的reflect功能限制，inject的使用也不是很完美，比如下面的例子：</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;github.com/go-martini/martini&quot;
+    &quot;reflect&quot;
+)
+
+func main() {
+    m := martini.Classic()
+    m.Use(func(c martini.Context) {
+        params := make(martini.Params)
+        params[&quot;name&quot;] = &quot;change0&quot;
+        c.Map(params)
+        fmt.Printf(&quot;%+v\n&quot;, c.Get(reflect.TypeOf(params)))
+    })
+    m.Use(func(c martini.Context) {
+        params := make(martini.Params)
+        params[&quot;name&quot;] = &quot;change&quot;
+        fmt.Printf(&quot;%+v\n&quot;, c.Get(reflect.TypeOf(params)))
+        c.Map(params)
+        fmt.Printf(&quot;%+v\n&quot;, c.Get(reflect.TypeOf(params)))
+    })
+
+    m.Get(&quot;/:name&quot;, func(params martini.Params) string {
+        return &quot;Hello world!&quot; + params[&quot;name&quot;]
+    })
+    m.Run()
+}
+</code></pre>
+
+<p>c.Map(params) 会把之前的值给覆盖掉，因为inject的Map是以类型为key的（这是reflect库的问题），所以如果你有多个中间件，每个中间件能Map到context去的值，类型都必须是不一样的，否则就会覆盖掉别的中间件设置的值或者被覆盖掉。</p>
+
+<p>目前来说，这个问题并没有解决方法，除非你愿意使用interface，那样只需要有一个map[string]interface{}, 所有中间件要设置的值都放到这个字典里面去，然后每次取值的时候再进行类型断言得到实际值。</p>
+
+<p>Martini有个地方比Plug要好，就是可以单独对某一个API设置中间件，譬如：</p>
+
+<pre><code>m.Get(&quot;/secret&quot;, authorize, func() {
+  // this will execute as long as authorize doesn't write a response
+})
+</code></pre>
+
+<p>可以单独对 /secret 这个接口使用 authorize 中间件，而且还可以设置多个。Plug就不行了，所有的插件都是针对当前这个Router的，如果某个API需要额外使用其他的插件，就需要新增一个Router，forward到这个Router里，这个API放这个Router。</p>
+
+<p>目前个人使用感受上来说，使用Martini和Plug这种简易Web框架，做API开发会方便好用得多，当然初期要实现很多中间件（或者插件），如认证，session之类的，会费点时间。不过到后面，灵活性就体现出来了，整体结构也明晰得多。</p>
+
+<p>目前对这篇文章表示很赞同： <a href="https://zhuanlan.zhihu.com/p/23827375?refer=prattle">rails, django, phoenix，你们错了</a></p>
+
+        <p/></p>
+        <div> 2017-02-09 11:38</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
