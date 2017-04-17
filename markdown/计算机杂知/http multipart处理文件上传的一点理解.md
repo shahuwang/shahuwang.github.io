@@ -1,20 +1,20 @@
-¹¤×÷ÖĞÓÃ Elixir µÄ Plug ¿ò¼Ü×öÁËÒ»¸ö API ½Ó¿Ú£¬ÓÃÓÚ´¦ÀíÓïÒô·­ÒëÎªÎÄ×Ö£¬Plug´¦ÀíÉÏ´«µÄÎÄ¼şÓÃµ½ÁËÕâ¸ö½á¹¹[https://hexdocs.pm/plug/Plug.Upload.html](http://note.youdao.com/)£¬
-ÒÔÇ°Ò»Ö±Ê¹ÓÃ HTML »òÕß js µÄ±íµ¥¹¦ÄÜ×öÎÄ¼şÉÏ´«£¬¼¸ÄêÇ°´ÖÂÔµÃ¶ÁÁËÒ»±é ¡¶HTTPÈ¨ÍşÖ¸ÄÏ¡·£¬Ò²»ù±¾ÉÏÍüµÃ²î²»¶àÁË¡£
-ËùÒÔµ±ÎÒÒªĞ´ÎÄµµ£¬ÓÃPythonÀ´ËµÃ÷ÔõÃ´ÑùÊ¹ÓÃÕâ¸ö½Ó¿ÚµÄÊ±ºò£¬²Å·¢ÏÖÎÒ¶ÔhttpĞ­ÒéÖĞµÄmultipart/form-data»ù±¾²»ÁË½â£¬¼ÓÉÏrequests¿âÎÄµµ²»ÍêÉÆ£¬¾ÓÈ»»¨ÁËÎÒ¿ìÁ½Ìì²ÅÖªµÀÔõÃ´Ñù×ö¡£
+å·¥ä½œä¸­ç”¨ Elixir çš„ Plug æ¡†æ¶åšäº†ä¸€ä¸ª API æ¥å£ï¼Œç”¨äºå¤„ç†è¯­éŸ³ç¿»è¯‘ä¸ºæ–‡å­—ï¼ŒPlugå¤„ç†ä¸Šä¼ çš„æ–‡ä»¶ç”¨åˆ°äº†è¿™ä¸ªç»“æ„[https://hexdocs.pm/plug/Plug.Upload.html](http://note.youdao.com/)ï¼Œ
+ä»¥å‰ä¸€ç›´ä½¿ç”¨ HTML æˆ–è€… js çš„è¡¨å•åŠŸèƒ½åšæ–‡ä»¶ä¸Šä¼ ï¼Œå‡ å¹´å‰ç²—ç•¥å¾—è¯»äº†ä¸€é ã€ŠHTTPæƒå¨æŒ‡å—ã€‹ï¼Œä¹ŸåŸºæœ¬ä¸Šå¿˜å¾—å·®ä¸å¤šäº†ã€‚
+æ‰€ä»¥å½“æˆ‘è¦å†™æ–‡æ¡£ï¼Œç”¨Pythonæ¥è¯´æ˜æ€ä¹ˆæ ·ä½¿ç”¨è¿™ä¸ªæ¥å£çš„æ—¶å€™ï¼Œæ‰å‘ç°æˆ‘å¯¹httpåè®®ä¸­çš„multipart/form-dataåŸºæœ¬ä¸äº†è§£ï¼ŒåŠ ä¸Šrequestsåº“æ–‡æ¡£ä¸å®Œå–„ï¼Œå±…ç„¶èŠ±äº†æˆ‘å¿«ä¸¤å¤©æ‰çŸ¥é“æ€ä¹ˆæ ·åšã€‚
 
-ÎÒµÄ½Ó¿ÚĞèÒªÓÃ»§Ìá¹©Á½¸ö×Ö¶Î£¬rate£¨²ÉÑùÂÊ£©£¬ audio(ÓïÒôÎÄ¼ş)£¬Plug¶ÔÉÏ´«µÄÎÄ¼ş·â×°Îª %Plug.Upload{} ½á¹¹£¬´Ë½á¹¹°üº¬Èı¸öÊı¾İ£¬path±íÊ¾ÎÄ¼şÂ·¾¶£¬filename±íÊ¾ÎÄ¼şÃû£¬content_type±íÊ¾ÎÄ¼şµÄÀàĞÍ£¬ÎÒµÄ½Ó¿ÚÒªÇóÕâ¸öcontent_typeÎªaudio/amr¡£
+æˆ‘çš„æ¥å£éœ€è¦ç”¨æˆ·æä¾›ä¸¤ä¸ªå­—æ®µï¼Œrateï¼ˆé‡‡æ ·ç‡ï¼‰ï¼Œ audio(è¯­éŸ³æ–‡ä»¶)ï¼ŒPlugå¯¹ä¸Šä¼ çš„æ–‡ä»¶å°è£…ä¸º %Plug.Upload{} ç»“æ„ï¼Œæ­¤ç»“æ„åŒ…å«ä¸‰ä¸ªæ•°æ®ï¼Œpathè¡¨ç¤ºæ–‡ä»¶è·¯å¾„ï¼Œfilenameè¡¨ç¤ºæ–‡ä»¶åï¼Œcontent_typeè¡¨ç¤ºæ–‡ä»¶çš„ç±»å‹ï¼Œæˆ‘çš„æ¥å£è¦æ±‚è¿™ä¸ªcontent_typeä¸ºaudio/amrã€‚
 
-²»ÖªµÀ¶Áµ½ÕâÀï£¬ÄãÊÇ·ñ²úÉúÒÉ»óÁË£¿Õı³£Çé¿öÏÂ£¬ÄÑµÀ²»ÊÇÒ»¸öhttpÇëÇó£¬Ö»ÓĞÒ»¸öcontent-typeÂğ£¬ ÎªÊ²Ã´ÉÏ´«µÄÎÄ¼ş»¹»áµ¥¶ÀÓĞÒ»¸öcontent-type£¿
+ä¸çŸ¥é“è¯»åˆ°è¿™é‡Œï¼Œä½ æ˜¯å¦äº§ç”Ÿç–‘æƒ‘äº†ï¼Ÿæ­£å¸¸æƒ…å†µä¸‹ï¼Œéš¾é“ä¸æ˜¯ä¸€ä¸ªhttpè¯·æ±‚ï¼Œåªæœ‰ä¸€ä¸ªcontent-typeå—ï¼Œ ä¸ºä»€ä¹ˆä¸Šä¼ çš„æ–‡ä»¶è¿˜ä¼šå•ç‹¬æœ‰ä¸€ä¸ªcontent-typeï¼Ÿ
 
-Õâ¾ÍÊÇÎÒÒÉ»óµÄµØ·½£¬È¥¿´ÁËmultipart/form-dataµÄ½âÊÍ£¬²ÅÀí½âÁËĞ©¡£ÕıÈçÆäÃû×ÖËùÊ¾£¬Ò»¸öhttpÇëÇóµÄcontent-typeÉèÖÃÎªmultipart/form-data, ±íÊ¾Õâ¸öhttpÇëÇó£¬»ìÔÓÁË¶à¸ö²¿·Ö£¬Ã¿¸ö²¿·Ö¶¼ÊÇ²»Ò»ÑùµÄÊı¾İÀàĞÍ£¬Ã¿¸ö²¿·Ö¶¼¿ÉÒÔÉèÖÃ×Ô¼ºµÄcontent-typeÒÔ¼°ÆäËûÒ»Ğ©Ïà¹ØµÄheader²ÎÊı£¨¶Ô£¬°ÑÃ¿¸öpart¿´³ö¶ÀÁ¢µÄhttpÇëÇó¾ÍºÃ£©¡£
+è¿™å°±æ˜¯æˆ‘ç–‘æƒ‘çš„åœ°æ–¹ï¼Œå»çœ‹äº†multipart/form-dataçš„è§£é‡Šï¼Œæ‰ç†è§£äº†äº›ã€‚æ­£å¦‚å…¶åå­—æ‰€ç¤ºï¼Œä¸€ä¸ªhttpè¯·æ±‚çš„content-typeè®¾ç½®ä¸ºmultipart/form-data, è¡¨ç¤ºè¿™ä¸ªhttpè¯·æ±‚ï¼Œæ··æ‚äº†å¤šä¸ªéƒ¨åˆ†ï¼Œæ¯ä¸ªéƒ¨åˆ†éƒ½æ˜¯ä¸ä¸€æ ·çš„æ•°æ®ç±»å‹ï¼Œæ¯ä¸ªéƒ¨åˆ†éƒ½å¯ä»¥è®¾ç½®è‡ªå·±çš„content-typeä»¥åŠå…¶ä»–ä¸€äº›ç›¸å…³çš„headerå‚æ•°ï¼ˆå¯¹ï¼ŒæŠŠæ¯ä¸ªpartçœ‹å‡ºç‹¬ç«‹çš„httpè¯·æ±‚å°±å¥½ï¼‰ã€‚
 
-¶ÔÓÚhtml±íµ¥À´Ëµ£¬Ã¿¸öfield¾ÍÊÇÆäÖĞµÄÒ»¸öpart£¬Ã¿Ò»¸öpart£¬¶¼°üº¬Á½¸öheader£º `Content-Disposition: form-data; name="field1"`, Content-Disposition¶¼ÊÇform-data, name¾ÍÊÇÕâ¸ö×Ö¶ÎµÄÃû³Æ¡£ÆÕÍ¨µÄ×Ö¶Î£¬Æäcontent-type¾ÍÊÇÄ¬ÈÏµÄtext/plain¡£
+å¯¹äºhtmlè¡¨å•æ¥è¯´ï¼Œæ¯ä¸ªfieldå°±æ˜¯å…¶ä¸­çš„ä¸€ä¸ªpartï¼Œæ¯ä¸€ä¸ªpartï¼Œéƒ½åŒ…å«ä¸¤ä¸ªheaderï¼š `Content-Disposition: form-data; name="field1"`, Content-Dispositionéƒ½æ˜¯form-data, nameå°±æ˜¯è¿™ä¸ªå­—æ®µçš„åç§°ã€‚æ™®é€šçš„å­—æ®µï¼Œå…¶content-typeå°±æ˜¯é»˜è®¤çš„text/plainã€‚
 
-Ò»¸ömultipart/form-dataÇëÇó£¬»á×Ô¶¯Éú³ÉÒ»´®×Ö·û´®×öboundary£¬¼´Ã¿¸öpartµÄ·Ö¸î±êÖ¾¡£
+ä¸€ä¸ªmultipart/form-dataè¯·æ±‚ï¼Œä¼šè‡ªåŠ¨ç”Ÿæˆä¸€ä¸²å­—ç¬¦ä¸²åšboundaryï¼Œå³æ¯ä¸ªpartçš„åˆ†å‰²æ ‡å¿—ã€‚
 
-ÎÒÕâÀïÓÃGoÓïÑÔĞ´Ò»¸ö¼òµ¥µÄhttp·şÎñÆ÷£¬°ÑhttpÇëÇó±¨ÎÄÒÔ×Ö·û´®·µ»Ø»ØÈ¥¡£È»ºóÊ¹ÓÃchromeµÄÒ»¸ö²å¼şpostmanÀ´×öform±íµ¥µÄÌá½»£¬²¢¿´¿´·µ»Ø»ØÀ´µÄhttp±¨ÎÄÊÇÔõÃ´ÑùµÄ¡£
+æˆ‘è¿™é‡Œç”¨Goè¯­è¨€å†™ä¸€ä¸ªç®€å•çš„httpæœåŠ¡å™¨ï¼ŒæŠŠhttpè¯·æ±‚æŠ¥æ–‡ä»¥å­—ç¬¦ä¸²è¿”å›å›å»ã€‚ç„¶åä½¿ç”¨chromeçš„ä¸€ä¸ªæ’ä»¶postmanæ¥åšformè¡¨å•çš„æäº¤ï¼Œå¹¶çœ‹çœ‹è¿”å›å›æ¥çš„httpæŠ¥æ–‡æ˜¯æ€ä¹ˆæ ·çš„ã€‚
 
-GoµÄ´úÂëÈçÏÂ£º
+Goçš„ä»£ç å¦‚ä¸‹ï¼š
 
 ```
 package main
@@ -37,11 +37,11 @@ func main() {
 }
 ```
 
-postmanµÄÉèÖÃÈçÍ¼, ÎÒÉèÖÃÁËÁ½¸öÆÕÍ¨×Ö¶Î£¬Ò»¸öÆÕÍ¨ÎÄ±¾ÎÄ¼ş£¬Ò»¸öÍ¼Æ¬ÉÏ´«
+postmançš„è®¾ç½®å¦‚å›¾, æˆ‘è®¾ç½®äº†ä¸¤ä¸ªæ™®é€šå­—æ®µï¼Œä¸€ä¸ªæ™®é€šæ–‡æœ¬æ–‡ä»¶ï¼Œä¸€ä¸ªå›¾ç‰‡ä¸Šä¼ 
 
 ![image](https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/post.png)
 
-·µ»Ø»ØÀ´µÄhttp±¨ÎÄ½á¹¹ÈçÏÂ£º
+è¿”å›å›æ¥çš„httpæŠ¥æ–‡ç»“æ„å¦‚ä¸‹ï¼š
 
 
 ```
@@ -71,21 +71,21 @@ Content-Type: text/plain
 
 txt file post test
 ------WebKitFormBoundaryMfzICyp6us00g3IO
-Content-Disposition: form-data; name="imagefield"; filename="³õ´úÄ¿.jpg"
+Content-Disposition: form-data; name="imagefield"; filename="åˆä»£ç›®.jpg"
 Content-Type: image/jpeg
 
 ????
-(×¢£ºÊ£ÏÂµÄ¶¼ÊÇÍ¼Æ¬µÄÂÒÂë)
+(æ³¨ï¼šå‰©ä¸‹çš„éƒ½æ˜¯å›¾ç‰‡çš„ä¹±ç )
 ------WebKitFormBoundaryMfzICyp6us00g3IO--
 ```
 
-¿ÉÒÔ¿´µ½£¬´ËhttpÇëÇóµÄÖ÷Ìå²¿·Ö£¬content-typeÊÇ`Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMfzICyp6us00g3IO`£¬×Ô¶¯¸½´øÉÏÁËboundary×Ö·û´®¡£
+å¯ä»¥çœ‹åˆ°ï¼Œæ­¤httpè¯·æ±‚çš„ä¸»ä½“éƒ¨åˆ†ï¼Œcontent-typeæ˜¯`Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMfzICyp6us00g3IO`ï¼Œè‡ªåŠ¨é™„å¸¦ä¸Šäº†boundaryå­—ç¬¦ä¸²ã€‚
 
-È»ºóÃ¿¸ö×Ö¶Î¶¼Ê¹ÓÃboundary°üÎ§×Å£¬ÀïÃæµÄheader¶¼¸ù¾İ¸÷×ÔµÄÄÚÈİ²»Í¬¶øÓĞËù²»Í¬¡£ÒÔÍ¼Æ¬ÎªÀı£¬Æäcontent-typeÎªimage/jpeg,Ò²ÓĞÁËfilename¡£Èç¹ûÎÄ¼şµÄÀàĞÍÊÇ·Ç±ê×¼µÄ£¬Ä¬ÈÏµÄcontent-typeÊÇapplication/octet-stream ¡£Ö®Ç°×ö¹ıÒ»¸öÎÄ¼şÏÂÔØµÄapi£¬ÒòÎªÏÂÔØµÄÎÄ¼şÓĞ¿ÉÄÜÊÇÎÄ±¾£¬ÓĞ¿ÉÄÜÊÇÍ¼Æ¬£¬»¹ÓĞ¿ÉÄÜÊÇÆäËû£¬ÎŞ·¨µÃÖª¾ßÌå¸ñÊ½£¬ËùÒÔÎÒÖ±½Ó°ÑresponseµÄcontent-typeÉèÖÃÎªapplication/octet-stream,ËùÓĞÎÄ¼ş¶¼ÄÜÏÂÔØ¡£
+ç„¶åæ¯ä¸ªå­—æ®µéƒ½ä½¿ç”¨boundaryåŒ…å›´ç€ï¼Œé‡Œé¢çš„headeréƒ½æ ¹æ®å„è‡ªçš„å†…å®¹ä¸åŒè€Œæœ‰æ‰€ä¸åŒã€‚ä»¥å›¾ç‰‡ä¸ºä¾‹ï¼Œå…¶content-typeä¸ºimage/jpeg,ä¹Ÿæœ‰äº†filenameã€‚å¦‚æœæ–‡ä»¶çš„ç±»å‹æ˜¯éæ ‡å‡†çš„ï¼Œé»˜è®¤çš„content-typeæ˜¯application/octet-stream ã€‚ä¹‹å‰åšè¿‡ä¸€ä¸ªæ–‡ä»¶ä¸‹è½½çš„apiï¼Œå› ä¸ºä¸‹è½½çš„æ–‡ä»¶æœ‰å¯èƒ½æ˜¯æ–‡æœ¬ï¼Œæœ‰å¯èƒ½æ˜¯å›¾ç‰‡ï¼Œè¿˜æœ‰å¯èƒ½æ˜¯å…¶ä»–ï¼Œæ— æ³•å¾—çŸ¥å…·ä½“æ ¼å¼ï¼Œæ‰€ä»¥æˆ‘ç›´æ¥æŠŠresponseçš„content-typeè®¾ç½®ä¸ºapplication/octet-stream,æ‰€æœ‰æ–‡ä»¶éƒ½èƒ½ä¸‹è½½ã€‚
 
-²»ÖªµÀÎªÉ¶£¬¸÷ÃÅÓïÑÔµÄhttp¿âµÄpost·½·¨£¬Òª×ömultipart/form-dataÉÏ´«ÎÄ¼ş£¬ºÃÏñ¶¼²»ÊÇºÜ·½±ã£¬ÉõÖÁÊÇÎÄµµ²»ÊÇºÜÏêÏ¸¡£
+ä¸çŸ¥é“ä¸ºå•¥ï¼Œå„é—¨è¯­è¨€çš„httpåº“çš„postæ–¹æ³•ï¼Œè¦åšmultipart/form-dataä¸Šä¼ æ–‡ä»¶ï¼Œå¥½åƒéƒ½ä¸æ˜¯å¾ˆæ–¹ä¾¿ï¼Œç”šè‡³æ˜¯æ–‡æ¡£ä¸æ˜¯å¾ˆè¯¦ç»†ã€‚
 
-ÄÇÃ´»Øµ½×î¿ªÊ¼µÄÎÊÌâÉÏÀ´£¬ÓÃpythonµÄrequests¿âÈçºÎÊµÏÖÉÏÃæÕâ¸öpostman·¢ËÍµÄĞ§¹ûÄØ£¿
+é‚£ä¹ˆå›åˆ°æœ€å¼€å§‹çš„é—®é¢˜ä¸Šæ¥ï¼Œç”¨pythonçš„requestsåº“å¦‚ä½•å®ç°ä¸Šé¢è¿™ä¸ªpostmanå‘é€çš„æ•ˆæœå‘¢ï¼Ÿ
 
 
 ```
@@ -93,11 +93,11 @@ import requests
 url = "http://127.0.0.1:8989/hello"
 data = {"field1": "I am first", "field2": "I am second"}
 file1 = ("raceon.go", open("raceon.go", "rb"), "application/octet-stream", {"Content-Type": "application/octet-stream"})
-file2 = ("³õ´úÄ¿.jpg", open("³õ´úÄ¿.jpg", "rb"), "image/jpeg", {"Content-Type": "image/jpeg"})
+file2 = ("åˆä»£ç›®.jpg", open("åˆä»£ç›®.jpg", "rb"), "image/jpeg", {"Content-Type": "image/jpeg"})
 resp = requests.post(url, data=data, files={"field3": file1, "field4": file2}, headers={})
 print resp.content[0:500]
 ```
 
-ÉÏÃæµÄ´úÂë¾ÍÄÜÊµÏÖpostmanÍ¬ÑùµÄĞ§¹ûÁË£¬×¢ÒâµÄÊÇ£¬Ã¿¸öfile£¬ÎÒ¶¼ÉèÖÃÁËÁ½´Îcontent-type, ²»ÖªµÀÎªÉ¶ÔÚ¹«Ë¾µÄµçÄÔÉÏ£¬Ö»ÓĞ{"Content-Type": "image/jpeg"} ÕâÑùÉèÖÃ²ÅÊÇÓĞĞ§µÄ£¬¶øÔÚÎÒ×Ô¼ºµÄµçÄÔÉÏ£¬ÔòÊÇÖ»ÓĞµÚÒ»¸ö "image/jpeg" ²ÅÊÇÓĞĞ§µÄ£¬Ó¦¸ÃÊÇ¸öbug°É¡£
+ä¸Šé¢çš„ä»£ç å°±èƒ½å®ç°postmanåŒæ ·çš„æ•ˆæœäº†ï¼Œæ³¨æ„çš„æ˜¯ï¼Œæ¯ä¸ªfileï¼Œæˆ‘éƒ½è®¾ç½®äº†ä¸¤æ¬¡content-type, ä¸çŸ¥é“ä¸ºå•¥åœ¨å…¬å¸çš„ç”µè„‘ä¸Šï¼Œåªæœ‰{"Content-Type": "image/jpeg"} è¿™æ ·è®¾ç½®æ‰æ˜¯æœ‰æ•ˆçš„ï¼Œè€Œåœ¨æˆ‘è‡ªå·±çš„ç”µè„‘ä¸Šï¼Œåˆ™æ˜¯åªæœ‰ç¬¬ä¸€ä¸ª "image/jpeg" æ‰æ˜¯æœ‰æ•ˆçš„ï¼Œåº”è¯¥æ˜¯ä¸ªbugå§ã€‚
 
 
