@@ -22,9 +22,105 @@
 		<p/><p/><p/>
    <h1 class="site-title">http multipartå¤„ç†æ–‡ä»¶ä¸Šä¼ çš„ä¸€ç‚¹ç†è§£</h1>
 		<p/><p/>
-        
+        <p>¹¤×÷ÖĞÓÃ Elixir µÄ Plug ¿ò¼Ü×öÁËÒ»¸ö API ½Ó¿Ú£¬ÓÃÓÚ´¦ÀíÓïÒô·­ÒëÎªÎÄ×Ö£¬Plug´¦ÀíÉÏ´«µÄÎÄ¼şÓÃµ½ÁËÕâ¸ö½á¹¹<a href="http://note.youdao.com/">https://hexdocs.pm/plug/Plug.Upload.html</a>£¬
+ÒÔÇ°Ò»Ö±Ê¹ÓÃ HTML »òÕß js µÄ±íµ¥¹¦ÄÜ×öÎÄ¼şÉÏ´«£¬¼¸ÄêÇ°´ÖÂÔµÃ¶ÁÁËÒ»±é ¡¶HTTPÈ¨ÍşÖ¸ÄÏ¡·£¬Ò²»ù±¾ÉÏÍüµÃ²î²»¶àÁË¡£
+ËùÒÔµ±ÎÒÒªĞ´ÎÄµµ£¬ÓÃPythonÀ´ËµÃ÷ÔõÃ´ÑùÊ¹ÓÃÕâ¸ö½Ó¿ÚµÄÊ±ºò£¬²Å·¢ÏÖÎÒ¶ÔhttpĞ­ÒéÖĞµÄmultipart/form-data»ù±¾²»ÁË½â£¬¼ÓÉÏrequests¿âÎÄµµ²»ÍêÉÆ£¬¾ÓÈ»»¨ÁËÎÒ¿ìÁ½Ìì²ÅÖªµÀÔõÃ´Ñù×ö¡£</p>
+
+<p>ÎÒµÄ½Ó¿ÚĞèÒªÓÃ»§Ìá¹©Á½¸ö×Ö¶Î£¬rate£¨²ÉÑùÂÊ£©£¬ audio(ÓïÒôÎÄ¼ş)£¬Plug¶ÔÉÏ´«µÄÎÄ¼ş·â×°Îª %Plug.Upload{} ½á¹¹£¬´Ë½á¹¹°üº¬Èı¸öÊı¾İ£¬path±íÊ¾ÎÄ¼şÂ·¾¶£¬filename±íÊ¾ÎÄ¼şÃû£¬content_type±íÊ¾ÎÄ¼şµÄÀàĞÍ£¬ÎÒµÄ½Ó¿ÚÒªÇóÕâ¸öcontent_typeÎªaudio/amr¡£</p>
+
+<p>²»ÖªµÀ¶Áµ½ÕâÀï£¬ÄãÊÇ·ñ²úÉúÒÉ»óÁË£¿Õı³£Çé¿öÏÂ£¬ÄÑµÀ²»ÊÇÒ»¸öhttpÇëÇó£¬Ö»ÓĞÒ»¸öcontent-typeÂğ£¬ ÎªÊ²Ã´ÉÏ´«µÄÎÄ¼ş»¹»áµ¥¶ÀÓĞÒ»¸öcontent-type£¿</p>
+
+<p>Õâ¾ÍÊÇÎÒÒÉ»óµÄµØ·½£¬È¥¿´ÁËmultipart/form-dataµÄ½âÊÍ£¬²ÅÀí½âÁËĞ©¡£ÕıÈçÆäÃû×ÖËùÊ¾£¬Ò»¸öhttpÇëÇóµÄcontent-typeÉèÖÃÎªmultipart/form-data, ±íÊ¾Õâ¸öhttpÇëÇó£¬»ìÔÓÁË¶à¸ö²¿·Ö£¬Ã¿¸ö²¿·Ö¶¼ÊÇ²»Ò»ÑùµÄÊı¾İÀàĞÍ£¬Ã¿¸ö²¿·Ö¶¼¿ÉÒÔÉèÖÃ×Ô¼ºµÄcontent-typeÒÔ¼°ÆäËûÒ»Ğ©Ïà¹ØµÄheader²ÎÊı£¨¶Ô£¬°ÑÃ¿¸öpart¿´³ö¶ÀÁ¢µÄhttpÇëÇó¾ÍºÃ£©¡£</p>
+
+<p>¶ÔÓÚhtml±íµ¥À´Ëµ£¬Ã¿¸öfield¾ÍÊÇÆäÖĞµÄÒ»¸öpart£¬Ã¿Ò»¸öpart£¬¶¼°üº¬Á½¸öheader£º <code>Content-Disposition: form-data; name=&quot;field1&quot;</code>, Content-Disposition¶¼ÊÇform-data, name¾ÍÊÇÕâ¸ö×Ö¶ÎµÄÃû³Æ¡£ÆÕÍ¨µÄ×Ö¶Î£¬Æäcontent-type¾ÍÊÇÄ¬ÈÏµÄtext/plain¡£</p>
+
+<p>Ò»¸ömultipart/form-dataÇëÇó£¬»á×Ô¶¯Éú³ÉÒ»´®×Ö·û´®×öboundary£¬¼´Ã¿¸öpartµÄ·Ö¸î±êÖ¾¡£</p>
+
+<p>ÎÒÕâÀïÓÃGoÓïÑÔĞ´Ò»¸ö¼òµ¥µÄhttp·şÎñÆ÷£¬°ÑhttpÇëÇó±¨ÎÄÒÔ×Ö·û´®·µ»Ø»ØÈ¥¡£È»ºóÊ¹ÓÃchromeµÄÒ»¸ö²å¼şpostmanÀ´×öform±íµ¥µÄÌá½»£¬²¢¿´¿´·µ»Ø»ØÀ´µÄhttp±¨ÎÄÊÇÔõÃ´ÑùµÄ¡£</p>
+
+<p>GoµÄ´úÂëÈçÏÂ£º</p>
+
+<pre><code>package main
+
+import (
+    &quot;fmt&quot;
+    &quot;net/http&quot;
+    &quot;net/http/httputil&quot;
+)
+
+func Hello(w http.ResponseWriter, req *http.Request) {
+    fmt.Printf(&quot;%+v\n&quot;, req.Header)
+    dump, _ := httputil.DumpRequest(req, true)
+    w.Write(dump)
+}
+
+func main() {
+    http.HandleFunc(&quot;/hello&quot;, Hello)
+    http.ListenAndServe(&quot;:8989&quot;, nil)
+}
+</code></pre>
+
+<p>postmanµÄÉèÖÃÈçÍ¼, ÎÒÉèÖÃÁËÁ½¸öÆÕÍ¨×Ö¶Î£¬Ò»¸öÆÕÍ¨ÎÄ±¾ÎÄ¼ş£¬Ò»¸öÍ¼Æ¬ÉÏ´«</p>
+
+<p><img src="https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/post.png" alt="image"></p>
+
+<p>·µ»Ø»ØÀ´µÄhttp±¨ÎÄ½á¹¹ÈçÏÂ£º</p>
+
+<pre><code>POST /hello HTTP/1.1
+Host: 127.0.0.1:8989
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4,la;q=0.2
+Cache-Control: no-cache
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMfzICyp6us00g3IO
+Origin: chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo
+Postman-Token: e6dd5c45-ed9e-8cdb-1fc6-efdb4abe3caa
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
+
+------WebKitFormBoundaryMfzICyp6us00g3IO
+Content-Disposition: form-data; name=&quot;field1&quot;
+
+I am first-----------------------------
+------WebKitFormBoundaryMfzICyp6us00g3IO
+Content-Disposition: form-data; name=&quot;field2&quot;
+
+I am second====================
+------WebKitFormBoundaryMfzICyp6us00g3IO
+Content-Disposition: form-data; name=&quot;txtfield&quot;; filename=&quot;test.txt&quot;
+Content-Type: text/plain
+
+txt file post test
+------WebKitFormBoundaryMfzICyp6us00g3IO
+Content-Disposition: form-data; name=&quot;imagefield&quot;; filename=&quot;³õ´úÄ¿.jpg&quot;
+Content-Type: image/jpeg
+
+????
+(×¢£ºÊ£ÏÂµÄ¶¼ÊÇÍ¼Æ¬µÄÂÒÂë)
+------WebKitFormBoundaryMfzICyp6us00g3IO--
+</code></pre>
+
+<p>¿ÉÒÔ¿´µ½£¬´ËhttpÇëÇóµÄÖ÷Ìå²¿·Ö£¬content-typeÊÇ<code>Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryMfzICyp6us00g3IO</code>£¬×Ô¶¯¸½´øÉÏÁËboundary×Ö·û´®¡£</p>
+
+<p>È»ºóÃ¿¸ö×Ö¶Î¶¼Ê¹ÓÃboundary°üÎ§×Å£¬ÀïÃæµÄheader¶¼¸ù¾İ¸÷×ÔµÄÄÚÈİ²»Í¬¶øÓĞËù²»Í¬¡£ÒÔÍ¼Æ¬ÎªÀı£¬Æäcontent-typeÎªimage/jpeg,Ò²ÓĞÁËfilename¡£Èç¹ûÎÄ¼şµÄÀàĞÍÊÇ·Ç±ê×¼µÄ£¬Ä¬ÈÏµÄcontent-typeÊÇapplication/octet-stream ¡£Ö®Ç°×ö¹ıÒ»¸öÎÄ¼şÏÂÔØµÄapi£¬ÒòÎªÏÂÔØµÄÎÄ¼şÓĞ¿ÉÄÜÊÇÎÄ±¾£¬ÓĞ¿ÉÄÜÊÇÍ¼Æ¬£¬»¹ÓĞ¿ÉÄÜÊÇÆäËû£¬ÎŞ·¨µÃÖª¾ßÌå¸ñÊ½£¬ËùÒÔÎÒÖ±½Ó°ÑresponseµÄcontent-typeÉèÖÃÎªapplication/octet-stream,ËùÓĞÎÄ¼ş¶¼ÄÜÏÂÔØ¡£</p>
+
+<p>²»ÖªµÀÎªÉ¶£¬¸÷ÃÅÓïÑÔµÄhttp¿âµÄpost·½·¨£¬Òª×ömultipart/form-dataÉÏ´«ÎÄ¼ş£¬ºÃÏñ¶¼²»ÊÇºÜ·½±ã£¬ÉõÖÁÊÇÎÄµµ²»ÊÇºÜÏêÏ¸¡£</p>
+
+<p>ÄÇÃ´»Øµ½×î¿ªÊ¼µÄÎÊÌâÉÏÀ´£¬ÓÃpythonµÄrequests¿âÈçºÎÊµÏÖÉÏÃæÕâ¸öpostman·¢ËÍµÄĞ§¹ûÄØ£¿</p>
+
+<pre><code>import requests
+url = &quot;http://127.0.0.1:8989/hello&quot;
+data = {&quot;field1&quot;: &quot;I am first&quot;, &quot;field2&quot;: &quot;I am second&quot;}
+file1 = (&quot;raceon.go&quot;, open(&quot;raceon.go&quot;, &quot;rb&quot;), &quot;application/octet-stream&quot;, {&quot;Content-Type&quot;: &quot;application/octet-stream&quot;})
+file2 = (&quot;³õ´úÄ¿.jpg&quot;, open(&quot;³õ´úÄ¿.jpg&quot;, &quot;rb&quot;), &quot;image/jpeg&quot;, {&quot;Content-Type&quot;: &quot;image/jpeg&quot;})
+resp = requests.post(url, data=data, files={&quot;field3&quot;: file1, &quot;field4&quot;: file2}, headers={})
+print resp.content[0:500]
+</code></pre>
+
+<p>ÉÏÃæµÄ´úÂë¾ÍÄÜÊµÏÖpostmanÍ¬ÑùµÄĞ§¹ûÁË£¬×¢ÒâµÄÊÇ£¬Ã¿¸öfile£¬ÎÒ¶¼ÉèÖÃÁËÁ½´Îcontent-type, ²»ÖªµÀÎªÉ¶ÔÚ¹«Ë¾µÄµçÄÔÉÏ£¬Ö»ÓĞ{&quot;Content-Type&quot;: &quot;image/jpeg&quot;} ÕâÑùÉèÖÃ²ÅÊÇÓĞĞ§µÄ£¬¶øÔÚÎÒ×Ô¼ºµÄµçÄÔÉÏ£¬ÔòÊÇÖ»ÓĞµÚÒ»¸ö &quot;image/jpeg&quot; ²ÅÊÇÓĞĞ§µÄ£¬Ó¦¸ÃÊÇ¸öbug°É¡£</p>
+
         <p/></p>
-        <div> 2017-04-17 11:39</div>
+        <div> 2017-04-17 11:42</div>
 		
 		<div id="uyan_frame"></div>
 		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
