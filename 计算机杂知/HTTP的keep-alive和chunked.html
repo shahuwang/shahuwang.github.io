@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>HTTP的keep-alive和chunked</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">HTTP的keep-alive和chunked</h1>
+		<p/><p/>
+        <p>最近在阅读Go语言的Http库，以前总觉得这些基础代码，会很高大上很难懂，所以连去挑战下的勇气都没有。工作了几年之后，总算是有信心来挑战下了，不过目前进展还是很慢，说明目前的实力还不足。</p>
+
+<p>本来想着用Java照着Go的代码仿写一份的，写着写着，就感到越来越难了。因为对整体代码都没有认知，就直接开始，一边阅读代码，一边仿写，加上Go和Java都不能说熟到遂心应手的程度，写着写着，就变成纯粹用Java模拟Go的语法了。遇到愈来愈多无法直接模仿的代码和类库，仿写也就进行不下去了。</p>
+
+<p>虽然是放弃了仿写，不过我还是觉得用另一门语言照着实现一份代码，进步会非常快。譬如之前自己写代码，就很少会用那么复杂的多线程同步。</p>
+
+<p>虽说放弃了仿写，但是单纯的阅读代码，其实并没有什么意义，或者说，会觉得自己看懂了就一带而过了，事后也就忘了。于是决定重操旧业，边阅读代码，边写文章。</p>
+
+<p>写文章让我心中倍感踏实，每次学点什么，如果我没有写成一篇总结文章，就觉得自己并没有学到，感觉也记不住，很快就忘了，譬如TCP的基础知识，我已经阅读过两本书了，现在还是很不懂。</p>
+
+<p>如果后面自己还能坚持的话，我还是打算用Java把这份Go的http库给仿写出来。</p>
+
+<p>下面开始正文：</p>
+
+<p>首先第一个问题，http的keep-alive和tcp的keepalive，有没有关系？</p>
+
+<p>答案自然是没有关系。</p>
+
+<p>问题二： TCP 的 keepalive 是什么意思，用途是什么？</p>
+
+<p>TCP实现中包含一个keepalive定时器，当一条TCP没有数据流通时，定时器开始活动，直至为0时，服务端这边会向客户端这边发送一个不带数据的ACK请求，如果收到回复，则表明这条连接是活的。如果没有收到回复，服务器端这边会发送多次ack，到一定次数之后还没有收到回复，就认定这条连接已经死掉了，直接关闭掉。</p>
+
+<p>具体作用就两个：探测连接的死活，以及保持连接的活动，保证不被防火墙之类的服务杀死（比如防火墙认为一条连接超过一定时间没有活动就要杀死掉，只要设置keepalive短于这个时间即可保活）。</p>
+
+<p>Linux的TCP默认是没有开启keepalive的，因为大量的keepalive会浪费服务器资源。keepalive也可以在代码里建立TCP的时候开启，具体可以看这篇 <a href="http://www.tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO/">TCP KeepAlive How To</a></p>
+
+<p>问题三：HTTP的keep-alive是什么意思？用途是什么？</p>
+
+<p>http的keep-alive其实是HTTP 1.0的产物，HTTP 1.1 之后，所有的http连接都默认是keep-alive的，
+所谓的keep-alive，就是一条tcp连接，在处理完一次http事务之后，不关闭此tcp连接，用于下一次的http事务。譬如客户端和
+服务器端建立一个连接，用于客户端向服务器端发送图片。如果不是keep-alive的http连接，那么在发送完一张图片之后，就关闭
+掉这条连接了。而keep-alive的连接，则在发送完一张图片后，放回到连接池里，客户端要再次发送图片到服务器了，就直接从连接池拿出这条连接，而不是从零开始建立一条连接（http的底层是TCP，从零建立一条tcp连接，三次握手，慢启动等导致非常耗时）。</p>
+
+<p>对于HTTP 1.1，并不需要指定keep-alive了。但是，假如你希望这条http连接完成一次事务之后（发送完这张图片），就关闭这条连接（实际就是关闭底层的tcp连接），那么可以在http请求的头部加入 Connection: close，而且可以在任何时候加入这个头部，比如发第一张图片不加，第二张图片加这个头部。</p>
+
+<p>不发送 Connection:close, 并不意味着服务器承诺永远不关闭这条连接，实际上空闲超过一定时间一定数量之后，就会关闭掉。</p>
+
+<p>问题四：重用tcp连接不是很正常的事情么，为什么http的keep-alive会有那么复杂的历史，要废那么多口水来解释呢？</p>
+
+<p>重用连接之后，对于一次http事务是否完成了，就需要稍微复杂点的判断了。同一条tcp通道，你灌进来一张图片的数据之后又再灌进来一张图片，对于另一端的服务，它如何确定第一张图片的数据读到哪个位置就完成了呢？如果连接不是keep-alive的，那么只要把tcp通道里的所有数据都读完就可以了。</p>
+
+<p>目前http在持久化连接上，区分两次http事务的方式有两种，一个是通过Content-Length这个header来判断主体内容的长度，比如我通过http请求发送了一个 Hello, 那么这个Content-Length就是5。读完之后，就是下次事务的开始了。另一种则是通过chunk，
+即分块编码来实现。</p>
+
+<p>如果Content-Length设置错误或者没有设置，那么接收端就应该质疑这个长度的正确性。用Go的http库测试了下，发现用户是
+无法设置Content-Length这个header的。</p>
+
+<p>但有一种情况可以不设置Content-Length,即使用传输编码Transfer-Encoding:chunked的时候，历史上Transfer-Encoding支持
+多种编码，但是目前最新的规范里，只支持chunked编码，即分块编码一种。</p>
+
+<p>当在报文的头部加入Transfer-Encoding:chunked的时候，报文就会被分块，每块包含长度值，数据，以及分隔符CRLF，最后一个块长度必须为0，如下图：</p>
+
+<p><img src="https://raw.githubusercontent.com/shahuwang/images/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%9D%82%E7%9F%A5/chunk.png" alt="chunked编码形式"></p>
+
+<p>接收端就可以根据长度值读取数据，以及最后一个长度为0的块来判定接收结束。</p>
+
+<p>分块传输有许多的用途和好处，譬如有些内容是持续产生的，事先并不知道长度是多长，用分块传输就可以边传输边读取新数据发送了。还有一些大文件，如果先将整个文件压缩好了再传输，对用户很不友好（感觉等待的时间长），就可以采用分块传输和内容
+编码结合（Content-Encoding),一块块的压缩，一块块的传输。</p>
+
+        <p/></p>
+        <div> 2017-05-21 12:13</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
