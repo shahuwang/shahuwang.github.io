@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>websocket的一点笔记</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">websocket的一点笔记</h1>
+		<p/><p/>
+        <p>因为工作中没有用过websocket，所以对这个协议也不是很了解。但是网上经常看到这个协议，感觉不去了解一下，也不合适。</p>
+
+<p>以前自己基础功不扎实的时候，我一直不知道所谓的网络协议到底是个什么意思？到底和TCP有什么区别？因为基础不扎实，所以对遇到的问题甚至都无法描述出来，那种感觉就像在迷雾中一般。</p>
+
+<p>后来因为特别想知道公司用的fan qiang工具是怎么实现的，于是去阅读了同事的开源项目，第一次明白了所谓的网络协议是怎么一回事。后面再去阅读了两本TCP/IP方面的书，以及HTTP权威指南，再阅读了mongo的驱动实现以及Go的http库的实现，对网络协议这个东西，总算是知道个怎么一回事了。</p>
+
+<p>总得来说，目前看过的协议主要是这几类：基于二进制数据和基于文本，或者基于流的和基于帧的。</p>
+
+<p>所谓的基于二进制，就是你给我10101010这样的数据，我这个协议呢，就把你的数据封装一下，比如在你的数据的前面再加上100010000封装为10001000010101010，我前面的这一串二进制数据，可以设定各种含义，比如我假设第一位如果是0，表示这是文字信息，如果是1表示这是图像数据。然后就把10001000010101010发给支持这种协议的服务器。服务器读到一份数据，它就根据头部的这一堆1和0解析出这份数据的含义。</p>
+
+<p>而基于文本的协议，典型的如http，它的协议格式大致如下：</p>
+
+<pre><code>POST /hello HTTP/1.1
+Host: 127.0.0.1:8989
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4,la;q=0.2
+Cache-Control: no-cache
+Connection: keep-alive
+Content-Length: 36
+Content-Type: application/x-www-form-urlencoded
+Origin: chrome-extension://aicmkgpgakddgnaphhhpliifpcfhicfo
+Postman-Token: b98e76e9-3552-b53d-c9a6-ae7d425e99ef
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+
+first=I+am+first&amp;second+=I+am+second
+</code></pre>
+
+<p>这份数据在传输的时候也是1和0，只不过我解析它含义的时候，不是在它们还是0和1来判断的，而是根据字符串，比如我要知道你发送的数据类型，就要去找Content-type这个部分（基于二进制的协议，我只要根据你头部二进制的第N位或者第N几位的值就能判断你的数据类型）。</p>
+
+<p>基于帧和基于流的划分，则简单一点。TCP协议本身就是基于流的，但是基于TCP上的大部分应用协议都是基于帧的。基于流的协议，就是不管接收到的数据边界，收到一份就是一份。比如‘国’这个字转换成0和1之后，通过TCP传输，可能是被分成了前后两份，因为TCP不负责数据的解释，它只认0和1，tcp把数据收完之后，把所有收到的二进制数据按顺序整合在一起，交给上层协议去解析。</p>
+
+<p>websocket就是基于TCP的上层应用协议，它是按照帧的。websocket从tcp拿到一组0和1 的数据，它先读取一小部分，这是帧头部，长度是固定的，然后开始根据协议定义的每一位代表什么意思，解析出这份数据的基本信息，比如数据长度是多长。然后根据数据的长度，把完整的一帧读取下来。读到终结帧的时候，就把所有帧中的数据组合起来交给上一层。</p>
+
+<p>所以，定义一个网络协议，首先确定是基于二进制还是基于文本，是基于流的还是基于帧的。然后要定义元数据，就是你给我一份数据，我该如何知道这个0是什么意思，那个1是什么意思，我该怎么做。接着就要定义数据该怎么发送怎么接收了。</p>
+
+<p>读了一遍websocket的RFC，再读了下Go的一个websocket协议实现，把我目前疑惑的地方都解决了。关于websocket的详细信息，网上其实已经非常多了，对我来说，因为之前那些疑惑的存在，我一直都没有看明白网上的那些websocket教程和文章。现在疑惑解除了，看网上的那些教程基本没压力。所以本文不是正规的websocket教程或者科普文。</p>
+
+<p>首先我的第一个疑惑就是websocket和http有什么关系？其实websocket可以和http没有关系的。只是因为web前端面临的环境比较复杂，比如到现在还有人在用着IE6，这显然是不可能再增加新功能新支持的了。另外各家浏览器大厂都有自己的利益诉求，不可能随便支持你给出的一个东西。所以websocket利用http协议来进行与服务器握手，可以保证得到最广泛的客户端支持。而在服务器上，每个人都可以根据自己的需求去决定是否支持websocket，这个要做起来就容易多了。</p>
+
+<p>所以websocket就利用了http，比如我客户端要建立一个websocket连接，就先发一个http请求，这个http请求的头部存在如下字段：</p>
+
+<pre><code>GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Origin: http://example.com
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+</code></pre>
+
+<p>假如你的服务器是支持websocket的，那么它就回复一个接受握手：</p>
+
+<pre><code>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+Sec-WebSocket-Protocol: chat
+</code></pre>
+
+<p>此时客户端和服务器之间就建立了一条tcp连接，服务器知道这条连接是专门用于websocket的，你有需求就往里面发送websocket帧。</p>
+
+<p>现在已经没有http协议什么事了。其实上面这个过程，也是可以不经过http的。你给我服务器的地址和端口，我直接建立一个tcp连接，然后发送一小段消息，由对方去解析明白这是用于websocket的。</p>
+
+<p>里面http来进行握手，可以确保http服务的端口也能被websocket使用，减少端口的暴露和配置。同时保证了多数客户端都能支持websocket的握手。握手成功之后，就是tcp的事情了，大多数客户端都能支持了（解析留给库去解决就行）。</p>
+
+<p>比较有趣的是在握手的过程中，客户端会发送一个Sec-WebSocket-Key的头部，它是一个SHA-1构造出来的信息摘要，并进行过base64编码。然后服务器端验证完之后，返回给客户端时添加一个Sec-WebSocket-Accept的头部，其值是客户端发来的Sec-WebSocket-Key的值，加上一个固定的字符串258EAFA5-E914-47DA-95CA-C5AB0DC85B11，然后进行base64编码。客户端解析这个值就能判断出是否接受了。</p>
+
+<p>WebSocket是分帧的，小一点的数据就一帧就结束了。而对于大的数据，比如一张图片，那么就需要分很多帧。websocket帧的结构可以看这篇文章：<a href="http://blog.csdn.net/bingqingsuimeng/article/details/41479175">Websocket协议数据帧传输和关闭连接</a> 。因为分帧，所以就要有结束标志，websocket里有一个结束帧，收到这个帧表示这份数据接收完毕。读完RFC和代码后，确实如RFC所说，websocket不支持多路复用，往同一个方向上的数据发送，同时只能有一个client，只有等这个client发送完毕 ，才能给其他client使用这条tcp连接。所以RFC里面要求client在使用websocket的时候需要加锁。这种设置也导致了它不那么高效（http2就可以做到多路复用），但是协议的实现也相对简单了许多。</p>
+
+<p>websocket建立握手的过程中会有一个Origin头部，这个是client所在的域名，主要是用于浏览器时防止跨域攻击，譬如你是<a href="http://example.com的，就不能在浏览器中给http://test.com发消息（其实可以发，只是对端服务器会拒绝掉）。这个头部是浏览器设置的，所有的js库都不能修改这个头部的值，保证了websocket的安全。">http://example.com的，就不能在浏览器中给http://test.com发消息（其实可以发，只是对端服务器会拒绝掉）。这个头部是浏览器设置的，所有的js库都不能修改这个头部的值，保证了websocket的安全。</a></p>
+
+<p>websocket还有个子协议，搞得我比较头晕的。仔细了解了下，其实就类似于你在TCP上实现了websocket，这些子协议只是在websocket上实现的。简单点说就是websocket一端收到websocket数据，然后提取出里面数据部分（去掉帧的元信息），然后再用另一种协议定义来解析这部分数据。</p>
+
+        <p/></p>
+        <div> 2017-06-21 11:17</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
