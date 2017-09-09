@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel='stylesheet' id='decode-style-css'  href='http://shahuwang.github.io/css/decode.css' type='text/css' media='all' />
+        <title>Lua require机制和热更新</title>
+        
+		
+	</head>
+	<body>
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">		
+			<h1 class="site-title">
+			<a href="http://www.shahuwang.com/" title="沙湖王" rel="home">沙湖王</a>
+			</h1>				
+			<h2 class="site-description">知识只有分享才能延续生命</h2>
+		</div>
+		</header>
+		<p/><p/><p/>
+   <h1 class="site-title">Lua require机制和热更新</h1>
+		<p/><p/>
+        <p>本文基本上算是对<a href="https://www.lua.org/manual/5.1/manual.html#pdf-require">Lua手册</a>关于require机制的翻译。</p>
+
+<p>现在工作上主要使用openresty，也是很惊叹这套基于Lua和Nginx的工具链如此之好用，又如此之强大。为了不再蹉跎岁月，打算把这套工具链精进研究一下。</p>
+
+<p>昨晚突然想知道require机制到底是怎么个过程，所以查找了一下相关的资料，发现还是官方手册最完善。</p>
+
+<h5>require(modname)</h5>
+
+<p>require函数首先会去package.loaded这个table以modname做key查找对应的值，如果存在这个值，就返回。如果没有，则会去找一个loader来加载这个模块。</p>
+
+<p>require会去package.loaders这个数组里面找loader，所以如果你想写自己的加载器，修改这个数组就行啦。</p>
+
+<p>找到loader之后，require会把loader获取到的值，赋值给package.loaded[modname]。如果loader没有返回值，则赋值为true。</p>
+
+<h5>package.cpath</h5>
+
+<p>这是让require去查找C语言模块的。Lua在启动的时候，会根据系统的环境变量LUA_CPATH设置package.cpath=LUA_CPATH, 如果不存在这个环境变量，则使用默认的值，定义在luaconf.h里面的。</p>
+
+<p>每个路径使用 <code>;</code> 分割开来，如<code>package.cpath= &quot;./?.so;./?.dll;/usr/local/?/init.so&quot;</code>, 那么 <code>require &quot;foo&quot;</code>, 会尝试打开 <code>./foo.so, ./foo.dll</code> 和 <code>/usr/local/foo/init.so</code> 。如果找到需要的C库，将会使用动态链接连接起来，然后查找里面以luaopen_ 开头的函数，比如 `require &quot;a.b.c&quot; 会找到函数 luaopen_a_b_c。</p>
+
+<h5>package.path</h5>
+
+<p>这是让require去查找Lua模块的。Lua在启动的时候，会根据系统变量LUA_PATH设置<code>package.path=LUA_PATH</code>, 如果这个环境变量没有定义，则使用luaconf.h里面定义的路径。 如果你设置<code>LUA_PATH=&quot;;;&quot;</code>, 这个值不会被使用，还会照旧使用默认路径。</p>
+
+<p>每一个路径用 <code>;</code> 分割开来，如 <code>package.path= &quot;./?.lua;./?.lc;/usr/local/?/init.lua&quot;</code>, 那么 <code>require &quot;foo&quot;</code> 的时候，loader会尝试打开 <code>./foo.lua, ./foo.1c和/usr/local/foo/init.lua</code>。</p>
+
+<h5>package.loaded</h5>
+
+<p>这个表放置了所有加载过的模块，如果require(modname), 则先看package.loaded[modname]的返回值，如果是nil或者false，则表示这个模块没有加载。其他值表示模块已经加载，返回此值。</p>
+
+<h5>package.loaders</h5>
+
+<p>这是供require控制模块加载的table，每一个值都是一个查找函数。 Lua初始化这个表时提供四个函数，第一个查找函数会去package.preload表里面查找；第二个查找函数会去找一个用于加载Lua库的loader，这个loader会使用package.path路径去找寻要加载的模块；第三个查找函数会去找一个加载C模块的loader，这个loader会使用package.cpath作为查找路径；第四个查找函数会使用一个all-in-one loader, 主要用于C模块的查找，比如require a.b.c, 它会找一个名为a的C库，如果找到了，就看里面有没有一个luaopen_a_b_c的open function。</p>
+
+<p>对Lua的require机制了解了之后，就可以来了解Lua的热更新了。关于热更新的知识，主要来源于这几篇博客<a href="https://asqbtcupid.github.io/">https://asqbtcupid.github.io/</a></p>
+
+<p>不知道其他人有没有疑问，我是一直有很大疑问的，每每说到Lua，Erlang之类的语言，都说它的特性支持热更新，但是我基本上没有找着篇文章，告诉我这些热更新操作到底该怎么做，具体步骤怎么样？这一点是相当奇怪的，只能说明，大部分的项目根本用不到热更新，所以大部分用这些语言的人，也基本上没有去钻研这个细节。</p>
+
+<p>目前据我所了解到的Lua的热更新，主要有两个核心点：重新require，更新package.loaded里面的值；保留upvalue（啊，upvalue这个词也是很少解释说明，大概就是函数定义之前的变量）。比如如下这个模块, 如果我要热更新，把返回值修改成 <code>&quot;hello world .. hotfix&quot; .. count</code>, 就需要保证package.loaded里面的是新的代码，新的代码运行的时候能保留count的值（count就是函数test的upvalue)。</p>
+
+<pre><code class="language-lua">--- base.lua
+local _M = {}
+local count = 0
+function _M.test()
+    count = count + 1
+    return &quot;hello world..  &quot; .. count
+end
+return _M
+</code></pre>
+
+<p>如何做到更换旧代码并且保留upvalue呢？代码如下：</p>
+
+<pre><code class="language-lua">--- hotfix.lua
+local oldfunc = require &quot;base&quot;
+package.loaded['base'] = nil
+local newfunc = require &quot;base&quot;
+
+for i = 1, math.huge do
+    local name, value = debug.getupvalue(oldfunc.test, i)
+    if not name then break end
+    debug.setupvalue(newfunc.test, i, value)
+end
+print(&quot;hotfix complete!&quot;)
+</code></pre>
+
+<p>关于如何访问upvalue的方法，可以看 <a href="https://www.lua.org/pil/23.1.2.html">Programming Lua</a></p>
+
+<p>代码写好了，另一个疑问就来了，如何通知正在运行着的程序，去加载这段热更新代码呢？这方面也没看到有多少文章有说的，也是很奇怪。网上看到的一个做法，倒是值得学习，他让Lua进程监听某个信号，一到监听到信号，就去指定的路径加载指定的文件，这个文件可以是热更新的代码，也可以是处理热更新的某些逻辑。</p>
+
+<p>但是，此时另一个问题又出现了，假如我修改了 Module_a里面的test函数，要进行热更新。而Module_b里面用到了Module_a的test函数，Module_c则用到了Module_b 。 a =&gt; b =&gt; c 这样的一个引用链，现在我替换了 Module_a 的代码，然后在 Module_b 进行了如上的热更新逻辑，后续如果有新的代码运行 <code>require(&quot;Module_b&quot;)</code> 那么确实会使用到了新的代码逻辑。但是对于 Module_c 来说，它在启动之时就已经 <code>local b = require(&quot;Module_b&quot;)</code>, 不管Module_b 是否进行了热更新逻辑，Module_c里面一直都是使用着旧的代码。</p>
+
+<p>难道我为了热更新一个函数，需要把整条调用链上的代码都进行热更新逻辑处理吗？看着也是相当不合理的啊。找到这篇<a href="https://asqbtcupid.github.io/luahotupdate4-callback/">《Lua热更新原理(4) - 替换函数》</a>，发现是可以替换掉全部函数的，核心原理就是“遍历虚拟机， 找到旧函数所有的索引，并把这些索引指向新函数”，不过说实在的，我并没有怎么看懂，这一块的内容，等到下篇博客再来写了。</p>
+
+<p>如下是我用来测试热更新逻辑的四个代码文件，base.lua 就是热更新时要更改的函数代码所在；hotfix.lua 就是热更新操作过程；app.lua 引用了 base.lua, 主要是用来验证替换函数这个逻辑的；main.lua 操作的入口，这里先运行旧代码，睡眠10秒钟，把base.lua代码替换掉，进行热更新逻辑操作，比对 base.test(), app.run()的输出，是不是新的代码的输出。</p>
+
+<pre><code class="language-lua">--- base.lua
+
+local _M = {}
+local count = 0
+function _M.test()
+    count = count + 1
+    return &quot;hello world.. after hotfix &quot; .. count
+end
+return _M
+</code></pre>
+
+<pre><code class="language-lua">--- hotfix.lua
+
+local oldmod = require &quot;base&quot;
+package.loaded['base'] = nil
+local newmod = require &quot;base&quot;
+
+for i = 1, math.huge do
+    local name, value = debug.getupvalue(oldmod.test, i)
+    if not name then break end
+    debug.setupvalue(newmod.test, i, value)
+end
+
+local function replace(oldfunction, newfunction)
+    local visited = {}
+    local function f(t)
+        if not t or visited[t] then return end
+        visited[t] = true
+        if type(t) == &quot;function&quot; then
+            for i = 1, math.huge do
+                local name, value = debug.getupvalue(t, i)
+               
+                if not name then break end
+                f(value)
+            end
+        elseif type(t) == &quot;table&quot; then
+            f(debug.getmetatable(t))
+            for k,v in pairs(t) do
+                f(k); f(v);
+                if type(v) == &quot;function&quot; or type(k) == &quot;function&quot; then
+                    if v == oldfunction then t[k] = newfunction end
+                    if k == oldfunction then 
+                        t[newfunction] = t[k]
+                        t[k] = nil
+                    end
+                end
+            end
+        end
+    end
+    f(_G)
+    local registryTable = debug.getregistry()
+    for k, v in pairs(registryTable) do
+        if v == oldfunction then
+            registryTable[k] = newfunction
+        end
+    end
+end
+
+replace(oldmod.test, newmod.test)
+print(&quot;hotfix complete!&quot;)
+</code></pre>
+
+<pre><code class="language-lua">--- app.lua
+
+local base = require &quot;base&quot;
+local _M = {}
+function _M.run() 
+    local ret = base.test()
+    print(ret)
+end
+return _M
+</code></pre>
+
+<pre><code class="language-lua">--- main.lua
+
+local app = require &quot;app&quot;
+app.run()
+local function sleep(s)
+    local ntime = os.clock() + s
+    repeat until os.clock() &gt; ntime
+end
+
+sleep(10) --- 趁睡眠时，去更改base.lua里的test的返回值
+
+local hotfix = require &quot;hotfix&quot;
+
+local base = require &quot;base&quot;
+print(base.test()) --- 热更新后的输出
+
+
+app = require &quot;app&quot;
+app.run() --- 也是热更新后的新输出
+
+</code></pre>
+
+        <p/></p>
+        <div> 2017-09-09 03:10</div>
+		
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1546939"></script>
+		
+	</body>
+</html>
